@@ -1,75 +1,56 @@
 package com.archon.po;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
+public class Admin implements Serializable {
 
-public class Admin {
-    public static final int NORMALADMINCLASS = 1;
-    public static final int SUPERADMINCLASS = 999;
+	private Integer id;
+	private String aName;
+	private transient String aPassword;
+	private Integer aType;
 
-    private  Integer id;
-    private String adminName;
-    private String adminPassword;
-    private Integer adminClass;
-    private Timestamp adminCreateTime;
-    private Timestamp adminModifiedTime;
+	public Admin() {
 
-    @Override
-    public String toString() {
-        return "Admin{" +
-                "id=" + id +
-                ", adminName='" + adminName + '\'' +
-                ", adminPassword='" + adminPassword + '\'' +
-                ", adminClass=" + adminClass +
-                ", adminCreateTime=" + adminCreateTime +
-                ", adminModifiedTime=" + adminModifiedTime +
-                '}';
-    }
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getAdminName() {
-        return adminName;
-    }
+	public String getAName() {
+		return aName;
+	}
 
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
-    }
+	public void setAName(String aName) {
+		this.aName = aName;
+	}
 
-    public String getAdminPassword() {
-        return adminPassword;
-    }
+	public String getAPassword() {
+		return aPassword;
+	}
 
-    public void setAdminPassword(String adminPassword) {
-        this.adminPassword = adminPassword;
-    }
+	public void setAPassword(String aPassword) {
+		this.aPassword = aPassword;
+	}
 
-    public Integer getAdminClass() {
-        return adminClass;
-    }
+	public Integer getAType() {
+		return aType;
+	}
 
-    public void setAdminClass(Integer adminClass) {
-        this.adminClass = adminClass;
-    }
+	public void setAType(Integer aType) {
+		this.aType = aType;
+	}
 
-    public Timestamp getAdminCreateTime() {
-        return adminCreateTime;
-    }
-
-    public void setAdminCreateTime(Timestamp adminCreateTime) {
-        this.adminCreateTime = adminCreateTime;
-    }
-
-    public Timestamp getAdminModifiedTime() {
-        return adminModifiedTime;
-    }
-
-    public void setAdminModifiedTime(Timestamp adminModifiedTime) {
-        this.adminModifiedTime = adminModifiedTime;
-    }
+	@Override
+	public String toString() {
+		return "Admin{" +
+				" id=" + id +
+				" aName=" + aName +
+				" aPassword=" + aPassword +
+				" aType=" + aType +
+				"}";
+	}
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="PAS_byShenZhongye:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="maven_shop_ssm-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="PAS_byShenZhongye:war exploded" />
+    </root>
+  </artifact>
+</component>

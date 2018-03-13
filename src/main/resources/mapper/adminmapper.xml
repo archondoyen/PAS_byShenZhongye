@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.po.Admin">
+    <resultMap id="adminMap" type="Admin">
+        <id column="id" property="id"></id>
+        <result column="ADMIN_NAME" property="adminName"></result>
+        <result column="ADMIN_PASSWORD" property="adminPassword"></result>
+        <result column="ADMIN_IS_NORMAL" property="adminIsNormal"></result>
+        <result column="ADMIN_CREATE_TIME" property="adminCreateTime"></result>
+        <result column="ADMIN_MODIFIED_TIME" property="adminModifiedTime"></result>
+    </resultMap>
+    <select id="queryAdminByName" parameterType="Admin" resultMap="adminMap">
+        SELECT * FROM  admin WHERE ADMIN_NAME=#{adminName} AND ADMIN_PASSWORD=#{adminPassword}
+    </select>
+
+</mapper>

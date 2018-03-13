@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" " http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 引入外部配置文件 -->
+    <!--<properties resource="oracle.properties"></properties>-->
+
+    <!--开启延迟加载  默认关闭-->
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <!-- 为JAVA Bean起类别名 -->
+    <!--<typeAliases >-->
+        <!--&lt;!&ndash; <typeAlias type="com.iotek.po.CustomerService" alias="CustomerService"></typeAlias>&ndash;&gt;-->
+        <!--&lt;!&ndash; 别名方式1，一个一个的配置 type中放置的是类的全路径，alias中放置的是类别名-->
+        <!--<typeAliase type="com.cy.mybatis.beans.UserBean" alias="UserBean"/> &ndash;&gt;-->
+        <!--&lt;!&ndash; 别名方式2，自动扫描，将JAVA类的类名作为类的类别名 &ndash;&gt;-->
+    <!--&lt;!&ndash; 配置mybatis运行环境 &ndash;&gt;-->
+    <!--<package name="com.sxt.po"/>-->
+    <!--</typeAliases>-->
+
+<!--<environments default="cybatis">-->
+    <!--&lt;!&ndash;一个environment id 代表一个数据库连接诶配置&ndash;&gt;-->
+        <!--<environment id="cybatis">-->
+            <!--&lt;!&ndash; type="JDBC" 代表使用JDBC的提交和回滚来管理事务 &ndash;&gt;-->
+            <!--<transactionManager type="JDBC" />-->
+
+            <!--&lt;!&ndash; mybatis提供了3种数据源类型，分别是：POOLED,UNPOOLED,JNDI &ndash;&gt;-->
+            <!--&lt;!&ndash; POOLED 表示支持JDBC数据源连接池 &ndash;&gt;-->
+            <!--&lt;!&ndash; UNPOOLED 表示不支持数据源连接池 &ndash;&gt;-->
+            <!--&lt;!&ndash; JNDI 表示支持外部数据源连接池 &ndash;&gt;-->
+            <!--<dataSource type="POOLED">-->
+                <!--<property name="driver" value="${jdbc.driver}" />-->
+                <!--<property name="url" value="${jdbc.url}" />-->
+                <!--<property name="username" value="${jdbc.username}" />-->
+                <!--<property name="password" value="${jdbc.password}" />-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+
+    <!--<mappers>-->
+        <!--&lt;!&ndash; 告知映射文件方式2，自动扫描包内的Mapper接口与配置文件 &ndash;&gt;-->
+
+        <!--&lt;!&ndash;<mapper resource="com/sxt/mapper/CustomerMapper.xml"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<mapper resource="com/sxt/mapper/ProductDao.xml"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<mapper resource="com/sxt/mapper/ProductDetailDao.xml"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<package name="com/iotek/mapper"/>&ndash;&gt;-->
+        <!--&lt;!&ndash; 告知映射文件方式1，一个一个的配置 &ndash;&gt;-->
+        <!--<package name="com/sxt/mapper"/>-->
+    <!--</mappers>-->
+</configuration>

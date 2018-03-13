@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--开启注解-->
+    <context:annotation-config></context:annotation-config>
+    <!--开启bean扫描-->
+    <context:component-scan base-package="com.archon"/>
+    <!--注解的方式调用AOP自动代理模式-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+    <!--开启MVC注解-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+
+    <!--导入外部文件-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:log4j.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!--配置数据源，默认数据库连接池-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+    <!--将sqlSession配置成bean-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+        <property name="typeAliasesPackage" value="com.archon.po"></property>
+        <property name="configLocation" value="classpath:mybatis.config.xml"></property>
+    </bean>
+    <!--配置映射文件对应的接口-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.sxt.dao"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+    <!--配置事物管理-->
+    <bean id="transactionManage" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--配置事物通知-->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManage">
+        <tx:attributes>
+            <tx:method name="add*"/>
+            <tx:method name="update*"/>
+            <tx:method name="delete*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--配置切面-->
+    <aop:config>
+        <!--横切关注点-->
+        <aop:pointcut id="interceptorPointCuts" expression="execution(* com.sxt.service.impl..*.*(..))"></aop:pointcut>
+       <!--<通知-->
+        <aop:advisor advice-ref="transactionAdvice" pointcut-ref="interceptorPointCuts"></aop:advisor>
+    </aop:config>
+
+    <!-- 配置视图解析器 如何把handler 方法返回值解析为实际的物理视图 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+<!--<bean id="customer" class="com.sxt.po.CustomerDao">-->
+            <!--<property name="customerName" value="sxt"></property>-->
+            <!--<property name="customerPassword" value="123456"></property>-->
+        <!--</bean>-->
+
+        <!--<bean id="customerDao" class="com.sxt.dao.impl.CustomerDaoImpl1"></bean>-->
+        <!--<bean id="customerService" class="com.sxt.service.impl.CustomerServiceImpl">-->
+            <!--<property name="customerDao" ref="customerDao"></property>-->
+        <!--</bean>-->
+
+    <!--资源文件映射-->
+    <mvc:resources mapping="/images/**" location="/images/"/><!--mapping 为使用时的web映射，location表示此种文件在工程中的目录-->
+    <mvc:resources mapping="/scripts/**" location="/js/"/>
+    <mvc:resources mapping="/styles/**" location="/css/"/>
+    <mvc:resources mapping="/staticPages/**" location="/page/"/>
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <!--多个拦截器 顺序执行-->
+        <mvc:interceptor>
+            <mvc:mapping path="/customer/*"/>
+            <mvc:exclude-mapping path="/**/*login*"></mvc:exclude-mapping> <!--/**/*login或reg*-->
+            <mvc:exclude-mapping path="/**/*reg*"></mvc:exclude-mapping>
+            <bean class="com.archon.filter.SessionHandlerIntercepter"></bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/Admin/*"/>
+            <mvc:exclude-mapping path="/**/*login*"></mvc:exclude-mapping>
+            <bean class="com.archon.filter.AdminSessionHandlerIntercepter"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+</beans>

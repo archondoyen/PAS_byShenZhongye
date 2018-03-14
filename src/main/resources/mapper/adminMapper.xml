@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.AdminDao">
+    <resultMap id="adminMap" type="Admin">
+        <id column="id" property="id"></id>
+        <result column="A_NAME" property="aName"></result>
+        <result column="A_PASSWORD" property="aPassword"></result>
+        <result column="A_TYPE" property="aType"></result>
+<!--        <result column="ADMIN_CREATE_TIME" property="adminCreateTime"></result>
+        <result column="ADMIN_MODIFIED_TIME" property="adminModifiedTime"></result>-->
+    </resultMap>
+    <select id="queryAdmin" parameterType="Admin" resultMap="adminMap">
+        SELECT * FROM  admin WHERE A_NAME=#{aName} AND A_PASSWORD=#{aPassword}
+    </select>
+    <select id="queryAdminByName" parameterType="Admin" resultMap="adminMap">
+        SELECT * FROM  admin WHERE A_NAME=#{aName}
+    </select>
+    <select id="addAdmin" parameterType="Admin" resultMap="adminMap">
+        insert into ADMIN(ID, A_NAME, A_PASSWORD, A_TYPE) VALUES (SEQARCHON.nextval,#{aName},#{aPassword},1)
+    </select>
+</mapper>

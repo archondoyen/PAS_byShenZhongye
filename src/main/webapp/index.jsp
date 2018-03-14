@@ -1,5 +1,6 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<a href="/admin/adminLogFirst.do">Admin</a>
+<a href="WEB-INF/view/visitor/visitorTop.jsp">Visitor</a>
 </body>
 </html>

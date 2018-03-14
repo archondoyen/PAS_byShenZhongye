@@ -49,7 +49,7 @@
     </bean>
     <!--配置映射文件对应的接口-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.sxt.dao"></property>
+        <property name="basePackage" value="com.archon.dao"></property>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 
@@ -101,7 +101,7 @@
     <mvc:interceptors>
         <!--多个拦截器 顺序执行-->
         <mvc:interceptor>
-            <mvc:mapping path="/customer/*"/>
+            <mvc:mapping path="/visitor/*"/>
             <mvc:exclude-mapping path="/**/*login*"></mvc:exclude-mapping> <!--/**/*login或reg*-->
             <mvc:exclude-mapping path="/**/*reg*"></mvc:exclude-mapping>
             <bean class="com.archon.filter.SessionHandlerIntercepter"></bean>
@@ -112,6 +112,4 @@
             <bean class="com.archon.filter.AdminSessionHandlerIntercepter"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
-
-
 </beans>

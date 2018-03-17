@@ -16,6 +16,15 @@ public class Visitor implements Serializable {
 	private Timestamp vCreateTime;
 	private Timestamp vModifiedTime;
 	private String vPhoto;
+	private Integer isNormal;
+
+	public Integer getIsNormal() {
+		return isNormal;
+	}
+
+	public void setIsNormal(Integer isNormal) {
+		this.isNormal = isNormal;
+	}
 
 	public Visitor() {
 
@@ -123,6 +132,7 @@ public class Visitor implements Serializable {
 				" vCreateTime=" + vCreateTime +
 				" vModifiedTime=" + vModifiedTime +
 				" vPhoto=" + vPhoto +
+				" isNormal="+isNormal+
 				"}";
 	}
 }

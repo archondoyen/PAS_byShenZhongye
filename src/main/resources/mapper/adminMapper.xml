@@ -17,7 +17,5 @@
     <select id="queryAdminByName" parameterType="Admin" resultMap="adminMap">
         SELECT * FROM  admin WHERE A_NAME=#{aName}
     </select>
-    <select id="addAdmin" parameterType="Admin" resultMap="adminMap">
-        insert into ADMIN(ID, A_NAME, A_PASSWORD, A_TYPE) VALUES (SEQARCHON.nextval,#{aName},#{aPassword},1)
-    </select>
+
 </mapper>

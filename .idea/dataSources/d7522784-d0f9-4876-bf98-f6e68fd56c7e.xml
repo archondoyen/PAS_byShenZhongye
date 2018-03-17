@@ -4,9 +4,9 @@
     <root id="1"/>
     <schema id="2" parent="1" name="ARCHON">
       <ObjectId>48</ObjectId>
-      <IntrospectionTimestamp>2018-03-15.02:43:58</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-03-15.20:16:22</IntrospectionTimestamp>
       <CreatedTimestamp>2018-03-13.22:59:04</CreatedTimestamp>
-      <ModifiedTimestamp>2018-03-15.02:43:49</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-03-15.20:16:16</ModifiedTimestamp>
       <CommentsHash>90316842180286</CommentsHash>
       <Current>1</Current>
       <Visible>1</Visible>
@@ -181,7 +181,7 @@
       <ObjectId>20072</ObjectId>
       <Comment>访客</Comment>
       <CreatedTimestamp>2018-03-13.23:26:19</CreatedTimestamp>
-      <ModifiedTimestamp>2018-03-14.07:31:24</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-03-15.20:16:16</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="38" parent="2" name="WORK_EXP">
@@ -1014,7 +1014,12 @@
       <Position>11</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <index id="188" parent="37" name="SYS_C007011">
+    <column id="188" parent="37" name="ISNORMAL">
+      <Position>12</Position>
+      <DataType>NUMBER(2)|0</DataType>
+      <DefaultExpression>1 </DefaultExpression>
+    </column>
+    <index id="189" parent="37" name="SYS_C007011">
       <ObjectId>20073</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.23:26:19</CreatedTimestamp>
@@ -1023,7 +1028,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="189" parent="37" name="SYS_C007011">
+    <key id="190" parent="37" name="SYS_C007011">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.23:26:19</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -1031,28 +1036,28 @@
       <UnderlyingIndexName>SYS_C007011</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="190" parent="38" name="ID">
+    <column id="191" parent="38" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="191" parent="38" name="START_DATE">
+    <column id="192" parent="38" name="START_DATE">
       <Position>2</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="192" parent="38" name="END_DATE">
+    <column id="193" parent="38" name="END_DATE">
       <Position>3</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="193" parent="38" name="POSITION_REWARDING">
+    <column id="194" parent="38" name="POSITION_REWARDING">
       <Position>4</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="194" parent="38" name="VISITOR_ID">
+    <column id="195" parent="38" name="VISITOR_ID">
       <Position>5</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <index id="195" parent="38" name="SYS_C007028">
+    <index id="196" parent="38" name="SYS_C007028">
       <ObjectId>20090</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-14.00:00:17</CreatedTimestamp>
@@ -1061,7 +1066,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="196" parent="38" name="SYS_C007028">
+    <key id="197" parent="38" name="SYS_C007028">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-14.00:00:17</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -1069,7 +1074,7 @@
       <UnderlyingIndexName>SYS_C007028</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="197" parent="38" name="WORKINFO_VISITOR_ID_FK">
+    <foreign-key id="198" parent="38" name="WORKINFO_VISITOR_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:01:42</ModifiedTimestamp>
       <ColNames>VISITOR_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>

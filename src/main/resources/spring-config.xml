@@ -13,8 +13,8 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-<!--    开启注解-->
-    <context:annotation-config/>
+    <!--开启注解-->
+    <context:annotation-config></context:annotation-config>
     <!--开启bean扫描-->
     <context:component-scan base-package="com.archon"/>
     <!--注解的方式调用AOP自动代理模式-->
@@ -71,7 +71,7 @@
     <aop:config>
         <!--横切关注点-->
         <aop:pointcut id="interceptorPointCuts" expression="execution(* com.archon.service.impl..*.*(..))"></aop:pointcut>
-       <!--<通知-->
+        <!--<通知-->
         <aop:advisor advice-ref="transactionAdvice" pointcut-ref="interceptorPointCuts"></aop:advisor>
     </aop:config>
 
@@ -81,15 +81,15 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
-<!--<bean id="customer" class="com.sxt.po.VisitorDao">-->
-            <!--<property name="customerName" value="sxt"></property>-->
-            <!--<property name="customerPassword" value="123456"></property>-->
-        <!--</bean>-->
+    <!--<bean id="customer" class="com.sxt.po.CustomerDao">-->
+    <!--<property name="customerName" value="sxt"></property>-->
+    <!--<property name="customerPassword" value="123456"></property>-->
+    <!--</bean>-->
 
-        <!--<bean id="customerDao" class="com.sxt.dao.impl.CustomerDaoImpl1"></bean>-->
-        <!--<bean id="customerService" class="com.sxt.service.impl.CustomerServiceImpl">-->
-            <!--<property name="customerDao" ref="customerDao"></property>-->
-        <!--</bean>-->
+    <!--<bean id="customerDao" class="com.sxt.dao.impl.CustomerDaoImpl1"></bean>-->
+    <!--<bean id="customerService" class="com.sxt.service.impl.CustomerServiceImpl">-->
+    <!--<property name="customerDao" ref="customerDao"></property>-->
+    <!--</bean>-->
 
     <!--资源文件映射-->
     <mvc:resources mapping="/images/**" location="/images/"/><!--mapping 为使用时的web映射，location表示此种文件在工程中的目录-->
@@ -101,7 +101,7 @@
     <mvc:interceptors>
         &lt;!&ndash;多个拦截器 顺序执行&ndash;&gt;
         <mvc:interceptor>
-            <mvc:mapping path="/visitor/*"/>
+            <mvc:mapping path="/customer/*"/>
             <mvc:exclude-mapping path="/**/*login*"></mvc:exclude-mapping> &lt;!&ndash;/**/*login或reg*&ndash;&gt;
             <mvc:exclude-mapping path="/**/*reg*"></mvc:exclude-mapping>
             <bean class="com.archon.filter.SessionHandlerIntercepter"></bean>
@@ -112,4 +112,6 @@
             <bean class="com.archon.filter.AdminSessionHandlerIntercepter"></bean>
         </mvc:interceptor>
     </mvc:interceptors>-->
+
+
 </beans>

@@ -10,7 +10,7 @@
     <title>旅客首页</title>
 </head>
 <body>
-<h3>#{info}</h3>
+<h3>${info}</h3>
 <a href="/visitor/visitorLog.entrance">游客登录</a>
 <a href="/visitor/visitorReg.entrance">游客注册</a>
 </body>

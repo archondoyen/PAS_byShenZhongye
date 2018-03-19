@@ -7,6 +7,15 @@ public class Admin implements Serializable {
 	private String aName;
 	private transient String aPassword;
 	private Integer aType;
+	private Integer CompanyId;
+
+	public Integer getCompanyId() {
+		return CompanyId;
+	}
+
+	public void setCompanyId(Integer companyId) {
+		CompanyId = companyId;
+	}
 
 	public Admin() {
 
@@ -51,6 +60,7 @@ public class Admin implements Serializable {
 				" aName=" + aName +
 				" aPassword=" + aPassword +
 				" aType=" + aType +
+				"CompanyId"+CompanyId+
 				"}";
 	}
 }

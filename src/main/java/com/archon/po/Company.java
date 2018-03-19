@@ -5,7 +5,7 @@ public class Company implements Serializable {
 
 	private Integer id;
 	private String cName;
-	private String cAdress;
+	private String cAddress;
 	private String cInfo;
 
 	public Company() {
@@ -28,12 +28,12 @@ public class Company implements Serializable {
 		this.cName = cName;
 	}
 
-	public String getCAdress() {
-		return cAdress;
+	public String getCAddress() {
+		return cAddress;
 	}
 
-	public void setCAdress(String cAdress) {
-		this.cAdress = cAdress;
+	public void setCAddress(String cAdress) {
+		this.cAddress = cAdress;
 	}
 
 	public String getCInfo() {
@@ -49,7 +49,7 @@ public class Company implements Serializable {
 		return "Company{" +
 				" id=" + id +
 				" cName=" + cName +
-				" cAdress=" + cAdress +
+				" cAdress=" + cAddress +
 				" cInfo=" + cInfo +
 				"}";
 	}

@@ -112,6 +112,6 @@
             <bean class="com.archon.filter.AdminSessionHandlerIntercepter"></bean>
         </mvc:interceptor>
     </mvc:interceptors>-->
-
-
+    <!--传入type=file-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 </beans>

@@ -23,7 +23,6 @@
     <!--开启MVC注解-->
     <mvc:annotation-driven></mvc:annotation-driven>
 
-
     <!--导入外部文件-->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">

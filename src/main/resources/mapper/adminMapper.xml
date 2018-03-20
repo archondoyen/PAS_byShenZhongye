@@ -8,15 +8,14 @@
         <result column="A_NAME" property="aName"></result>
         <result column="A_PASSWORD" property="aPassword"></result>
         <result column="A_TYPE" property="aType"></result>
-        <result column="Company_Id" property="CompanyId"></result>
+        <result column="company_Id" property="companyId"></result>
 <!--        <result column="ADMIN_CREATE_TIME" property="adminCreateTime"></result>
         <result column="ADMIN_MODIFIED_TIME" property="adminModifiedTime"></result>-->
     </resultMap>
     <select id="queryAdmin" parameterType="Admin" resultMap="adminMap">
-        SELECT * FROM  admin WHERE A_NAME=#{aName} AND A_PASSWORD=#{aPassword}
+        SELECT * FROM  ADMIN WHERE A_NAME=#{aName} AND A_PASSWORD=#{aPassword}
     </select>
     <select id="queryAdminByName" parameterType="Admin" resultMap="adminMap">
         SELECT * FROM  admin WHERE A_NAME=#{aName}
     </select>
-
 </mapper>

@@ -1,6 +1,5 @@
 package com.archon.service;
 
-import com.archon.dao.AdminDao;
 import com.archon.po.Admin;
 
 public interface AdminService {

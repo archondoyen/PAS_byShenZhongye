@@ -8,11 +8,20 @@ public class Job implements Serializable {
 	private Integer companyId;
 	private String jName;
 	private String jInfo;
-	private Integer jtypeId;
+	private Integer jTypeId;
 	private BigDecimal sal;
+	private Jobtype jobtype;
 
 	public Job() {
 
+	}
+
+	public Jobtype getJobtype() {
+		return jobtype;
+	}
+
+	public void setJobtype(Jobtype jobtype) {
+		this.jobtype = jobtype;
 	}
 
 	public Integer getId() {
@@ -47,12 +56,12 @@ public class Job implements Serializable {
 		this.jInfo = jInfo;
 	}
 
-	public Integer getJtypeId() {
-		return jtypeId;
+	public Integer getJTypeId() {
+		return jTypeId;
 	}
 
-	public void setJtypeId(Integer jtypeId) {
-		this.jtypeId = jtypeId;
+	public void setJTypeId(Integer jTypeId) {
+		this.jTypeId = jTypeId;
 	}
 
 	public BigDecimal getSal() {
@@ -66,12 +75,13 @@ public class Job implements Serializable {
 	@Override
 	public String toString() {
 		return "Job{" +
-				" id=" + id +
-				" companyId=" + companyId +
-				" jName=" + jName +
-				" jInfo=" + jInfo +
-				" jtypeId=" + jtypeId +
-				" sal=" + sal +
-				"}";
+				"id=" + id +
+				", companyId=" + companyId +
+				", jName='" + jName + '\'' +
+				", jInfo='" + jInfo + '\'' +
+				", jTypeId=" + jTypeId +
+				", sal=" + sal +
+				", jobtype=" + jobtype +
+				'}';
 	}
 }

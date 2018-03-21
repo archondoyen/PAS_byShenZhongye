@@ -4,9 +4,9 @@
     <root id="1"/>
     <schema id="2" parent="1" name="ARCHON">
       <ObjectId>48</ObjectId>
-      <IntrospectionTimestamp>2018-03-20.21:33:09</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-03-21.23:06:11</IntrospectionTimestamp>
       <CreatedTimestamp>2018-03-13.22:59:04</CreatedTimestamp>
-      <ModifiedTimestamp>2018-03-20.21:33:08</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-03-21.23:06:03</ModifiedTimestamp>
       <CommentsHash>90316842180286</CommentsHash>
       <Current>1</Current>
       <Visible>1</Visible>
@@ -130,7 +130,7 @@
       <ObjectId>20082</ObjectId>
       <Comment>工作的类型，分一级二级</Comment>
       <CreatedTimestamp>2018-03-13.23:39:34</CreatedTimestamp>
-      <ModifiedTimestamp>2018-03-14.07:18:14</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-03-21.23:06:03</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="31" parent="2" name="NOTICE">
@@ -592,11 +592,13 @@
     </column>
     <column id="109" parent="30" name="FIRST_TYPE">
       <Position>2</Position>
-      <DataType>VARCHAR2(8)|0</DataType>
+      <DataType>VARCHAR2(80)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
     </column>
     <column id="110" parent="30" name="SECOND_TYPE">
       <Position>3</Position>
-      <DataType>VARCHAR2(8)|0</DataType>
+      <DataType>VARCHAR2(80)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
     </column>
     <index id="111" parent="30" name="SYS_C007021">
       <ObjectId>20083</ObjectId>

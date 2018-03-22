@@ -1,7 +1,6 @@
 package com.archon.service;
 
 import com.archon.po.Recruitment;
-
 import java.util.List;
 
 public interface RecruitmentService {

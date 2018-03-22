@@ -20,6 +20,8 @@ import java.io.IOException;
 public class VisitorController {
     @Autowired
     private VisitorService visitorService;
+    @RequestMapping(value = "visitorMain.entrance")
+    public String visitorMainEntrance(){return "visitor/success";}
     @RequestMapping(value = "visitorTop.entrance")
     public String visitorTopEntrance(){
         return "visitor/visitorTop";

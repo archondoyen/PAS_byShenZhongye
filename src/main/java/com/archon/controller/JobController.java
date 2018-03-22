@@ -22,7 +22,7 @@ public class JobController {
     @Autowired
     private JobTypeService jobTypeService;
     @RequestMapping(value = "adminAddJob.Entrance")
-    public String adminJobEntrance(){return "admin/adminJobManager/adminManageJob";}
+    public String adminJobEntrance(){return "admin/adminNewJob/adminManageJob";}
 /*    @RequestMapping(value = "showJob.view")
     public String showJob(HttpSession session, Model model){
         Admin admin = (Admin) session.getAttribute("admin");

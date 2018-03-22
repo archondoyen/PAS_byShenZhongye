@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.RecruitmentDao">
+    <resultMap id="recMap" type="Recruitment">
+        <id column="id" property="id"></id>
+        <result column="JOB_AND_DEPT_ID" property="jobAndDeptId"></result>
+        <result column="WORK_TYPE" property="workType"></result>
+        <result column="WORK_LOCATION" property="workLocation"></result>
+        <result column="WORKER_NUMBER" property="workerNumber"></result>
+        <result column="RECRUITMENT_CREATE_TIME" property="recruitmentCreateTime"></result>
+        <result column="RECRUITMENT_MODIFIED_TIME" property="recruitmentModifiedTime"></result>
+        <association property="deptAndJob" column="{id=JOB_AND_DEPT_ID}" select="com.archon.dao.DeptAndJobDao.queryDeptAndJob"></association>
+    </resultMap>
+    <insert id="addRec" parameterType="Recruitment">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+            SELECT SEQARCHON.nextval from dual
+        </selectKey>
+        insert into RECRUITMENT(ID, JOB_AND_DEPT_ID, WORK_TYPE, WORK_LOCATION, WORKER_NUMBER, RECRUITMENT_CREATE_TIME) VALUES
+        (#{id},#{jobAndDeptId},#{workType},#{workLocation},#{workerNumber},#{recruitmentCreateTime})
+        <!--<trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="id!=null">id,</if>
+            <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID,</if>
+            <if test="WORK_TYPE!=null">WORK_TYPE,</if>
+            <if test="WORK_LOCATION!=null">WORK_LOCATION,</if>
+            <if test="WORKER_NUMBER!=null">WORKER_NUMBER,</if>
+            <if test="RECRUITMENT_CREATE_TIME!=null">RECRUITMENT_CREATE_TIME,</if>
+            <if test="RECRUITMENT_MODIFIED_TIME!=null">RECRUITMENT_MODIFIED_TIME,</if>
+        </trim>
+        <trim prefix=" values (" suffix=")" prefixOverrides=",">
+            <if test="id!=null">#{id},</if>
+            <if test="JOB_AND_DEPT_ID!=null">#{jobAndDeptId},</if>
+            <if test="WORK_TYPE!=null">#{workType},</if>
+            <if test="WORK_LOCATION!=null">#{workLocation},</if>
+            <if test="WORKER_NUMBER!=null">#{workerNumber},</if>
+            <if test="RECRUITMENT_CREATE_TIME!=null">#{recruitmentCreateTime},</if>
+            <if test="RECRUITMENT_MODIFIED_TIME!=null">#{recruitmentModifiedTime},</if>
+        </trim>-->
+    </insert>
+    <update id="updateRec" parameterType="Recruitment">
+        UPDATE RECRUITMENT
+        <set>
+            <trim suffix=" " prefixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID=#{jobAndDeptId},</if>
+                <if test="WORK_TYPE!=null">WORK_TYPE=#{workType},</if>
+                <if test="WORK_LOCATION!=null">WORK_LOCATION=#{workLocation},</if>
+                <if test="WORKER_NUMBER!=null">WORKER_NUMBER=#{workerNumber},</if>
+                <if test="RECRUITMENT_CREATE_TIME!=null">RECRUITMENT_CREATE_TIME=#{recruitmentCreateTime},</if>
+                <if test="RECRUITMENT_MODIFIED_TIME!=null">RECRUITMENT_MODIFIED_TIME=#{recruitmentModifiedTime},</if>
+            </trim>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+    <select id="queryRec" parameterType="Recruitment" resultMap="recMap">
+        SELECT * from RECRUITMENT
+        <where>
+            <trim suffix=" " prefixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID=#{jobAndDeptId},</if>
+                <if test="WORK_TYPE!=null">WORK_TYPE=#{workType},</if>
+                <if test="WORK_LOCATION!=null">WORK_LOCATION=#{workLocation},</if>
+                <if test="WORKER_NUMBER!=null">WORKER_NUMBER=#{workerNumber},</if>
+                <if test="RECRUITMENT_CREATE_TIME!=null">RECRUITMENT_CREATE_TIME=#{recruitmentCreateTime},</if>
+                <if test="RECRUITMENT_MODIFIED_TIME!=null">RECRUITMENT_MODIFIED_TIME=#{recruitmentModifiedTime},</if>
+            </trim>
+        </where>
+    </select>
+    <delete id="deletRec" parameterType="Recruitment">
+        DELETE FROM RECRUITMENT where ID=#{id}
+    </delete>
+</mapper>

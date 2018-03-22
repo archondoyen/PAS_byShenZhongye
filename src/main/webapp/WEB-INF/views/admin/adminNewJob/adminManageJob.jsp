@@ -7,38 +7,45 @@
     <base href="<%= basePath%>">
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="/scripts/bootstrap.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
     <script src="/scripts/jquery-3.3.1.min.js"></script>
     <title>新职位</title>
     <script>
-        var deptArray = new Array();
-        var deptSelectOption = document.getElementById("deptTd");
-        $(document).ready{function () {
-            $.ajax({
-                url:"deptAndJob/showJobAjax.view",
-                type:"post",
-                success:function (data,textStatus){
-                    deptArray = data;
-                    console.log(data);
-                    console.log(textStatus);
-                    addDept();
-                }
-            })
-        }}
-        function addDept(){
-            for(var i=0;i<deptArray.length;i++){
-                deptSelectOption.options[i].value=deptArray[i].id;
-                deptSelectOption.options[i].text=deptArray[i].deptName;
+        var deptAndJobArray;
+        var deptSelectOption = document.getElementsByName("getDeptId");
+/*        $(document).ready(function(){
+            $.getJSON("Dept/showDeptAjax.view",function(data,status){
+                alert("Data: " + data + "nStatus: " + status);
+                deptAndJobArray = data;
+                addDept();
+            });
+        });*/
+        $.ajax({
+            url:"Dept/showDeptAjax.view",
+            type: "get",
+            async: false,
+            timeout: 5000,
+            dataType: "json",
+            success:function (data,status) {
+                deptAndJobArray=data;
+                console.log(data);
+                console.log(status);
+                addDept();
+                console.log(data[0].id);
+                console.log(data[0].deptName);
             }
-
+        });
+        function addDept(){
+            deptSelectOption.length = deptAndJobArray.length;
+            for(var i=0;i<deptSelectOption.length;i++){
+                deptSelectOption.options[i].value=deptAndJobArray[i].id;
+                deptSelectOption.options[i].text=deptAndJobArray[i].deptName;
+            }
         }
-        var oper;
-        function modify(oper) {
-
-        }
-        function del(oper) {
-
+        function addDeptAndJob(){
+            var deptId = deptAndJobArray[0].id;
+            console.log(deptId);
+            $.get("admin/adminAddJob.do",{deptId:deptId});
         }
     </script>
 </head>
@@ -46,7 +53,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <form action="admin/adminAddJob.do">
+            <form name="form1" action="admin/adminAddJob.do">
                 <table class="table table-bordered">
                     <tr>
                         <th>部门名称</th>
@@ -59,11 +66,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>
-                                <select>
-                                    <option value="-1" id="deptTd"></option>
+                                <select name="getDeptId">
+                                    <option value="-1" >选择部门</option>
                                 </select>
-                            </label>
                         </td>
                         <td>
                             <input type="text" name="jName" placeholder="职位名称">
@@ -75,9 +80,13 @@
                             <label>
                                 <select>
                                     <option value="-1" id="jobTypeFirstId">
-                                        <select>
-                                            <option value="-1" id="jobTypeSecondId"></option>
-                                        </select>
+                                    </option>
+                                </select>
+                            </label>
+                        </td><td>
+                            <label>
+                                <select>
+                                    <option value="-1" id="jobTypeSecondId">
                                     </option>
                                 </select>
                             </label>
@@ -86,7 +95,7 @@
                             <input type="text" name="jInfo" placeholder="职位详情">
                         </td><td>
                         <input type="reset" class="btn btn-danger" value="清除">
-                        <input type="submit" class="btn btn-success" value="提交">
+                        <input type="submit" class="btn btn-success" value="提交" onclick="addDeptAndJob()">
                     </td>
                     </tr>
                 </table>

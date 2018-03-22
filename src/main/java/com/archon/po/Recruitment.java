@@ -6,16 +6,29 @@ import java.sql.Timestamp;
 public class Recruitment implements Serializable {
 
 	private Integer id;
-	private Integer jobId;
-	private Integer jtypeId;
+	private Integer jobAndDeptId;
 	private String workType;
 	private String workLocation;
 	private Integer workerNumber;
 	private Timestamp recruitmentCreateTime;
 	private Timestamp recruitmentModifiedTime;
-
+	private DeptAndJob deptAndJob;
 	public Recruitment() {
 
+	}
+
+	@Override
+	public String toString() {
+		return "Recruitment{" +
+				"id=" + id +
+				", jobAndDeptId=" + jobAndDeptId +
+				", workType='" + workType + '\'' +
+				", workLocation='" + workLocation + '\'' +
+				", workerNumber=" + workerNumber +
+				", recruitmentCreateTime=" + recruitmentCreateTime +
+				", recruitmentModifiedTime=" + recruitmentModifiedTime +
+				", deptAndJob=" + deptAndJob +
+				'}';
 	}
 
 	public Integer getId() {
@@ -26,20 +39,12 @@ public class Recruitment implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getJobId() {
-		return jobId;
+	public Integer getJobAndDeptId() {
+		return jobAndDeptId;
 	}
 
-	public void setJobId(Integer jobId) {
-		this.jobId = jobId;
-	}
-
-	public Integer getJtypeId() {
-		return jtypeId;
-	}
-
-	public void setJtypeId(Integer jtypeId) {
-		this.jtypeId = jtypeId;
+	public void setJobAndDeptId(Integer jobAndDeptId) {
+		this.jobAndDeptId = jobAndDeptId;
 	}
 
 	public String getWorkType() {
@@ -82,17 +87,11 @@ public class Recruitment implements Serializable {
 		this.recruitmentModifiedTime = recruitmentModifiedTime;
 	}
 
-	@Override
-	public String toString() {
-		return "Recruitment{" +
-				" id=" + id +
-				" jobId=" + jobId +
-				" jtypeId=" + jtypeId +
-				" workType=" + workType +
-				" workLocation=" + workLocation +
-				" workerNumber=" + workerNumber +
-				" recruitmentCreateTime=" + recruitmentCreateTime +
-				" recruitmentModifiedTime=" + recruitmentModifiedTime +
-				"}";
+	public DeptAndJob getDeptAndJob() {
+		return deptAndJob;
+	}
+
+	public void setDeptAndJob(DeptAndJob deptAndJob) {
+		this.deptAndJob = deptAndJob;
 	}
 }

@@ -31,7 +31,7 @@
                 <li><i class="icon-cogs"></i>&nbsp;&nbsp;招聘
                     <span class="submenu-icon"></span>
                     <ul>
-                        <li><a href="">新招聘</a></li>
+                        <li><a href="/recruit/adminRecruit.entrance">新招聘</a></li>
                         <li><a href="">招聘管理</a></li>
                     </ul>
                 </li>

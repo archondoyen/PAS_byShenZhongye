@@ -3,17 +3,19 @@ package com.archon.controller;
 import com.archon.po.Admin;
 import com.archon.po.Department;
 import com.archon.service.DeptService;
-import com.sun.org.glassfish.gmbal.ParameterNames;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.List;
 
 @Controller
@@ -59,5 +61,25 @@ public class DeptController {
             System.out.println("controller 的是"+b);
             response.getWriter().print(b);
         }
+    }
+    @RequestMapping(value = "showDeptAjax.view",produces = "application/json;charset=UTF-8")
+    public @ResponseBody
+    String queryDepartment(HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        Integer companyId = admin.getCompanyId();
+        Department department = new Department();
+        department.setCompanyId(companyId);
+        List<Department> departments = deptService.queryDept(department);
+        ObjectMapper mapper = new ObjectMapper();
+        StringWriter w = new StringWriter();
+        //Convert between List and JSON
+        try {
+            mapper.writeValue(w, departments);//开始序列化
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+        }
+        System.out.println(w.toString()); //输出json格式的字符串
+        return w.toString(); //将json格式的字符串返回给前台
     }
 }

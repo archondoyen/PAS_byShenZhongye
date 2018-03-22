@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="GBK">
-    <file url="file://$PROJECT_DIR$/../PAS_byArchon/src/main/web/WEB-INF/views/visitor" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/archon/util/TimeUtil.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/jdbc.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/log4j.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/mybatis.config.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/spring-config.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/font" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/css/font" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/css/font-awesome.css" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/css/font-awesome.css" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/css/font-awesome.css" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/css/font-awesome.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/font-awesome.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/font/fontawesome-webfont.eot" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/font/fontawesome-webfont.svg" charset="GBK" />
@@ -21,8 +16,6 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/images/bodyBg.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/images/bodyBg2.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/images/bodyBg3.jpg" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/index.html" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/index.html" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/js/google-maps.js" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/page/index.html" charset="GBK" />
     <file url="PROJECT" charset="GBK" />

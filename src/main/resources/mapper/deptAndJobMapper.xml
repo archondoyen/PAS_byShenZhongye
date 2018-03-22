@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.DeptAndJobDao">
+    <resultMap id="deptAndJobMap" type="DeptAndJob">
+        <id column="id" property="id"></id>
+        <result column="DEPT_ID" property="deptId"></result>
+        <result column="JOB_ID" property="jobId"></result>
+        <result column="COMPANY_ID" property="companyId"></result>
+        <association property="company" column="company_Id" select="com.archon.dao.CompanyDao.queryCompanyById"></association>
+        <association property="department" column="{id=Dept_id}" select="com.archon.dao.DeptDao.queryDept"></association>
+        <association property="job" column="{id=Job_Id}" select="com.archon.dao.JobDao.queryJob"></association>
+    </resultMap>
+    <insert id="addDeptAndJob" parameterType="DeptAndJob">
+    <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+        SELECT SEQARCHON.nextval FROM dual
+    </selectKey>
+    insert into DEPT_AND_JOB(ID, DEPT_ID, JOB_ID, COMPANY_ID) VALUES (#{id},#{deptId},#{jobId},#{companyId})
+    </insert>
+    <update id="updateDeptAndJob" parameterType="DeptAndJob">
+        UPDATE DEPT_AND_JOB SET DEPT_ID=#{id},JOB_ID=#{jobId},COMPANY_ID=#{companyId} where id={$id}
+    </update>
+    <select id="queryDeptAndJob" parameterType="DeptAndJob" resultMap="deptAndJobMap">
+      SELECT * FROM DEPT_AND_JOB
+        <where>
+            <trim  suffix=" " suffixOverrides=",">
+            <if test="id!=null">id=#{id},</if>
+            <if test="deptId!=null">Dept_Id=#{deptId},</if>
+            <if test="jobId!=null">Job_ID=#{jobId},</if>
+            <if test="companyId!=null">Company_ID=#{companyId},</if>
+        </trim>
+        </where>
+
+    </select>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.DeptDao">
+    <resultMap id="deptMap" type="Department">
+        <id column="id" property="id"></id>
+        <result column="COMPANY_ID" property="companyId"></result>
+        <result column="DEPT_NAME" property="deptName"></result>
+        <result column="DEPT_INFO" property="deptInfo"></result>
+    </resultMap>
+    <insert id="addDept" parameterType="Department">
+    <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+        SELECT SEQARCHON.nextval FROM dual
+    </selectKey>
+    insert into DEPARTMENT(ID, COMPANY_ID, DEPT_NAME, DEPT_INFO) VALUES (#{id},#{companyId},#{deptName},#{deptInfo})
+    </insert>
+    <update id="updateDept" parameterType="Department">
+        UPDATE DEPARTMENT SET DEPARTMENT.COMPANY_ID=#{companyId},DEPARTMENT.DEPT_NAME=#{deptName},DEPT_INFO=#{deptInfo} where id={$id}
+    </update>
+    <select id="queryDept" parameterType="Department" resultMap="deptMap">
+      SELECT * FROM DEPARTMENT
+      <where>
+          <trim suffix=" " suffixOverrides=",">
+              <if test="id!=null">Id = #{id},</if>
+              <if test="companyId!=null">Company_Id = #{companyId},</if>
+              <if test="deptName!=null">dept_Name = #{deptName},</if>
+              <if test="deptInfo!=null">dept_Info = #{deptInfo},</if>
+          </trim>
+      </where>
+    </select>
+    <delete id="deletDept" parameterType="Department">
+        DELETE FROM DEPARTMENT where ID=#{id}
+    </delete>
+</mapper>

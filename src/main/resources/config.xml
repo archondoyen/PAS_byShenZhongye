@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--查询语句需要将表名列头写为table_name,字段名写为COLUMN_NAME,类型写为DATA_TYPE,数字精度写为DATA_SCALE.查询表字段时表名用"?"填充-->
+<config>
+    <!--mysql-->
+   <!-- <jdbc>
+        <driver>com.mysql.jdbc.Driver</driver>
+        <url>jdbc:mysql://39.107.69.96:3306/pj1712_shopping</url>
+        <userName>root</userName>
+        <password>123456</password>
+        <sql>
+            <queryTableNames>SELECT table_name FROM information_schema.tables WHERE table_schema='pj1712_shopping' AND table_type='base table'</queryTableNames>
+            <queryTableFields>SELECT COLUMN_NAME,DATA_TYPE,NUMERIC_SCALE DATA_SCALE FROM information_schema.columns WHERE table_schema='pj1712_shopping' and table_name=?</queryTableFields>
+        </sql>
+    </jdbc>-->
+
+    <!--oracle-->
+    <jdbc>
+        <driver>oracle.jdbc.driver.OracleDriver</driver>
+        <url>jdbc:oracle:thin:@//localhost:1521/XE</url>
+        <userName>archon</userName>
+        <password>123456</password>
+        <sql>
+            <queryTableNames>SELECT table_name FROM user_tables</queryTableNames>
+            <queryTableFields>SELECT * FROM user_tab_columns WHERE Table_Name=?</queryTableFields>
+        </sql>
+    </jdbc>
+
+    <!--key为数据库数据类型(不区分大小写),value为java类型-->
+    <types>
+        <type key="NUMBER" value="Integer"></type>
+        <type key="NUMBER2" value="BigDecimal"></type>
+        <type key="VARCHAR2" value="String"></type>
+        <type key="VARCHAR" value="String"></type>
+        <type key="NVARCHAR2" value="String"></type>
+        <type key="NVARCHAR" value="String"></type>
+        <type key="DATE" value="Timestamp"></type>
+        <type key="int" value="Integer"></type>
+        <type key="datetime" value="Timestamp"></type>
+        <type key="decimal" value="BigDecimal"></type>
+    </types>
+</config>

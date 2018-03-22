@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.JobTypeDao">
+    <resultMap id="jobTypeMap" type="JobType">
+        <id column="id" property="id"></id>
+        <result column="FIRST_TYPE" property="firstType"></result>
+        <result column="SECOND_TYPE" property="secondType"></result>
+    </resultMap>
+    <insert id="addJobType" parameterType="JobType">
+    <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+        SELECT SEQARCHON.nextval FROM dual
+    </selectKey>
+    insert into JOBTYPE(ID, FIRST_TYPE, SECOND_TYPE) VALUES (#{id},#{firstType},#{secondType})
+    </insert>
+    <update id="updateJobType" parameterType="JobType">
+        UPDATE JOBTYPE SET FIRST_TYPE=#{firstType} , SECOND_TYPE=#{secondType} where id=#{id}
+    </update>
+    <select id="queryJobType" parameterType="JobType" resultMap="jobTypeMap">
+      SELECT * FROM JOBTYPE
+      <where>
+          <trim suffix=" " suffixOverrides=",">
+              <if test="id!=null">id=#{id},</if>
+              <if test="firstType!=null">first_Type=#{firstType},</if>
+              <if test="secondType!=null">SECOND_TYPE=#{secondType},</if>
+          </trim>
+      </where>
+    </select>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.VisitorDao">
+    <resultMap id="visitorMap" type="Visitor">
+        <id column="id" property="id"></id>
+        <result column="V_NAME" property="vName"></result>
+        <result column="V_PASSWORD" property="vPassword"></result>
+        <result column="V_Gender" property="vGender"></result>
+        <result column="V_Age" property="vAge"></result>
+        <result column="V_Email" property="vEmail"></result>
+        <result column="V_Phone" property="vPhone"></result>
+        <result column="V_CREATE_TIME" property="vCreateTime"></result>
+        <result column="V_MODIFIED_TIME" property="vModifiedTime"></result>
+        <result column="V_Photo" property="vPhoto"></result>
+        <result column="V_Identity_Card" property="vIdentityCard"></result>
+        <result column="isNormal" property="isNormal"></result>
+    </resultMap>
+    <insert id="addVisitor" parameterType="Visitor">
+    <selectKey order="BEFORE" resultType="java.lang.Integer" keyProperty="id">
+        select SEQARCHON.nextval from dual
+    </selectKey>
+        insert into VISITOR
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id!=null">ID,</if>
+        <if test="vName!=null">v_Name,</if>
+        <if test="vPassword!=null">v_Password,</if>
+        <if test="vGender!=null">v_Gender,</if>
+        <if test="vAge!=null">v_Age,</if>
+        <if test="vEmail!=null">v_Email,</if>
+        <if test="vPhone!=null">v_Phone,</if>
+        <if test="vCreateTime!=null">v_Create_Time,</if>
+        <if test="vPhoto!=null">v_Photo,</if>
+        <if test="vIdentityCard!=null">V_IDENTITY_CARD</if>
+    </trim>
+    <trim prefix=" values (" suffix=")" suffixOverrides=",">
+        <if test="id!=null">#{id},</if>
+        <if test="vName!=null">#{vName},</if>
+        <if test="vPassword!=null">#{vPassword},</if>
+        <if test="vGender!=null">#{vGender},</if>
+        <if test="vAge!=null">#{vAge},</if>
+        <if test="vEmail!=null">#{vEmail},</if>
+        <if test="vPhone!=null">#{vPhone},</if>
+        <if test="vCreateTime!=null">#{vCreateTime},</if>
+        <if test="vPhoto!=null">#{vPhoto},</if>
+        <if test="vIdentityCard!=null">#{vIdentityCard}</if>
+    </trim>
+</insert>
+    <update id="updateVisitor" parameterType="Visitor">
+        UPDATE VISITOR
+        <trim suffixOverrides="," suffix=" ">
+            <set>
+                <if test="vName!=null">v_Name=#{vName},</if>
+                <if test="vPassword!=null">v_Password=#{vPassword},</if>
+                <if test="vGender!=null">v_Gender=#{vGender},</if>
+                <if test="vAge!=null">v_Age=#{vAge},</if>
+                <if test="vEmail!=null">v_Email=#{vEmail},</if>
+                <if test="vPhone!=null">v_Phone#{vPhone},</if>
+                <if test="vCreateTime!=null">v_Create_Time=#{vCreateTime},</if>
+                <if test="vPhoto!=null">v_Photo=#{vPhoto},</if>
+                <if test="vIdentityCard!=null">v_Identity_Card=#{vIdentityCard}</if>
+            </set>
+        </trim>
+        <where>
+            <choose>
+                <when test="id!=null">
+                     id=#{id}
+                </when>
+                <otherwise>
+                     1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+    <select id="queryVisitor" parameterType="Visitor" resultMap="visitorMap">
+        SELECT * from VISITOR where V_NAME = #{vName} and V_PASSWORD=#{vPassword}
+    </select>
+</mapper>

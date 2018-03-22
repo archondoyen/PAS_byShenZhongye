@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.CompanyDao">
+    <resultMap id="companyMap" type="Company">
+        <id column="id" property="id"></id>
+        <result column="C_NAME" property="cName"></result>
+        <result column="C_Address" property="cAddress"></result>
+        <result column="C_Info" property="cInfo"></result>
+    </resultMap>
+    <insert id="addCompany" parameterType="Company">
+    <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+        SELECT SEQARCHON.nextval FROM dual
+    </selectKey>
+        insert into COMPANY(ID, C_NAME, C_ADDRESS, C_INFO) VALUES (#{id},#{cName},#{cAddress},#{cInfo})
+    </insert>
+    <update id="updateCompany" parameterType="Company">
+        UPDATE COMPANY SET COMPANY.C_NAME=#{cName},COMPANY.C_ADDRESS=#{cAddress},C_INFO=#{cInfo}
+    </update>
+    <select id="queryCompany" parameterType="Company" resultMap="companyMap">
+      SELECT * FROM COMPANY where ID = #{id}
+    </select>
+    <select id="queryCompanyById" parameterType="int" resultMap="companyMap">
+      SELECT * FROM COMPANY where ID = #{value}
+    </select>
+</mapper>

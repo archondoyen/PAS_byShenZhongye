@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.JobDao">
+    <resultMap id="jobMap" type="Job">
+        <id column="id" property="id"></id>
+        <result column="J_NAME" property="jName"></result>
+        <result column="J_INFO" property="jInfo"></result>
+        <result column="JTYPE_ID" property="jTypeId"></result>
+        <result column="SAL" property="sal"></result>
+        <result column="COMPANY_ID" property="companyId"></result>
+        <association property="jobtype" column="{id=JTYPE_ID}" select="com.archon.dao.JobTypeDao.queryJobType"></association>
+    </resultMap>
+    <insert id="addJob" parameterType="Job">
+    <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+        SELECT SEQARCHON.nextval FROM dual
+    </selectKey>
+        insert into JOB(ID, J_NAME, J_INFO, JTYPE_ID, SAL, COMPANY_ID) VALUES (#{id},#{jName},#{jInfo},#{jTypeId},#{sal},#{companyId})
+    </insert>
+    <update id="updateJob" parameterType="Job">
+        UPDATE JOB set J_NAME=#{jName} where id=#{id}
+     </update>
+    <select id="queryJob" parameterType="Job" resultMap="jobMap">
+      SELECT * FROM JOB
+      <where>
+          <trim suffix=" " suffixOverrides=",">
+              <if test="id!=null">id=#{id},</if>
+              <if test="jName!=null">J_NAME=#{jName},</if>
+              <if test="jInfo!=null">J_Info=#{jInfo},</if>
+              <if test="jTypeId!=null">JTYPE_ID=#{jTypeId},</if>
+              <if test="sal!=null">SAL=#{sal},</if>
+              <if test="companyId!=null">COMPANY_ID=#{companyId},</if>
+          </trim>
+      </where>
+    </select>
+</mapper>

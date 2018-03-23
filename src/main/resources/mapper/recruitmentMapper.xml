@@ -11,14 +11,16 @@
         <result column="WORKER_NUMBER" property="workerNumber"></result>
         <result column="RECRUITMENT_CREATE_TIME" property="recruitmentCreateTime"></result>
         <result column="RECRUITMENT_MODIFIED_TIME" property="recruitmentModifiedTime"></result>
+        <result column="CREATER_ID" property="createrId"></result>
+        <collection property="resumeList" column="id={RECRUITMENT_ID}" ofType="Resume" select="com.archon.dao.ResumeDao.queryResume"></collection>
         <association property="deptAndJob" column="{id=JOB_AND_DEPT_ID}" select="com.archon.dao.DeptAndJobDao.queryDeptAndJob"></association>
     </resultMap>
     <insert id="addRec" parameterType="Recruitment">
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
             SELECT SEQARCHON.nextval from dual
         </selectKey>
-        insert into RECRUITMENT(ID, JOB_AND_DEPT_ID, WORK_TYPE, WORK_LOCATION, WORKER_NUMBER, RECRUITMENT_CREATE_TIME) VALUES
-        (#{id},#{jobAndDeptId},#{workType},#{workLocation},#{workerNumber},#{recruitmentCreateTime})
+        insert into RECRUITMENT(ID, JOB_AND_DEPT_ID, WORK_TYPE, WORK_LOCATION, WORKER_NUMBER, RECRUITMENT_CREATE_TIME,CREATER_ID) VALUES
+        (#{id},#{jobAndDeptId},#{workType},#{workLocation},#{workerNumber},#{recruitmentCreateTime},#{createrId})
         <!--<trim prefix="(" suffix=")" prefixOverrides=",">
             <if test="id!=null">id,</if>
             <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID,</if>

@@ -23,15 +23,15 @@
         </div>
         <div>
             <c:choose>
-                <c:when test="${sessionScope.customer!=null}">
-                    <a class="navbar-text navbar-left" href=""><c:out value="${sessionScope.visitor.vName}"></c:out></a>
+                <c:when test="${visitor!=null}">
+                    <a class="navbar-text navbar-left" href=""><c:out value="${visitor.VName}"></c:out></a>
                 </c:when>
                 <c:otherwise>
                     <a class="navbar-text navbar-left" href="/visitor/visitorTop.entrance">请登录</a>
                 </c:otherwise>
             </c:choose>
             <a class="navbar-text navbar-left" href="">我的信息</a>
-            <a class="navbar-text navbar-left" href="">找工作</a>
+            <a class="navbar-text navbar-left" href="/recruit/showRec">找工作</a>
             <li></li>
             <a class="navbar-text navbar-left" href="">写简历</a>
             <a class="navbar-text navbar-left" href="">简历管理</a>

@@ -88,4 +88,6 @@ public class VisitorController {
         session.setAttribute("visitor",visitor1);
         return "visitor/success";
     }
+
+
 }

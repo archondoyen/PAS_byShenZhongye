@@ -2,6 +2,7 @@ package com.archon.po;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Recruitment implements Serializable {
 
@@ -13,6 +14,8 @@ public class Recruitment implements Serializable {
 	private Timestamp recruitmentCreateTime;
 	private Timestamp recruitmentModifiedTime;
 	private DeptAndJob deptAndJob;
+	private Integer createrId;
+	private List<Resume> resumeList;
 	public Recruitment() {
 
 	}
@@ -28,7 +31,17 @@ public class Recruitment implements Serializable {
 				", recruitmentCreateTime=" + recruitmentCreateTime +
 				", recruitmentModifiedTime=" + recruitmentModifiedTime +
 				", deptAndJob=" + deptAndJob +
+				", createrId=" + createrId +
+				", resumeList=" + resumeList +
 				'}';
+	}
+
+	public List<Resume> getResumeList() {
+		return resumeList;
+	}
+
+	public void setResumeList(List<Resume> resumeList) {
+		this.resumeList = resumeList;
 	}
 
 	public Integer getId() {
@@ -93,5 +106,13 @@ public class Recruitment implements Serializable {
 
 	public void setDeptAndJob(DeptAndJob deptAndJob) {
 		this.deptAndJob = deptAndJob;
+	}
+
+	public Integer getCreaterId() {
+		return createrId;
+	}
+
+	public void setCreaterId(Integer createrId) {
+		this.createrId = createrId;
 	}
 }

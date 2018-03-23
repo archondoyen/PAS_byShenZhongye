@@ -2,6 +2,7 @@ package com.archon.po;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Visitor implements Serializable {
 
@@ -17,6 +18,15 @@ public class Visitor implements Serializable {
 	private Timestamp vModifiedTime;
 	private String vPhoto;
 	private Integer isNormal;
+	private List<Skill> skillList;
+
+	public List<Skill> getSkillList() {
+		return skillList;
+	}
+
+	public void setSkillList(List<Skill> skillList) {
+		this.skillList = skillList;
+	}
 
 	public Integer getIsNormal() {
 		return isNormal;
@@ -121,18 +131,19 @@ public class Visitor implements Serializable {
 	@Override
 	public String toString() {
 		return "Visitor{" +
-				" vIdentityCard=" + vIdentityCard +
-				" id=" + id +
-				" vName=" + vName +
-				" vPassword=" + vPassword +
-				" vGender=" + vGender +
-				" vAge=" + vAge +
-				" vEmail=" + vEmail +
-				" vPhone=" + vPhone +
-				" vCreateTime=" + vCreateTime +
-				" vModifiedTime=" + vModifiedTime +
-				" vPhoto=" + vPhoto +
-				" isNormal="+isNormal+
-				"}";
+				"vIdentityCard='" + vIdentityCard + '\'' +
+				", id=" + id +
+				", vName='" + vName + '\'' +
+				", vPassword='" + vPassword + '\'' +
+				", vGender='" + vGender + '\'' +
+				", vAge=" + vAge +
+				", vEmail='" + vEmail + '\'' +
+				", vPhone='" + vPhone + '\'' +
+				", vCreateTime=" + vCreateTime +
+				", vModifiedTime=" + vModifiedTime +
+				", vPhoto='" + vPhoto + '\'' +
+				", isNormal=" + isNormal +
+				", skillList=" + skillList +
+				'}';
 	}
 }

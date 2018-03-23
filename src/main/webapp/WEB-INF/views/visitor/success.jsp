@@ -13,6 +13,17 @@
             background-color: #ff7e8e;
         }
     </style>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url:"notice/getNoticeNum.view",
+                type:"post",
+                success:function xx(data) {
+                    $("#nociceNumber").html(data);
+                }
+            });
+        });
+    </script>
     <title>访客首页</title>
 </head>
 <body>
@@ -31,6 +42,7 @@
                 </c:otherwise>
             </c:choose>
             <a class="navbar-text navbar-left" href="">我的信息</a>
+            <span id="nociceNumber"></span>
             <a class="navbar-text navbar-left" href="/recruit/showRec">找工作</a>
             <li></li>
             <a class="navbar-text navbar-left" href="">写简历</a>

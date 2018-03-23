@@ -19,6 +19,15 @@ public class Visitor implements Serializable {
 	private String vPhoto;
 	private Integer isNormal;
 	private List<Skill> skillList;
+	private List<WorkExp> workExps;
+
+	public List<WorkExp> getWorkExps() {
+		return workExps;
+	}
+
+	public void setWorkExps(List<WorkExp> workExps) {
+		this.workExps = workExps;
+	}
 
 	public List<Skill> getSkillList() {
 		return skillList;
@@ -144,6 +153,7 @@ public class Visitor implements Serializable {
 				", vPhoto='" + vPhoto + '\'' +
 				", isNormal=" + isNormal +
 				", skillList=" + skillList +
+				", workExps=" + workExps +
 				'}';
 	}
 }

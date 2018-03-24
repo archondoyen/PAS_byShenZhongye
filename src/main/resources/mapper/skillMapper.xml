@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.SkillDao">
+    <resultMap id="skillMap" type="Skill">
+        <id column="id" property="id"></id>
+        <result column="VISITOR_ID" property="visitorId"></result>
+        <result column="S_NAME" property="sName"></result>
+        <result column="CERTIFICATE" property="certificate"></result>
+<!--        <result column="ADMIN_CREATE_TIME" property="adminCreateTime"></result>
+        <result column="ADMIN_MODIFIED_TIME" property="adminModifiedTime"></result>-->
+    </resultMap>
+    <insert id="addSkill" parameterType="Skill">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT SEQARCHON.nextval FROM dual
+        </selectKey>
+        insert into SKILL
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">id,</if>
+            <if test="visitorId!=null">VISITOR_ID,</if>
+            <if test="sName!=null">S_NAME,</if>
+            <if test="certificate!=null">CERTIFICATE,</if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null">#{id},</if>
+            <if test="visitorId!=null">#{visitorId},</if>
+            <if test="sName!=null">#{sName},</if>
+            <if test="certificate!=null">#{certificate},</if>
+        </trim>
+    </insert>
+    <update id="updateSkill" parameterType="Skill">
+        UPDATE SKILL
+        <set>
+            <trim prefix=" values (" suffix=")" suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="visitorId!=null">VISITOR_ID=#{visitorId},</if>
+                <if test="sName!=null">S_NAME=#{sName},</if>
+                <if test="certificate!=null">CERTIFICATE=#{certificate},</if>
+            </trim>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="querySkill" parameterType="Skill" resultMap="skillMap">
+        SELECT * FROM SKILL
+        <where>
+            <trim prefix=" values (" suffix=")" suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="visitorId!=null">VISITOR_ID=#{visitorId},</if>
+                <if test="sName!=null">S_NAME=#{sName},</if>
+                <if test="certificate!=null">CERTIFICATE=#{certificate},</if>
+            </trim>
+        </where>
+    </select>
+</mapper>

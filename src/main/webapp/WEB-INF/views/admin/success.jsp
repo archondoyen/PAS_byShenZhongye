@@ -12,7 +12,23 @@
     <script type="text/javascript" src="/scripts/google-maps.js"></script>
     <script>
         $(document).ready(function(){
-            $(".vertical-nav").verticalnav({speed: 400,align: "left"});});
+            $(".vertical-nav").verticalnav({speed: 400,align: "left"});
+            $.ajax({
+                url:"notice/adminGetNoticeNumRecruit.view",
+                type:"post",
+                success:function (data) {
+                    $("#nociceNumberRecruit").html(data);
+                    $("#allNociceNumber").html("新");
+                }
+            });$.ajax({
+                url:"notice/adminGetNoticeNumInterView.view",
+                type:"post",
+                success:function (data) {
+                    $("#nociceNumberRecruit").html(data);
+                    $("#allNociceNumber").html("新");
+                }
+            });
+        });
     </script>
     <title>管理员首页</title>
 </head>
@@ -33,6 +49,17 @@
                     <ul>
                         <li><a href="/recruit/adminRecruit.entrance">新招聘</a></li>
                         <li><a href="">招聘管理</a></li>
+                    </ul>
+                </li><li><i class="icon-cogs"></i>&nbsp;&nbsp;消息
+                    <span class="submenu-icon"></span>
+                    <span id="allNociceNumber">
+                    <ul>
+<%--
+                        <li><a href="/recruit/adminRecruit.entrance">新消息</a></li>
+--%>
+                        <li><a href="/notice/adminViewNoticeNotRead.Recruitment">招聘结果</a><span id="nociceNumberRecruit"></span></li>
+                        <li><a href="/notice/adminViewNoticeNotRead.interview">面试管理</a><span id="nociceNumberInterview"></span></li>
+                        <li><a href="">消息管理</a></li>
                     </ul>
                 </li>
                 <li><i class="icon-cogs"></i>&nbsp;&nbsp;面试

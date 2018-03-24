@@ -13,7 +13,7 @@
         <result column="RECRUITMENT_MODIFIED_TIME" property="recruitmentModifiedTime"></result>
         <result column="CREATER_ID" property="createrId"></result>
         <association property="deptAndJob" column="{id=JOB_AND_DEPT_ID}" select="com.archon.dao.DeptAndJobDao.queryDeptAndJob"></association>
-        <collection property="resumeList" column="id={RECRUITMENT_ID}" ofType="Resume" select="com.archon.dao.ResumeDao.queryResume"></collection>
+        <collection property="resumeList" column="{id=RECRUITMENT_ID}" ofType="Resume" select="com.archon.dao.ResumeDao.queryResume"></collection>
     </resultMap>
     <insert id="addRec" parameterType="Recruitment">
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
@@ -21,7 +21,7 @@
         </selectKey>
         insert into RECRUITMENT(ID, JOB_AND_DEPT_ID, WORK_TYPE, WORK_LOCATION, WORKER_NUMBER, RECRUITMENT_CREATE_TIME,CREATER_ID) VALUES
         (#{id},#{jobAndDeptId},#{workType},#{workLocation},#{workerNumber},#{recruitmentCreateTime},#{createrId})
-        <!--<trim prefix="(" suffix=")" sufixOverrides=",">
+        <!--<trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">id,</if>
             <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID,</if>
             <if test="WORK_TYPE!=null">WORK_TYPE,</if>

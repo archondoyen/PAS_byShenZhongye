@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.java.com.archon.dao.archon.SalayMapper">
+  <resultMap id="BaseResultMap" type="main.java.com.archon.po.archon.Salay">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="EMP_ID" jdbcType="DECIMAL" property="empId" />
+    <result column="BASE" jdbcType="DECIMAL" property="base" />
+    <result column="REWARD_AND_PUNISH" jdbcType="DECIMAL" property="rewardAndPunish" />
+    <result column="WORKER_PERFORMANCE" jdbcType="DECIMAL" property="workerPerformance" />
+    <result column="RATIO" jdbcType="DECIMAL" property="ratio" />
+    <result column="GET_SAL_DATE" jdbcType="TIMESTAMP" property="getSalDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, EMP_ID, BASE, REWARD_AND_PUNISH, WORKER_PERFORMANCE, RATIO, GET_SAL_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ARCHON.SALAY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from ARCHON.SALAY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="main.java.com.archon.po.archon.Salay">
+    insert into ARCHON.SALAY (ID, EMP_ID, BASE, 
+      REWARD_AND_PUNISH, WORKER_PERFORMANCE, RATIO, 
+      GET_SAL_DATE)
+    values (#{id,jdbcType=DECIMAL}, #{empId,jdbcType=DECIMAL}, #{base,jdbcType=DECIMAL}, 
+      #{rewardAndPunish,jdbcType=DECIMAL}, #{workerPerformance,jdbcType=DECIMAL}, #{ratio,jdbcType=DECIMAL}, 
+      #{getSalDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="main.java.com.archon.po.archon.Salay">
+    insert into ARCHON.SALAY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="base != null">
+        BASE,
+      </if>
+      <if test="rewardAndPunish != null">
+        REWARD_AND_PUNISH,
+      </if>
+      <if test="workerPerformance != null">
+        WORKER_PERFORMANCE,
+      </if>
+      <if test="ratio != null">
+        RATIO,
+      </if>
+      <if test="getSalDate != null">
+        GET_SAL_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=DECIMAL},
+      </if>
+      <if test="base != null">
+        #{base,jdbcType=DECIMAL},
+      </if>
+      <if test="rewardAndPunish != null">
+        #{rewardAndPunish,jdbcType=DECIMAL},
+      </if>
+      <if test="workerPerformance != null">
+        #{workerPerformance,jdbcType=DECIMAL},
+      </if>
+      <if test="ratio != null">
+        #{ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="getSalDate != null">
+        #{getSalDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="main.java.com.archon.po.archon.Salay">
+    update ARCHON.SALAY
+    <set>
+      <if test="empId != null">
+        EMP_ID = #{empId,jdbcType=DECIMAL},
+      </if>
+      <if test="base != null">
+        BASE = #{base,jdbcType=DECIMAL},
+      </if>
+      <if test="rewardAndPunish != null">
+        REWARD_AND_PUNISH = #{rewardAndPunish,jdbcType=DECIMAL},
+      </if>
+      <if test="workerPerformance != null">
+        WORKER_PERFORMANCE = #{workerPerformance,jdbcType=DECIMAL},
+      </if>
+      <if test="ratio != null">
+        RATIO = #{ratio,jdbcType=DECIMAL},
+      </if>
+      <if test="getSalDate != null">
+        GET_SAL_DATE = #{getSalDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="main.java.com.archon.po.archon.Salay">
+    update ARCHON.SALAY
+    set EMP_ID = #{empId,jdbcType=DECIMAL},
+      BASE = #{base,jdbcType=DECIMAL},
+      REWARD_AND_PUNISH = #{rewardAndPunish,jdbcType=DECIMAL},
+      WORKER_PERFORMANCE = #{workerPerformance,jdbcType=DECIMAL},
+      RATIO = #{ratio,jdbcType=DECIMAL},
+      GET_SAL_DATE = #{getSalDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

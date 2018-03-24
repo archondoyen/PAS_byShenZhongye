@@ -65,6 +65,8 @@
                     <span class="submenu-icon"></span>
                     <ul>
                         <li><a href="">员工管理</a></li>
+                        <li><a href="">新培训</a></li>
+                        <li><a href="">培训管理</a></li>
                         <li><a href="">员工考核</a></li>
                     </ul>
                 </li>

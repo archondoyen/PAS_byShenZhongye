@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.EmployeeDao">
+    <resultMap id="empMap" type="Employee">
+        <id column="id" property="id"></id>
+        <result column="visitor_Id" property="visitorId"></result>
+        <result column="sal" property="sal"></result>
+        <result column="hiredate" property="hiredate"></result>
+        <result column="firedate" property="firedate"></result>
+        <result column="MODIFIED_TIME" property="modifiedTime"></result>
+        <result column="DEPTANDJOB_ID" property="deptAndJobId"></result>
+        <association property="deptAndJob" column="{id=DEPTANDJOB_ID}" select="com.archon.dao.DeptAndJobDao.queryDeptAndJob"></association>
+    </resultMap>
+    <insert id="addEmp" parameterType="Employee">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+            SELECT SEQARCHON.nextval from dual
+        </selectKey>
+        insert INTO ARCHON.Employee
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="id!=null">id,</if>
+            <if test="visitorId!=null">visitor_Id,</if>
+            <if test="sal!=null">sal,</if>
+            <if test="hiredate!=null">hiredate,</if>
+            <if test="firedate!=null">firedate,</if>
+            <if test="modifiedTime!=null">MODIFIED_TIME,</if>
+            <if test="deptAndJobId!=null">DEPTANDJOB_ID,</if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null">#{id},</if>
+            <if test="visitorId!=null">#{visitorId},</if>
+            <if test="sal!=null">#{sal},</if>
+            <if test="hiredate!=null">#{hiredate},</if>
+            <if test="firedate!=null">#{firedate},</if>
+            <if test="modifiedTime!=null">#{modifiedTime},</if>
+            <if test="deptAndJobId!=null">#{deptAndJobId},</if>
+        </trim>
+    </insert>
+    <update id="updateEmp" parameterType="Employee">
+        UPDATE Employee
+        <set>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
+                <if test="sal!=null">sal=#{sal},</if>
+                <if test="hiredate!=null">hiredate=#{hiredate},</if>
+                <if test="firedate!=null">firedate=#{firedate},</if>
+                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
+                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
+            </trim>
+        </set>
+        <where>
+            <choose>
+                <when test="id!=null">
+                    id=#{id}
+                </when>
+                <otherwise>
+                    1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+    <select id="queryEmp" parameterType="Employee" resultMap="empMap">
+        SELECT * from Employee
+        <where>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
+                <if test="sal!=null">sal=#{sal},</if>
+                <if test="hiredate!=null">hiredate=#{hiredate},</if>
+                <if test="firedate!=null">firedate=#{firedate},</if>
+                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
+                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
+            </trim>
+        </where>
+        /*查雇员是不是离职，就查firedate*/
+    </select>
+
+</mapper>

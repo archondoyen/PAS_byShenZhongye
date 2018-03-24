@@ -2,20 +2,45 @@ package com.archon.po;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Train implements Serializable {
-
+	public static final String TRAIN_RESULT_BEST = "优秀";
+	public static final String TRAIN_RESULT_MIDDLE = "中等";
+	public static final String TRAIN_RESULT_LOW = "低";
 	private Integer id;
-	private Integer empId;
+	private Integer empAndTrainId;
 	private String trainContent;
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private String trainLocation;
-	private String tutor;
+	private String coach;
 	private String trainResult;
 
 	public Train() {
 
+	}
+
+	@Override
+	public String toString() {
+		return "Train{" +
+				"id=" + id +
+				", empAndTrainId=" + empAndTrainId +
+				", trainContent='" + trainContent + '\'' +
+				", startTime=" + startTime +
+				", endTime=" + endTime +
+				", trainLocation='" + trainLocation + '\'' +
+				", coach='" + coach + '\'' +
+				", trainResult='" + trainResult + '\'' +
+				'}';
+	}
+
+	public Integer getEmpAndTrainId() {
+		return empAndTrainId;
+	}
+
+	public void setEmpAndTrainId(Integer empAndTrainId) {
+		this.empAndTrainId = empAndTrainId;
 	}
 
 	public Integer getId() {
@@ -26,13 +51,6 @@ public class Train implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getEmpId() {
-		return empId;
-	}
-
-	public void setEmpId(Integer empId) {
-		this.empId = empId;
-	}
 
 	public String getTrainContent() {
 		return trainContent;
@@ -66,12 +84,12 @@ public class Train implements Serializable {
 		this.trainLocation = trainLocation;
 	}
 
-	public String getTutor() {
-		return tutor;
+	public String getcoach() {
+		return coach;
 	}
 
-	public void setTutor(String tutor) {
-		this.tutor = tutor;
+	public void setcoach(String coach) {
+		this.coach = coach;
 	}
 
 	public String getTrainResult() {
@@ -82,17 +100,4 @@ public class Train implements Serializable {
 		this.trainResult = trainResult;
 	}
 
-	@Override
-	public String toString() {
-		return "Train{" +
-				" id=" + id +
-				" empId=" + empId +
-				" trainContent=" + trainContent +
-				" startTime=" + startTime +
-				" endTime=" + endTime +
-				" trainLocation=" + trainLocation +
-				" tutor=" + tutor +
-				" trainResult=" + trainResult +
-				"}";
-	}
 }

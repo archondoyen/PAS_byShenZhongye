@@ -42,7 +42,7 @@
     <update id="updateNotice" parameterType="Notice">
         UPDATE NOTICE
         <set>
-            <trim suffix=" " prefixOverrides=",">
+            <trim suffix=" " suffixOverrides=",">
                 <if test="id!=null">id=#{id},</if>
                 <if test="noticeContent!=null">noticeContent=#{noticeContent},</if>
                 <if test="noticeType!=null">noticeType=#{noticeType},</if>
@@ -63,12 +63,11 @@
                 </otherwise>
             </choose>
         </where>
-
     </update>
     <select id="queryNotice" parameterType="Notice" resultMap="noticeMap">
         SELECT * from NOTICE
         <where>
-            <trim suffix=" " prefixOverrides=",">
+            <trim suffix=" " suffixOverrides=",">
                 <if test="id!=null">id=#{id},</if>
                 <if test="noticeContent!=null">noticeContent=#{noticeContent},</if>
                 <if test="noticeType!=null">noticeType=#{noticeType},</if>

@@ -41,7 +41,7 @@
                     <a class="navbar-text navbar-left" href="/visitor/visitorTop.entrance">请登录</a>
                 </c:otherwise>
             </c:choose>
-            <a class="navbar-text navbar-left" href="/notice/visitorViewNoticeNotRead.view">我的信息</a>
+            <a class="navbar-text navbar-left" href="/notice/visitorViewNoticeNotRead.view">消息</a>
             <span id="nociceNumber"></span>
             <a class="navbar-text navbar-left" href="/recruit/showRec">找工作</a>
             <li></li>

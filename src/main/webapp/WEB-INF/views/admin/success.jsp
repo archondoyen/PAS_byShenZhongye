@@ -50,33 +50,18 @@
                         <li><a href="/recruit/adminRecruit.entrance">新招聘</a></li>
                         <li><a href="">招聘管理</a></li>
                     </ul>
-                </li><li><i class="icon-cogs"></i>&nbsp;&nbsp;消息
+                </li>
+                <li><i class="icon-cogs"></i>&nbsp;&nbsp;消息
                     <span class="submenu-icon"></span>
-                    <span id="allNociceNumber">
+                    <span id="allNociceNumber"></span>
                     <ul>
 <%--
                         <li><a href="/recruit/adminRecruit.entrance">新消息</a></li>
 --%>
-                        <li><a href="/notice/adminViewNoticeNotRead.Recruitment">招聘结果</a><span id="nociceNumberRecruit"></span></li>
-                        <li><a href="/notice/adminViewNoticeNotRead.interview">面试管理</a><span id="nociceNumberInterview"></span></li>
+                        <li><a href="/notice/adminViewNoticeNotRead.Recruitment">招聘面试</a><span id="nociceNumberRecruit"></span></li>
+                        <li><a href="/notice/adminViewNoticeNotRead.interview">面试入职</a><span id="nociceNumberInterview"></span></li>
                         <li><a href="">消息管理</a></li>
                     </ul>
-                </li>
-                <li><i class="icon-cogs"></i>&nbsp;&nbsp;面试
-                    <span class="submenu-icon"></span>
-                    <ul>
-                        <li><a href="">新面试</a></li>
-                        <li><a href="">面试管理</a></li>
-                    </ul>
-                </li>
-                <li><i class="icon-cogs"></i>&nbsp;&nbsp;培训
-                    <span class="submenu-icon"></span>
-                    <ul>
-                        <li><a href="">新培训</a></li>
-                        <li><a href="">培训管理</a></li>
-                    </ul>
-                </li>
-                <li><i class="icon-cogs"></i>&nbsp;&nbsp;员工
                     <span class="submenu-icon"></span>
                     <ul>
                         <li><a href="">员工管理</a></li>

@@ -43,7 +43,7 @@
     <update id="updateRec" parameterType="Recruitment">
         UPDATE RECRUITMENT
         <set>
-            <trim suffix=" " prefixOverrides=",">
+            <trim suffix=" " suffixOverrides=",">
                 <if test="id!=null">id=#{id},</if>
                 <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID=#{jobAndDeptId},</if>
                 <if test="WORK_TYPE!=null">WORK_TYPE=#{workType},</if>
@@ -60,7 +60,7 @@
     <select id="queryRec" parameterType="Recruitment" resultMap="recMap">
         SELECT * from RECRUITMENT
         <where>
-            <trim suffix=" " prefixOverrides=",">
+            <trim suffix=" " suffixOverrides=",">
                 <if test="id!=null">id=#{id},</if>
                 <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID=#{jobAndDeptId},</if>
                 <if test="WORK_TYPE!=null">WORK_TYPE=#{workType},</if>

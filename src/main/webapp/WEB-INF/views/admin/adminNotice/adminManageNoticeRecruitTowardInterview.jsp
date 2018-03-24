@@ -27,6 +27,14 @@
                     alert(data);
                 }
             });
+        }function interView(targetId,content) {
+            $.ajax({
+                url:"notice/adminSendInterview.do",
+                data:{"noticeContent":content,"noticeTargetId":targetId},
+                success:function (data) {
+                    alert(data);
+                }
+            });
         }
 
     </script>
@@ -47,11 +55,10 @@
                         <td><c:out value="${notice.noticeContent}"></c:out></td>
                         <td><c:out value="${notice.noticeType}"></c:out></td>
                         <td><c:out value="${notice.createTime}"></c:out></td>
-                        <td><button class="btn btn-danger" id="delNotice" onclick="del(this,${notice.id})">删除</button></td>
-                        <td><button class="btn btn-success" id="readNotice" onclick="overRead(this,${notice.id})">我知道了</button></td>
                         <td>
-                            <a class="btn-success btn" href="">投递</a>
-                            <a class="btn-success btn" href="/recruit/showRec/${rec.id}">详情</a>
+                            <button class="btn btn-danger" id="delNotice" onclick="del(this,${notice.id})">删除</button>
+                            <button class="btn btn-success" id="readNotice" onclick="overRead(this,${notice.id})">我知道了</button>
+                            <button class="btn btn-success" id="interViewNotice" onclick="interView(${notice.senderId},${notice.noticeContent})">通知面试</button>
                         </td>
                     </tr>
                 </c:forEach>

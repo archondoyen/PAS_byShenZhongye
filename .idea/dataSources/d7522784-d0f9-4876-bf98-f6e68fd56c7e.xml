@@ -4,9 +4,9 @@
     <root id="1"/>
     <schema id="2" parent="1" name="ARCHON">
       <ObjectId>48</ObjectId>
-      <IntrospectionTimestamp>2018-03-23.20:06:07</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-03-24.22:31:35</IntrospectionTimestamp>
       <CreatedTimestamp>2018-03-13.22:59:04</CreatedTimestamp>
-      <ModifiedTimestamp>2018-03-23.20:06:05</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-03-24.22:31:21</ModifiedTimestamp>
       <CommentsHash>90316842180286</CommentsHash>
       <Current>1</Current>
       <Visible>1</Visible>
@@ -116,7 +116,7 @@
     <table id="28" parent="2" name="Employee">
       <ObjectId>20060</ObjectId>
       <CreatedTimestamp>2018-03-13.22:59:04</CreatedTimestamp>
-      <ModifiedTimestamp>2018-03-14.07:17:37</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-03-24.22:31:21</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="29" parent="2" name="JOB">
@@ -466,27 +466,23 @@
       <Position>3</Position>
       <DataType>NUMBER(5,2)|0</DataType>
     </column>
-    <column id="88" parent="28" name="company_Id">
+    <column id="88" parent="28" name="hiredate">
       <Position>4</Position>
-      <DataType>NUMBER(11)|0</DataType>
+      <DataType>DATE|0</DataType>
     </column>
-    <column id="89" parent="28" name="hiredate">
+    <column id="89" parent="28" name="firedate">
       <Position>5</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="90" parent="28" name="firedate">
+    <column id="90" parent="28" name="MODIFIED_TIME">
       <Position>6</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="91" parent="28" name="MODIFIED_TIME">
+    <column id="91" parent="28" name="DEPTANDJOB_ID">
       <Position>7</Position>
-      <DataType>DATE|0</DataType>
-    </column>
-    <column id="92" parent="28" name="DEPTANDJOB_ID">
-      <Position>8</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <index id="93" parent="28" name="SYS_C006998">
+    <index id="92" parent="28" name="SYS_C006998">
       <ObjectId>20061</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.22:59:04</CreatedTimestamp>
@@ -495,7 +491,7 @@
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="94" parent="28" name="SYS_C006998">
+    <key id="93" parent="28" name="SYS_C006998">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.22:59:04</ModifiedTimestamp>
       <ColNames>id</ColNames>
@@ -503,7 +499,7 @@
       <UnderlyingIndexName>SYS_C006998</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="95" parent="28" name="EMPLOYEE_VISITOR_ID_FK">
+    <foreign-key id="94" parent="28" name="EMPLOYEE_VISITOR_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:18:06</ModifiedTimestamp>
       <ColNames>visitor_Id</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -511,48 +507,40 @@
       <RefKeyName>SYS_C007011</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="96" parent="28" name="EMPLOYEE_COMPANY_ID_FK">
-      <ModifiedTimestamp>2018-03-14.00:18:06</ModifiedTimestamp>
-      <ColNames>company_Id</ColNames>
-      <RefSchemaName>ARCHON</RefSchemaName>
-      <RefTableName>COMPANY</RefTableName>
-      <RefKeyName>SYS_C007015</RefKeyName>
-      <OnDelete>restrict</OnDelete>
-    </foreign-key>
-    <foreign-key id="97" parent="28" name="EMPLOYEE_EDUCATIONINFO_ID_FK">
+    <foreign-key id="95" parent="28" name="EMPLOYEE_EDUCATIONINFO_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:33:15</ModifiedTimestamp>
       <ColNames>DEPTANDJOB_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
-      <RefTableName>EDUCATIONINFO</RefTableName>
+      <RefTableName>EDUCATION_EXP</RefTableName>
       <RefKeyName>SYS_C007025</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="98" parent="29" name="ID">
+    <column id="96" parent="29" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="99" parent="29" name="J_NAME">
+    <column id="97" parent="29" name="J_NAME">
       <Position>2</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="100" parent="29" name="J_INFO">
+    <column id="98" parent="29" name="J_INFO">
       <Position>3</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="101" parent="29" name="JTYPE_ID">
+    <column id="99" parent="29" name="JTYPE_ID">
       <Position>4</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="102" parent="29" name="SAL">
+    <column id="100" parent="29" name="SAL">
       <Position>5</Position>
       <DataType>NUMBER(11,2)|0</DataType>
     </column>
-    <column id="103" parent="29" name="COMPANY_ID">
+    <column id="101" parent="29" name="COMPANY_ID">
       <Position>6</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <index id="104" parent="29" name="SYS_C007019">
+    <index id="102" parent="29" name="SYS_C007019">
       <ObjectId>20081</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.23:38:35</CreatedTimestamp>
@@ -561,7 +549,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="105" parent="29" name="SYS_C007019">
+    <key id="103" parent="29" name="SYS_C007019">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.23:38:35</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -569,7 +557,7 @@
       <UnderlyingIndexName>SYS_C007019</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="106" parent="29" name="JOB_JOBTYPE_ID_FK">
+    <foreign-key id="104" parent="29" name="JOB_JOBTYPE_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:35:10</ModifiedTimestamp>
       <ColNames>JTYPE_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -577,7 +565,7 @@
       <RefKeyName>SYS_C007021</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="107" parent="29" name="JOB_COMPANY_ID_FK">
+    <foreign-key id="105" parent="29" name="JOB_COMPANY_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:26:12</ModifiedTimestamp>
       <ColNames>COMPANY_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -585,22 +573,22 @@
       <RefKeyName>SYS_C007015</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="108" parent="30" name="ID">
+    <column id="106" parent="30" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="109" parent="30" name="FIRST_TYPE">
+    <column id="107" parent="30" name="FIRST_TYPE">
       <Position>2</Position>
       <DataType>VARCHAR2(80)|0</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="110" parent="30" name="SECOND_TYPE">
+    <column id="108" parent="30" name="SECOND_TYPE">
       <Position>3</Position>
       <DataType>VARCHAR2(80)|0</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <index id="111" parent="30" name="SYS_C007021">
+    <index id="109" parent="30" name="SYS_C007021">
       <ObjectId>20083</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.23:39:34</CreatedTimestamp>
@@ -609,7 +597,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="112" parent="30" name="SYS_C007021">
+    <key id="110" parent="30" name="SYS_C007021">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.23:39:34</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -617,42 +605,42 @@
       <UnderlyingIndexName>SYS_C007021</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="113" parent="31" name="ID">
+    <column id="111" parent="31" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="114" parent="31" name="NOTICE_CONTENT">
+    <column id="112" parent="31" name="NOTICE_CONTENT">
       <Position>2</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="115" parent="31" name="NOTICE_TYPE">
+    <column id="113" parent="31" name="NOTICE_TYPE">
       <Position>3</Position>
       <DataType>VARCHAR2(11)|0</DataType>
     </column>
-    <column id="116" parent="31" name="SENDER_ID">
+    <column id="114" parent="31" name="SENDER_ID">
       <Position>4</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="117" parent="31" name="TARGET_ID">
+    <column id="115" parent="31" name="TARGET_ID">
       <Position>5</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="118" parent="31" name="CREATE_TIME">
+    <column id="116" parent="31" name="CREATE_TIME">
       <Position>6</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="119" parent="31" name="IS_READ">
+    <column id="117" parent="31" name="IS_READ">
       <Position>7</Position>
       <DataType>NUMBER(2)|0</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="120" parent="31" name="IS_DELETED">
+    <column id="118" parent="31" name="IS_DELETED">
       <Position>8</Position>
       <DataType>NUMBER(2)|0</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="121" parent="31" name="SYS_C007009">
+    <index id="119" parent="31" name="SYS_C007009">
       <ObjectId>20071</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.23:21:48</CreatedTimestamp>
@@ -661,7 +649,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="122" parent="31" name="SYS_C007009">
+    <key id="120" parent="31" name="SYS_C007009">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.23:21:48</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -669,42 +657,42 @@
       <UnderlyingIndexName>SYS_C007009</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="123" parent="32" name="ID">
+    <column id="121" parent="32" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="124" parent="32" name="JOB_AND_DEPT_ID">
+    <column id="122" parent="32" name="JOB_AND_DEPT_ID">
       <Position>2</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="125" parent="32" name="WORK_TYPE">
+    <column id="123" parent="32" name="WORK_TYPE">
       <Position>3</Position>
       <DataType>VARCHAR2(20)|0</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="126" parent="32" name="WORK_LOCATION">
+    <column id="124" parent="32" name="WORK_LOCATION">
       <Position>4</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="127" parent="32" name="WORKER_NUMBER">
+    <column id="125" parent="32" name="WORKER_NUMBER">
       <Position>5</Position>
       <DataType>NUMBER(11)|0</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="128" parent="32" name="RECRUITMENT_CREATE_TIME">
+    <column id="126" parent="32" name="RECRUITMENT_CREATE_TIME">
       <Position>6</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="129" parent="32" name="RECRUITMENT_MODIFIED_TIME">
+    <column id="127" parent="32" name="RECRUITMENT_MODIFIED_TIME">
       <Position>7</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="130" parent="32" name="CREATER_ID">
+    <column id="128" parent="32" name="CREATER_ID">
       <Position>8</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <index id="131" parent="32" name="SYS_C007031">
+    <index id="129" parent="32" name="SYS_C007031">
       <ObjectId>20092</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-14.00:06:40</CreatedTimestamp>
@@ -713,7 +701,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="132" parent="32" name="SYS_C007031">
+    <key id="130" parent="32" name="SYS_C007031">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-14.00:06:40</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -721,7 +709,7 @@
       <UnderlyingIndexName>SYS_C007031</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="133" parent="32" name="RECRUITMENT_JOB_ID_FK">
+    <foreign-key id="131" parent="32" name="RECRUITMENT_JOB_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:06:40</ModifiedTimestamp>
       <ColNames>JOB_AND_DEPT_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -729,7 +717,7 @@
       <RefKeyName>SYS_C007019</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="134" parent="32" name="RECRUITMENT_ADMIN_ID_FK">
+    <foreign-key id="132" parent="32" name="RECRUITMENT_ADMIN_ID_FK">
       <ModifiedTimestamp>2018-03-23.19:41:04</ModifiedTimestamp>
       <ColNames>CREATER_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -737,28 +725,28 @@
       <RefKeyName>SYS_C007013</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="135" parent="33" name="ID">
+    <column id="133" parent="33" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="136" parent="33" name="VISIOR_ID">
+    <column id="134" parent="33" name="VISIOR_ID">
       <Position>2</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="137" parent="33" name="SELF_APPRAISAL">
+    <column id="135" parent="33" name="SELF_APPRAISAL">
       <Position>3</Position>
       <Comment>自我评价</Comment>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="138" parent="33" name="INTEREST">
+    <column id="136" parent="33" name="INTEREST">
       <Position>4</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="139" parent="33" name="RECRUITMENT_ID">
+    <column id="137" parent="33" name="RECRUITMENT_ID">
       <Position>5</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <foreign-key id="140" parent="33" name="RESUME_VISITOR_ID_FK">
+    <foreign-key id="138" parent="33" name="RESUME_VISITOR_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:13:57</ModifiedTimestamp>
       <ColNames>VISIOR_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -766,7 +754,7 @@
       <RefKeyName>SYS_C007011</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="141" parent="33" name="RESUME_RECRUITMENT_ID_FK">
+    <foreign-key id="139" parent="33" name="RESUME_RECRUITMENT_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:13:57</ModifiedTimestamp>
       <ColNames>RECRUITMENT_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -774,32 +762,32 @@
       <RefKeyName>SYS_C007031</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="142" parent="34" name="id">
+    <column id="140" parent="34" name="id">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="143" parent="34" name="emp_Id">
+    <column id="141" parent="34" name="emp_Id">
       <Position>2</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="144" parent="34" name="RP_TYPE">
+    <column id="142" parent="34" name="RP_TYPE">
       <Position>3</Position>
       <DataType>VARCHAR2(2)|0</DataType>
     </column>
-    <column id="145" parent="34" name="RP_CONTENT">
+    <column id="143" parent="34" name="RP_CONTENT">
       <Position>4</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="146" parent="34" name="RP_TIME">
+    <column id="144" parent="34" name="RP_TIME">
       <Position>5</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="147" parent="34" name="money">
+    <column id="145" parent="34" name="money">
       <Position>6</Position>
       <DataType>NUMBER(11,2)|0</DataType>
     </column>
-    <index id="148" parent="34" name="SYS_C007005">
+    <index id="146" parent="34" name="SYS_C007005">
       <ObjectId>20067</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.23:07:52</CreatedTimestamp>
@@ -808,7 +796,7 @@
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="149" parent="34" name="SYS_C007005">
+    <key id="147" parent="34" name="SYS_C007005">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.23:07:52</ModifiedTimestamp>
       <ColNames>id</ColNames>
@@ -816,7 +804,7 @@
       <UnderlyingIndexName>SYS_C007005</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="150" parent="34" name="RP___FK">
+    <foreign-key id="148" parent="34" name="RP___FK">
       <ModifiedTimestamp>2018-03-14.00:37:56</ModifiedTimestamp>
       <ColNames>emp_Id</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -824,38 +812,38 @@
       <RefKeyName>SYS_C006998</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="151" parent="35" name="ID">
+    <column id="149" parent="35" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="152" parent="35" name="EMP_ID">
+    <column id="150" parent="35" name="EMP_ID">
       <Position>2</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="153" parent="35" name="BASE">
+    <column id="151" parent="35" name="BASE">
       <Position>3</Position>
       <DataType>NUMBER(11,2)|0</DataType>
     </column>
-    <column id="154" parent="35" name="REWARD_AND_PUNISH">
+    <column id="152" parent="35" name="REWARD_AND_PUNISH">
       <Position>4</Position>
       <DataType>NUMBER(11,2)|0</DataType>
     </column>
-    <column id="155" parent="35" name="WORKER_PERFORMANCE">
+    <column id="153" parent="35" name="WORKER_PERFORMANCE">
       <Position>5</Position>
       <DataType>NUMBER(11,2)|0</DataType>
     </column>
-    <column id="156" parent="35" name="RATIO">
+    <column id="154" parent="35" name="RATIO">
       <Position>6</Position>
       <Comment>五险一金、公积金、个人所得税系数，取0.8</Comment>
       <DataType>NUMBER(11,2)|0</DataType>
       <DefaultExpression>0.8</DefaultExpression>
     </column>
-    <column id="157" parent="35" name="GET_SAL_DATE">
+    <column id="155" parent="35" name="GET_SAL_DATE">
       <Position>7</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <index id="158" parent="35" name="SYS_C007007">
+    <index id="156" parent="35" name="SYS_C007007">
       <ObjectId>20069</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.23:16:56</CreatedTimestamp>
@@ -864,7 +852,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="159" parent="35" name="SYS_C007007">
+    <key id="157" parent="35" name="SYS_C007007">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.23:16:56</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -872,7 +860,7 @@
       <UnderlyingIndexName>SYS_C007007</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="160" parent="35" name="SALAY_EMPLOYEE_ID_FK">
+    <foreign-key id="158" parent="35" name="SALAY_EMPLOYEE_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:39:04</ModifiedTimestamp>
       <ColNames>EMP_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -880,7 +868,7 @@
       <RefKeyName>SYS_C006998</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <foreign-key id="161" parent="35" name="RP_ID_FK">
+    <foreign-key id="159" parent="35" name="RP_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:39:04</ModifiedTimestamp>
       <ColNames>REWARD_AND_PUNISH</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -888,25 +876,25 @@
       <RefKeyName>SYS_C007005</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="162" parent="36" name="ID">
+    <column id="160" parent="36" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="163" parent="36" name="VISITOR_ID">
+    <column id="161" parent="36" name="VISITOR_ID">
       <Position>2</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="164" parent="36" name="S_NAME">
+    <column id="162" parent="36" name="S_NAME">
       <Position>3</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="165" parent="36" name="CERTIFICATE">
+    <column id="163" parent="36" name="CERTIFICATE">
       <Position>4</Position>
       <Comment>证书</Comment>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <index id="166" parent="36" name="SYS_C007022">
+    <index id="164" parent="36" name="SYS_C007022">
       <ObjectId>20086</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.23:56:41</CreatedTimestamp>
@@ -915,7 +903,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="167" parent="36" name="SYS_C007022">
+    <key id="165" parent="36" name="SYS_C007022">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.23:56:41</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -923,7 +911,7 @@
       <UnderlyingIndexName>SYS_C007022</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="168" parent="36" name="SKILL_VISITOR_ID_FK">
+    <foreign-key id="166" parent="36" name="SKILL_VISITOR_ID_FK">
       <ModifiedTimestamp>2018-03-13.23:56:41</ModifiedTimestamp>
       <ColNames>VISITOR_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -931,41 +919,41 @@
       <RefKeyName>SYS_C007011</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="169" parent="37" name="id">
+    <column id="167" parent="37" name="id">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="170" parent="37" name="emp_Id">
+    <column id="168" parent="37" name="emp_Id">
       <Position>2</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <column id="171" parent="37" name="TRAIN_CONTENT">
+    <column id="169" parent="37" name="TRAIN_CONTENT">
       <Position>3</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="172" parent="37" name="START_TIME">
+    <column id="170" parent="37" name="START_TIME">
       <Position>4</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="173" parent="37" name="END_TIME">
+    <column id="171" parent="37" name="END_TIME">
       <Position>5</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="174" parent="37" name="TRAIN_LOCATION">
+    <column id="172" parent="37" name="TRAIN_LOCATION">
       <Position>6</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="175" parent="37" name="tutor">
+    <column id="173" parent="37" name="tutor">
       <Position>7</Position>
       <DataType>VARCHAR2(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="176" parent="37" name="TRAIN_RESULT">
+    <column id="174" parent="37" name="TRAIN_RESULT">
       <Position>8</Position>
       <DataType>VARCHAR2(2)|0</DataType>
     </column>
-    <index id="177" parent="37" name="SYS_C007003">
+    <index id="175" parent="37" name="SYS_C007003">
       <ObjectId>20065</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.23:04:24</CreatedTimestamp>
@@ -974,7 +962,7 @@
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="178" parent="37" name="SYS_C007003">
+    <key id="176" parent="37" name="SYS_C007003">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.23:04:24</ModifiedTimestamp>
       <ColNames>id</ColNames>
@@ -982,7 +970,7 @@
       <UnderlyingIndexName>SYS_C007003</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="179" parent="37" name="TRAIN_EMPLOYEE_ID_FK">
+    <foreign-key id="177" parent="37" name="TRAIN_EMPLOYEE_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:39:32</ModifiedTimestamp>
       <ColNames>emp_Id</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>
@@ -990,57 +978,57 @@
       <RefKeyName>SYS_C006998</RefKeyName>
       <OnDelete>restrict</OnDelete>
     </foreign-key>
-    <column id="180" parent="38" name="ID">
+    <column id="178" parent="38" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="181" parent="38" name="V_NAME">
+    <column id="179" parent="38" name="V_NAME">
       <Position>2</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="182" parent="38" name="V_PASSWORD">
+    <column id="180" parent="38" name="V_PASSWORD">
       <Position>3</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="183" parent="38" name="V_GENDER">
+    <column id="181" parent="38" name="V_GENDER">
       <Position>4</Position>
       <DataType>VARCHAR2(4)|0</DataType>
     </column>
-    <column id="184" parent="38" name="V_AGE">
+    <column id="182" parent="38" name="V_AGE">
       <Position>5</Position>
       <DataType>NUMBER(2)|0</DataType>
     </column>
-    <column id="185" parent="38" name="V_EMAIL">
+    <column id="183" parent="38" name="V_EMAIL">
       <Position>6</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="186" parent="38" name="V_PHONE">
+    <column id="184" parent="38" name="V_PHONE">
       <Position>7</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="187" parent="38" name="V_CREATE_TIME">
+    <column id="185" parent="38" name="V_CREATE_TIME">
       <Position>8</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="188" parent="38" name="V_MODIFIED_TIME">
+    <column id="186" parent="38" name="V_MODIFIED_TIME">
       <Position>9</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="189" parent="38" name="V_PHOTO">
+    <column id="187" parent="38" name="V_PHOTO">
       <Position>10</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="190" parent="38" name="V_IDENTITY_CARD">
+    <column id="188" parent="38" name="V_IDENTITY_CARD">
       <Position>11</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="191" parent="38" name="ISNORMAL">
+    <column id="189" parent="38" name="ISNORMAL">
       <Position>12</Position>
       <DataType>NUMBER(2)|0</DataType>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <index id="192" parent="38" name="SYS_C007011">
+    <index id="190" parent="38" name="SYS_C007011">
       <ObjectId>20073</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-13.23:26:19</CreatedTimestamp>
@@ -1049,7 +1037,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="193" parent="38" name="SYS_C007011">
+    <key id="191" parent="38" name="SYS_C007011">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-13.23:26:19</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -1057,28 +1045,28 @@
       <UnderlyingIndexName>SYS_C007011</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="194" parent="39" name="ID">
+    <column id="192" parent="39" name="ID">
       <Position>1</Position>
       <DataType>NUMBER(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="195" parent="39" name="START_DATE">
+    <column id="193" parent="39" name="START_DATE">
       <Position>2</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="196" parent="39" name="END_DATE">
+    <column id="194" parent="39" name="END_DATE">
       <Position>3</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="197" parent="39" name="POSITION_REWARDING">
+    <column id="195" parent="39" name="POSITION_REWARDING">
       <Position>4</Position>
       <DataType>VARCHAR2(255)|0</DataType>
     </column>
-    <column id="198" parent="39" name="VISITOR_ID">
+    <column id="196" parent="39" name="VISITOR_ID">
       <Position>5</Position>
       <DataType>NUMBER(11)|0</DataType>
     </column>
-    <index id="199" parent="39" name="SYS_C007028">
+    <index id="197" parent="39" name="SYS_C007028">
       <ObjectId>20090</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-03-14.00:00:17</CreatedTimestamp>
@@ -1087,7 +1075,7 @@
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="200" parent="39" name="SYS_C007028">
+    <key id="198" parent="39" name="SYS_C007028">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-03-14.00:00:17</ModifiedTimestamp>
       <ColNames>ID</ColNames>
@@ -1095,7 +1083,7 @@
       <UnderlyingIndexName>SYS_C007028</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="201" parent="39" name="WORKINFO_VISITOR_ID_FK">
+    <foreign-key id="199" parent="39" name="WORKINFO_VISITOR_ID_FK">
       <ModifiedTimestamp>2018-03-14.00:01:42</ModifiedTimestamp>
       <ColNames>VISITOR_ID</ColNames>
       <RefSchemaName>ARCHON</RefSchemaName>

@@ -8,8 +8,9 @@ public class Notice implements Serializable {
 	public static Integer NOTICE_NOT_DELETE = 0;
 	public static Integer NOTICE_NOT_READ = 0;
 	public static Integer NOTICE_IS_READ = 1;
-	public static String RECRUITMENT_NOTICE = "求职消息";
-	public static String INTERVIEW_NOTICE = "求职消息";
+	public static String RECRUITMENT_NOTICE = "招聘消息";
+	public static String INTERVIEW_NOTICE = "面试消息";
+	public static String NEW_EMPLOYEE_NOTICE = "成功入职";/*入职记录*/
 	private Integer isDeleted;
 	private Integer id;
 	private String noticeContent;

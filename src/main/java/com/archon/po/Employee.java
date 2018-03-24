@@ -9,14 +9,27 @@ public class Employee implements Serializable {
 	private Integer id;
 	private Integer visitorId;
 	private BigDecimal sal;
-	private Integer companyId;
 	private Timestamp hiredate;
 	private Timestamp firedate;
 	private Timestamp modifiedTime;
-	private Integer deptandjobId;
-
+	private Integer deptAndJobId;
+	private DeptAndJob deptAndJob;
 	public Employee() {
 
+	}
+
+	@Override
+	public String toString() {
+		return "Employee{" +
+				"id=" + id +
+				", visitorId=" + visitorId +
+				", sal=" + sal +
+				", hiredate=" + hiredate +
+				", firedate=" + firedate +
+				", modifiedTime=" + modifiedTime +
+				", deptandjobId=" + deptAndJobId +
+				", deptAndJobId=" + deptAndJobId +
+				'}';
 	}
 
 	public Integer getId() {
@@ -41,14 +54,6 @@ public class Employee implements Serializable {
 
 	public void setSal(BigDecimal sal) {
 		this.sal = sal;
-	}
-
-	public Integer getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Integer companyId) {
-		this.companyId = companyId;
 	}
 
 	public Timestamp getHiredate() {
@@ -76,24 +81,18 @@ public class Employee implements Serializable {
 	}
 
 	public Integer getDeptandjobId() {
-		return deptandjobId;
+		return deptAndJobId;
 	}
 
-	public void setDeptandjobId(Integer deptandjobId) {
-		this.deptandjobId = deptandjobId;
+	public void setDeptandjobId(Integer deptAndJobId) {
+		this.deptAndJobId = deptAndJobId;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee{" +
-				" id=" + id +
-				" visitorId=" + visitorId +
-				" sal=" + sal +
-				" companyId=" + companyId +
-				" hiredate=" + hiredate +
-				" firedate=" + firedate +
-				" modifiedTime=" + modifiedTime +
-				" deptandjobId=" + deptandjobId +
-				"}";
+	public DeptAndJob getDeptAndJob() {
+		return deptAndJob;
+	}
+
+	public void setDeptAndJob(DeptAndJob deptAndJob) {
+		this.deptAndJob = deptAndJob;
 	}
 }

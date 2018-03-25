@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.AttendanceDao">
+    <resultMap id="attendMap" type="Attendance">
+        <id column="id" property="id"></id>
+        <result column="emp_Id" property="empId"></result>
+        <result column="startTime" property="startTime"></result>
+        <result column="endTime" property="endTime"></result>
+        <result column="statue" property="statue"></result>
+        <association property="employee" column="{id=emp_Id}" select="com.archon.dao.EmployeeDao.queryEmp"></association>
+    </resultMap>
+    <insert id="addAttendance" parameterType="Attendance">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+            SELECT SEQARCHON.nextval from dual
+        </selectKey>
+        insert INTO ARCHON.Attendance
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="id!=null">id,</if>
+            <if test="empId!=null">emp_Id,</if>
+            <if test="startTime!=null">startTime,</if>
+            <if test="endTime!=null">endTime,</if>
+            <if test="statue!=null">statue,</if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null">#{id},</if>
+            <if test="empId!=null">#{empId},</if>
+            <if test="startTime!=null">#{startTime},</if>
+            <if test="endTime!=null">#{endTime},</if>
+            <if test="statue!=null">#{statue},</if>
+        </trim>
+    </insert>
+    <update id="updateAttendance" parameterType="Train">
+        UPDATE Attendance
+        <set>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="empId!=null">emp_Id=#{empId},</if>
+                <if test="startTime!=null">startTime=#{startTime},</if>
+                <if test="endTime!=null">endTime=#{endTime},</if>
+                <if test="statue!=null">statue=#{statue},</if>
+            </trim>
+        </set>
+        <where>
+            <choose>
+                <when test="id!=null">
+                    id=#{id}
+                </when>
+                <otherwise>
+                    1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+    <select id="queryAttendance" parameterType="Train" resultMap="trainMap">
+        SELECT * from Attendance
+        <where>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="empId!=null">emp_Id=#{empId},</if>
+                <if test="startTime!=null">startTime=#{startTime},</if>
+                <if test="endTime!=null">endTime=#{endTime},</if>
+                <if test="statue!=null">statue=#{statue},</if>
+            </trim>
+        </where>
+    </select>
+</mapper>

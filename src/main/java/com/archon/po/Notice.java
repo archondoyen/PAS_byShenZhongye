@@ -11,6 +11,9 @@ public class Notice implements Serializable {
 	public static String RECRUITMENT_NOTICE = "招聘消息";
 	public static String INTERVIEW_NOTICE = "面试消息";
 	public static String NEW_EMPLOYEE_NOTICE = "成功入职";/*入职记录*/
+	public static String NEW_TRAIN_NOTICE = "培训通知";
+	public static String RAIN_RESULT_NOTICE = "培训结果";
+	public static String REWARD_PUNISH_NOTICE = "奖惩信息";/*入职记录*/
 	private Integer isDeleted;
 	private Integer id;
 	private String noticeContent;

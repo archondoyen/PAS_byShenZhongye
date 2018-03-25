@@ -55,19 +55,19 @@
                     <span class="submenu-icon"></span>
                     <span id="allNociceNumber"></span>
                     <ul>
-<%--
-                        <li><a href="/recruit/adminRecruit.entrance">新消息</a></li>
---%>
                         <li><a href="/notice/adminViewNoticeNotRead.Recruitment">招聘面试</a><span id="nociceNumberRecruit"></span></li>
                         <li><a href="/notice/adminViewNoticeNotRead.interview">面试入职</a><span id="nociceNumberInterview"></span></li>
                         <li><a href="">消息管理</a></li>
                     </ul>
+                </li><li><i class="icon-cogs"></i>&nbsp;&nbsp;员工管理
                     <span class="submenu-icon"></span>
                     <ul>
-                        <li><a href="">员工管理</a></li>
-                        <li><a href="">新培训</a></li>
-                        <li><a href="">培训管理</a></li>
-                        <li><a href="">员工考核</a></li>
+                        <li><a href="">考勤管理</a></li>
+                        <li>
+                            <a href="">奖惩<span class="submenu-icon"></span></a>
+                        <li><a href="/rewardAndPunish/adminNewRewardAndPunish.entrance">新建奖惩</a></li>
+                        <li><a href="/deptAndJob/showJob.view">奖罚管理 <span class="submenu-icon"></span></a></li>
+                        <li><a href="">工资管理</a></li>
                     </ul>
                 </li>
                 <li><i class="icon-cogs"></i>&nbsp;&nbsp;公司
@@ -75,21 +75,16 @@
                     <ul>
                         <li><a href="/admin/adminCompany.view">公司信息</a></li>
                         <li>
-                            <a href="">部门<span class="submenu-icon"></span></a><ul>
+                            <a href="">部门<span class="submenu-icon"></span></a>
                                 <li><a href="/Dept/adminNewDept.entrance">新部门</a></li>
-                                <li><a href="/Dept/adminDept.view">部门管理 <span class="submenu-icon"></span>
-                            </a>
-                        </li><li>
-                            <a href="">职位<span class="submenu-icon"></span></a><ul>
+                                <li><a href="/Dept/adminDept.view">部门管理 <span class="submenu-icon"></span></a></li>
+                        <li>
+                            <a href="">职位<span class="submenu-icon"></span></a>
                                 <li><a href="/job/adminAddJob.Entrance">新职位</a></li>
-                                <li><a href="/deptAndJob/showJob.view">职位管理 <span class="submenu-icon"></span>
-                            </a>
-                        </li>
-                        <li><a href="">职位</a></li>
+                                <li><a href="/deptAndJob/showJob.view">职位管理 <span class="submenu-icon"></span></a></li>
                     </ul>
                     </li>
                 </ul>
-            </ul></ul>
         </div>
         <!--效果html结束-->
         <div class="clear"></div>

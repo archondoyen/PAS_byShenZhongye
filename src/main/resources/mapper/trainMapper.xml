@@ -5,7 +5,6 @@
 <mapper namespace="com.archon.dao.TrainDao">
     <resultMap id="trainMap" type="Train">
         <id column="id" property="id"></id>
-        <result column="EMP_AND_TRAIN_ID" property="empAndTrainId"></result>
         <result column="TRAIN_CONTENT" property="trainContent"></result>
         <result column="START_TIME" property="startTime"></result>
         <result column="END_TIME" property="endTime"></result>
@@ -15,12 +14,11 @@
     </resultMap>
     <insert id="addTrain" parameterType="Train">
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
-            SELECT SEQARCHON.nextval from dual;
+            SELECT SEQARCHON.nextval from dual
         </selectKey>
         insert INTO ARCHON.Train
         <trim prefix="(" suffixOverrides="," suffix=")">
             <if test="id!=null">id,</if>
-            <if test="empAndTrainId!=null">EMP_AND_TRAIN_ID,</if>
             <if test="trainContent!=null">TRAIN_CONTENT,</if>
             <if test="startTime!=null">START_TIME,</if>
             <if test="endTime!=null">END_TIME,</if>
@@ -30,7 +28,6 @@
         </trim>
         <trim prefix=" values (" suffix=")" suffixOverrides=",">
             <if test="id!=null">#{id},</if>
-            <if test="empAndTrainId!=null">#{empAndTrainId},</if>
             <if test="trainContent!=null">#{trainContent},</if>
             <if test="startTime!=null">#{startTime},</if>
             <if test="endTime!=null">#{endTime},</if>
@@ -38,18 +35,18 @@
             <if test="coach!=null">#{coach},</if>
             <if test="trainResult!=null">#{trainResult},</if>
         </trim>
-    </insert>dsgasdgasdg
-    <update id="updateTrain" parameterType="Employee">
-        UPDATE Employee
+    </insert>
+    <update id="updateTrain" parameterType="Train">
+        UPDATE Train
         <set>
             <trim suffix=" " suffixOverrides=",">
                 <if test="id!=null">id=#{id},</if>
-                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
-                <if test="sal!=null">sal=#{sal},</if>
-                <if test="hiredate!=null">hiredate=#{hiredate},</if>
-                <if test="firedate!=null">firedate=#{firedate},</if>
-                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
-                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
+                <if test="trainContent!=null">TRAIN_CONTENT=#{trainContent},</if>
+                <if test="startTime!=null">START_TIME=#{startTime},</if>
+                <if test="endTime!=null">END_TIME=#{endTime},</if>
+                <if test="trainLocation!=null">TRAIN_LOCATION=#{trainLocation},</if>
+                <if test="coach!=null">COACH=#{coach},</if>
+                <if test="trainResult!=null">TRAIN_RESULT=#{trainResult},</if>
             </trim>
         </set>
         <where>
@@ -63,20 +60,18 @@
             </choose>
         </where>
     </update>
-    <select id="queryEmp" parameterType="Employee" resultMap="empMap">
-        SELECT * from Employee
+    <select id="queryTrain" parameterType="Train" resultMap="trainMap">
+        SELECT * from Train
         <where>
             <trim suffix=" " suffixOverrides=",">
                 <if test="id!=null">id=#{id},</if>
-                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
-                <if test="sal!=null">sal=#{sal},</if>
-                <if test="hiredate!=null">hiredate=#{hiredate},</if>
-                <if test="firedate!=null">firedate=#{firedate},</if>
-                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
-                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
+                <if test="trainContent!=null">TRAIN_CONTENT=#{trainContent},</if>
+                <if test="startTime!=null">START_TIME=#{startTime},</if>
+                <if test="endTime!=null">END_TIME=#{endTime},</if>
+                <if test="trainLocation!=null">TRAIN_LOCATION=#{trainLocation},</if>
+                <if test="coach!=null">COACH=#{coach},</if>
+                <if test="trainResult!=null">TRAIN_RESULT=#{trainResult},</if>
             </trim>
         </where>
-        /*查雇员是不是离职，就查firedate*/
     </select>
-
 </mapper>

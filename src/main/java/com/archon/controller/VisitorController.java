@@ -1,6 +1,8 @@
 package com.archon.controller;
 
+import com.archon.po.Employee;
 import com.archon.po.Visitor;
+import com.archon.service.EmployeeService;
 import com.archon.service.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,12 +16,15 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "visitor")
 public class VisitorController {
     @Autowired
     private VisitorService visitorService;
+    @Autowired
+    private EmployeeService employeeService;
     @RequestMapping(value = "visitorMain.entrance")
     public String visitorMainEntrance(){return "visitor/success";}
     @RequestMapping(value = "visitorTop.entrance")
@@ -86,6 +91,17 @@ public class VisitorController {
         }
         model.addAttribute("visitor",visitor1);
         session.setAttribute("visitor",visitor1);
+        /*判断是否是员工，访客id页加进去*/
+        Employee employee = new Employee();
+        employee.setVisitorId(visitor1.getId());
+        List<Employee> employees = employeeService.queryEmp(employee);
+        if (employees != null&&employees.size()>0) {
+            employee = employees.get(0);
+            model.addAttribute("employee",employee);
+            session.setAttribute("employee",employee);
+            return "employee/success";
+        }
+        /*不是员工，跳转到visitor成功页*/
         return "visitor/success";
     }
 

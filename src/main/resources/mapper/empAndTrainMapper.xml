@@ -7,45 +7,36 @@
         <id column="id" property="id"></id>
         <result column="EMP_ID" property="empId"></result>
         <result column="TRAIN_ID" property="trainId"></result>
-        <result column="TYPE" property="type"></result>
-        <association property="employee" column="{id=EMP_ID}" select="com.archon.dao.EmployeeDao.queryDeptAndJob"></association>
-        <association property="train" column="{id=TRAIN_ID}" select="com.archon.dao.tra.queryDeptAndJob"></association>
+        <result column="TRAIN_TYPE" property="type"></result>
+        <association property="employee" column="{id=EMP_ID}" select="com.archon.dao.EmployeeDao.queryEmp"></association>
+        <association property="train" column="{id=TRAIN_ID}" select="com.archon.dao.TrainDao.queryTrain"></association>
     </resultMap>
-    <insert id="addEmp" parameterType="Employee">
+    <insert id="addET" parameterType="EmpAndTrain">
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
             SELECT SEQARCHON.nextval from dual
         </selectKey>
-        insert INTO ARCHON.Employee
+        insert INTO ARCHON.EMP_AND_TRAIN
         <trim prefix="(" suffixOverrides="," suffix=")">
             <if test="id!=null">id,</if>
-            <if test="visitorId!=null">visitor_Id,</if>
-            <if test="sal!=null">sal,</if>
-            <if test="hiredate!=null">hiredate,</if>
-            <if test="firedate!=null">firedate,</if>
-            <if test="modifiedTime!=null">MODIFIED_TIME,</if>
-            <if test="deptAndJobId!=null">DEPTANDJOB_ID,</if>
+            <if test="empId!=null">EMP_ID,</if>
+            <if test="trainId!=null">TRAIN_ID,</if>
+            <if test="type!=null">TRAIN_TYPE,</if>
         </trim>
         <trim prefix=" values (" suffix=")" suffixOverrides=",">
             <if test="id!=null">#{id},</if>
-            <if test="visitorId!=null">#{visitorId},</if>
-            <if test="sal!=null">#{sal},</if>
-            <if test="hiredate!=null">#{hiredate},</if>
-            <if test="firedate!=null">#{firedate},</if>
-            <if test="modifiedTime!=null">#{modifiedTime},</if>
-            <if test="deptAndJobId!=null">#{deptAndJobId},</if>
+            <if test="empId!=null">#{empId},</if>
+            <if test="trainId!=null">#{trainId},</if>
+            <if test="type!=null">#{type},</if>
         </trim>
     </insert>
-    <update id="updateEmp" parameterType="Employee">
-        UPDATE Employee
+    <update id="updateET" parameterType="EmpAndTrain">
+        UPDATE EMP_AND_TRAIN
         <set>
             <trim suffix=" " suffixOverrides=",">
                 <if test="id!=null">id=#{id},</if>
-                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
-                <if test="sal!=null">sal=#{sal},</if>
-                <if test="hiredate!=null">hiredate=#{hiredate},</if>
-                <if test="firedate!=null">firedate=#{firedate},</if>
-                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
-                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
+                <if test="empId!=null">EMP_ID=#{empId},</if>
+                <if test="trainId!=null">TRAIN_ID=#{trainId},</if>
+                <if test="type!=null">TRAIN_TYPE=#{type},</if>
             </trim>
         </set>
         <where>
@@ -59,20 +50,19 @@
             </choose>
         </where>
     </update>
-    <select id="queryEmp" parameterType="Employee" resultMap="empMap">
-        SELECT * from Employee
+    <select id="queryET" parameterType="EmpAndTrain" resultMap="eTMap">
+        SELECT * from EMP_AND_TRAIN
         <where>
             <trim suffix=" " suffixOverrides=",">
                 <if test="id!=null">id=#{id},</if>
-                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
-                <if test="sal!=null">sal=#{sal},</if>
-                <if test="hiredate!=null">hiredate=#{hiredate},</if>
-                <if test="firedate!=null">firedate=#{firedate},</if>
-                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
-                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
+                <if test="empId!=null">EMP_ID=#{empId},</if>
+                <if test="trainId!=null">TRAIN_ID=#{trainId},</if>
+                <if test="type!=null">TRAIN_TYPE=#{type},</if>
             </trim>
         </where>
         /*查雇员是不是离职，就查firedate*/
     </select>
-
+    <delete id="deleteET" parameterType="EmpAndTrain">
+        DELETE FROM EMP_AND_TRAIN WHERE id=#{id}
+    </delete>
 </mapper>

@@ -12,9 +12,17 @@ public class RewardPunish implements Serializable {
 	private String rpContent;
 	private Timestamp rpTime;
 	private BigDecimal money;
-
+	private Employee employee;
 	public RewardPunish() {
 
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public Integer getId() {
@@ -68,12 +76,13 @@ public class RewardPunish implements Serializable {
 	@Override
 	public String toString() {
 		return "RewardPunish{" +
-				" id=" + id +
-				" empId=" + empId +
-				" rpType=" + rpType +
-				" rpContent=" + rpContent +
-				" rpTime=" + rpTime +
-				" money=" + money +
-				"}";
+				"id=" + id +
+				", empId=" + empId +
+				", rpType='" + rpType + '\'' +
+				", rpContent='" + rpContent + '\'' +
+				", rpTime=" + rpTime +
+				", money=" + money +
+				", employee=" + employee +
+				'}';
 	}
 }

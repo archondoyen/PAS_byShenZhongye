@@ -14,6 +14,8 @@ public class Employee implements Serializable {
 	private Timestamp modifiedTime;
 	private Integer deptAndJobId;
 	private DeptAndJob deptAndJob;
+	private  String empName;
+
 	public Employee() {
 
 	}
@@ -27,9 +29,26 @@ public class Employee implements Serializable {
 				", hiredate=" + hiredate +
 				", firedate=" + firedate +
 				", modifiedTime=" + modifiedTime +
-				", deptandjobId=" + deptAndJobId +
 				", deptAndJobId=" + deptAndJobId +
+				", deptAndJob=" + deptAndJob +
+				", empName='" + empName + '\'' +
 				'}';
+	}
+
+	public Integer getDeptAndJobId() {
+		return deptAndJobId;
+	}
+
+	public void setDeptAndJobId(Integer deptAndJobId) {
+		this.deptAndJobId = deptAndJobId;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 
 	public Integer getId() {

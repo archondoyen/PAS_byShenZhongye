@@ -10,9 +10,21 @@ public class Attendance implements Serializable {
 	private Timestamp starttime;
 	private Timestamp endtime;
 	private Integer statue;
-
+	private Employee employee;
 	public Attendance() {
 
+	}
+
+	@Override
+	public String toString() {
+		return "Attendance{" +
+				"id=" + id +
+				", empId=" + empId +
+				", starttime=" + starttime +
+				", endtime=" + endtime +
+				", statue=" + statue +
+				", employee=" + employee +
+				'}';
 	}
 
 	public Integer getId() {
@@ -55,14 +67,11 @@ public class Attendance implements Serializable {
 		this.statue = statue;
 	}
 
-	@Override
-	public String toString() {
-		return "Attendance{" +
-				" id=" + id +
-				" empId=" + empId +
-				" starttime=" + starttime +
-				" endtime=" + endtime +
-				" statue=" + statue +
-				"}";
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 }

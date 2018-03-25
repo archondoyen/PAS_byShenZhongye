@@ -1,6 +1,7 @@
 package com.archon.controller;
 
 import com.archon.po.Admin;
+import com.archon.po.Employee;
 import com.archon.po.Notice;
 import com.archon.po.Visitor;
 import com.archon.service.NoticeService;
@@ -79,11 +80,14 @@ public class NoticeController {
         notice.setId(noticeId);
         notice.setIsDeleted(Notice.NOTICE_IS_DELETE);
         boolean b = noticeService.updateNotice(notice);
-        String info = null;
+        String info = "";
+        /*提示信息详情*/
+            Notice notice1 = noticeService.queryNotice(notice).get(0);
+            info+=notice1.toString();
         if(b){
-            info ="删除成功";
+            info +="，删除成功";
         }else{
-            info = "删除失败";
+            info += "，删除失败";
         }
         return info;
     }@RequestMapping(value = "readNotice.do")
@@ -92,12 +96,16 @@ public class NoticeController {
         Notice notice = new Notice();
         notice.setId(noticeId);
         notice.setIsDeleted(Notice.NOTICE_IS_READ);
+        String info = "";
+        /*信息会提示出来*/
+            Notice notice1 = noticeService.queryNotice(notice).get(0);
+            info+=notice1.toString();
+        /*更新信息为已读*/
         boolean b = noticeService.updateNotice(notice);
-        String info = null;
         if(b){
-            info ="删除成功";
+            info +="，已读";
         }else{
-            info = "删除失败";
+            info += "，未读";
         }
         return info;
     }

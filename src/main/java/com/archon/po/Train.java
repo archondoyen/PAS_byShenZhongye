@@ -8,8 +8,8 @@ public class Train implements Serializable {
 	public static final String TRAIN_RESULT_BEST = "优秀";
 	public static final String TRAIN_RESULT_MIDDLE = "中等";
 	public static final String TRAIN_RESULT_LOW = "低";
+	public static final String TRAIN_RESULT_NULL = "未评级";
 	private Integer id;
-	private Integer empAndTrainId;
 	private String trainContent;
 	private Timestamp startTime;
 	private Timestamp endTime;
@@ -25,7 +25,6 @@ public class Train implements Serializable {
 	public String toString() {
 		return "Train{" +
 				"id=" + id +
-				", empAndTrainId=" + empAndTrainId +
 				", trainContent='" + trainContent + '\'' +
 				", startTime=" + startTime +
 				", endTime=" + endTime +
@@ -35,12 +34,12 @@ public class Train implements Serializable {
 				'}';
 	}
 
-	public Integer getEmpAndTrainId() {
-		return empAndTrainId;
+	public String getCoach() {
+		return coach;
 	}
 
-	public void setEmpAndTrainId(Integer empAndTrainId) {
-		this.empAndTrainId = empAndTrainId;
+	public void setCoach(String coach) {
+		this.coach = coach;
 	}
 
 	public Integer getId() {

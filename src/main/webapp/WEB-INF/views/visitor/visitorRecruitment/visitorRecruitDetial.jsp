@@ -8,7 +8,6 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
     <script src="/scripts/jquery-3.3.1.min.js"></script>
-    <script src="/scripts/ajax.js"></script>
     <title>工作详情</title>
     <script>
         var element;

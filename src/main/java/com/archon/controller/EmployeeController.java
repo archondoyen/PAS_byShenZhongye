@@ -19,6 +19,10 @@ public class EmployeeController {
     private NoticeService noticeService;
     @Autowired
     private EmployeeService employeeService;
+    @RequestMapping(value = "empReturnEntrance.do")
+    public String empReturnEntrance(){
+        return "employee/success";
+    }
     @RequestMapping(value = "changeVisitorToEmployeeByInterviewNotice.do")
     public String adminNewEmpByInterviewNotice(
             @RequestParam(value = "noticeId",required = false)String noticeIdStr,

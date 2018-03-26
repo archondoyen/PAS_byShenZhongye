@@ -43,10 +43,7 @@
             </c:choose>
             <a class="navbar-text navbar-left" href="/notice/visitorViewNoticeNotRead.view">消息</a>
             <span id="nociceNumber"></span>
-            <a class="navbar-text navbar-left" href="/recruit/showRec">找工作</a>
-            <li></li>
-            <a class="navbar-text navbar-left" href="">写简历</a>
-            <a class="navbar-text navbar-left" href="">简历管理</a>
+            <a class="navbar-text navbar-left" href="/salay/employeeGetSalay.entrance">领工资</a>
             <a class="navbar-text navbar-right" href="">退出</a>
         </div>
     </div>

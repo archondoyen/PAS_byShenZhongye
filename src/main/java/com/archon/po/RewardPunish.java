@@ -13,8 +13,17 @@ public class RewardPunish implements Serializable {
 	private Timestamp rpTime;
 	private BigDecimal money;
 	private Employee employee;
+	private Integer salayId;
 	public RewardPunish() {
 
+	}
+
+	public Integer getSalayId() {
+		return salayId;
+	}
+
+	public void setSalayId(Integer salayId) {
+		this.salayId = salayId;
 	}
 
 	public Employee getEmployee() {
@@ -83,6 +92,7 @@ public class RewardPunish implements Serializable {
 				", rpTime=" + rpTime +
 				", money=" + money +
 				", employee=" + employee +
+				", salayId=" + salayId +
 				'}';
 	}
 }

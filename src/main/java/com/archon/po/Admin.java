@@ -2,7 +2,8 @@ package com.archon.po;
 
 import java.io.Serializable;
 public class Admin implements Serializable {
-
+	public static final  Integer NORMAL_ADMIN = 1;
+	public static final  Integer FINAICAL_ADMIN = 2;/*财务*/
 	private Integer id;
 	private String aName;
 	private transient String aPassword;

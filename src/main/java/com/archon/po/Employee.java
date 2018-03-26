@@ -25,7 +25,7 @@ public class Employee implements Serializable {
 		return "Employee{" +
 				"id=" + id +
 				", visitorId=" + visitorId +
-				", sal=" + sal +
+				", baseSal=" + sal +
 				", hiredate=" + hiredate +
 				", firedate=" + firedate +
 				", modifiedTime=" + modifiedTime +

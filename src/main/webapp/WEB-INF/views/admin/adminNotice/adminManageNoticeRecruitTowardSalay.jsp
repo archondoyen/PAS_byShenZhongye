@@ -8,11 +8,11 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
     <script src="/scripts/jquery-3.3.1.min.js"></script>
-    <title>消息管理</title>
+    <title>显示工资提取情况</title>
     <script>
         function del(trIndex,noticeId) {
             $.ajax({
-                url:"notice/delNotice.oper",
+                url:"notice/delNotice.do",
                 data:noticeId,
                 success:function (data) {
                     alert(data);
@@ -20,7 +20,7 @@
             });
         }function overRead(trIndex,noticeId) {
             $.ajax({
-                url:"notice/readNotice.oper",
+                url:"notice/readNotice.do",
                 data:noticeId,
                 success:function (data) {
                     alert(data);
@@ -52,7 +52,7 @@
                     </tr>
                 </c:forEach>
             </table>
-            <a href="/visitor/visitorMain.entrance">返回</a>
+            <a href="/admin/adminSuccess.do">返回</a>
         </div>
     </div>
 </div>

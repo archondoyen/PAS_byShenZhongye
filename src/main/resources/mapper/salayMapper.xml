@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.SalayDao">
+    <resultMap id="salayMap" type="Salay">
+        <id column="id" property="id"></id>
+        <result column="EMP_ID" property="empId"></result>
+        <result column="REWARD_AND_PUNISH" property="rewardAndPunish"></result>
+        <result column="WORKER_PERFORMANCE" property="workerPerformance"></result>
+        <result column="RATIO" property="ratio"></result>
+        <result column="GET_SAL_DATE" property="getSalDate"></result>
+        <result column="Company_ID" property="companyId"></result>
+        <association property="employee" column="{id=EMP_ID}" select="com.archon.dao.EmployeeDao.queryEmp"></association>
+        <association property="companyId" column="{id=Company_Id}" select="com.archon.dao.CompanyDao.queryCompany"></association>
+        <association property="base" column="{id=EMP_ID}" select="com.archon.dao.EmployeeDao.queryBaseSalay"></association>
+        <collection property="rewardPunishList" column="{salay_Id=id}" ofType="RewardPunish" select="com.archon.dao.RewardAndPunishDao.queryRewardPunish"></collection>
+    </resultMap>
+    <insert id="addSalay" parameterType="Salay">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+            SELECT SEQARCHON.nextval from dual
+        </selectKey>
+        insert INTO ARCHON.SALAY
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="id!=null">id,</if>
+            <if test="empId!=null">EMP_ID,</if>
+            <if test="rewardAndPunish!=null">REWARD_AND_PUNISH,</if>
+            <if test="workerPerformance!=null">WORKER_PERFORMANCE,</if>
+            <if test="ratio!=null">RATIO,</if>
+            <if test="getSalDate!=null">GET_SAL_DATE,</if>
+            <if test="companyId!=null">Company_ID,</if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null">id,</if>
+            <if test="empId!=null">empId,</if>
+            <if test="rewardAndPunish!=null">rewardAndPunish,</if>
+            <if test="workerPerformance!=null">workerPerformance,</if>
+            <if test="ratio!=null">ratio,</if>
+            <if test="getSalDate!=null">getSalDate,</if>
+            <if test="companyId!=null">companyId,</if>
+        </trim>
+    </insert>
+    <update id="updateSalay" parameterType="Salay">
+        UPDATE SALAY
+        <set>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="empId!=null">EMP_ID=#{empId},</if>
+                <if test="rewardAndPunish!=null">REWARD_AND_PUNISH=#{rewardAndPunish},</if>
+                <if test="workerPerformance!=null">WORKER_PERFORMANCE=#{workerPerformance},</if>
+                <if test="ratio!=null">RATIO=#{ratio},</if>
+                <if test="getSalDate!=null">GET_SAL_DATE=#{getSalDate},</if>
+                <if test="companyId!=null">Company_Id=#{companyId},</if>
+            </trim>
+        </set>
+        <where>
+            <choose>
+                <when test="id!=null">
+                    id=#{id}
+                </when>
+                <otherwise>
+                    1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+    <select id="querySalay" parameterType="Salay" resultMap="salayMap">
+        SELECT * from SALAY
+        <where>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="empId!=null">EMP_ID=#{empId},</if>
+                <if test="rewardAndPunish!=null">REWARD_AND_PUNISH=#{rewardAndPunish},</if>
+                <if test="workerPerformance!=null">WORKER_PERFORMANCE=#{workerPerformance},</if>
+                <if test="ratio!=null">RATIO=#{ratio},</if>
+                <if test="getSalDate!=null">GET_SAL_DATE=#{getSalDate},</if>
+                <if test="companyId!=null">Company_Id=#{companyId},</if>
+            </trim>
+        </where>
+    </select>
+</mapper>

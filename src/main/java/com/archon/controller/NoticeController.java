@@ -73,6 +73,21 @@ public class NoticeController {
         model.addAttribute("noticeList",notices);
         return "admin/adminNotice/adminManageNoticeInterviewTowardEmploy";
     }
+    /*财务管理员都可以看本公司的工资提取信息*/
+    @RequestMapping(value = "adminViewNoticeNotRead.salay")
+    public String adminShowNoticeEmployeeGetSalayOrNot(HttpSession session,Model model){
+        Admin admin = (Admin) session.getAttribute("admin");
+        if(Admin.FINAICAL_ADMIN.equals(admin.getAType())){
+            return "admin/success";
+        }
+        Notice notice = new Notice();
+        notice.setTargetId(admin.getCompanyId());
+        notice.setNoticeType(Notice.SAL_NOTICE);
+        notice.setIsRead(Notice.NOTICE_NOT_READ);
+        List<Notice> notices = noticeService.queryNotice(notice);
+        model.addAttribute("noticeList",notices);
+        return "admin/adminNotice/adminManageNoticeRecruitTowardSalay";
+    }
     @RequestMapping(value = "DelNotice.do")
     public String delNotice(@RequestParam(value = "noticeId",required = false) String noticeIdStr){
         int noticeId = Integer.parseInt(noticeIdStr);
@@ -90,7 +105,7 @@ public class NoticeController {
             info += "，删除失败";
         }
         return info;
-    }@RequestMapping(value = "readNotice.do")
+    }@RequestMapping(value = "readNotice.oper")
     public String readNotice(@RequestParam(value = "noticeId",required = false) String noticeIdStr){
         int noticeId = Integer.parseInt(noticeIdStr);
         Notice notice = new Notice();
@@ -109,7 +124,7 @@ public class NoticeController {
         }
         return info;
     }
-    @RequestMapping(value = "adminSendInterview.do")
+    @RequestMapping(value = "adminSendInterview.oper")
     public String adminSendInterview( @RequestParam(value = "noticeContent",required = false) String noticeContent,
                                      @RequestParam(value = "noticeTargetId",required = false)String targetIdStr){
         Notice notice = new Notice();

@@ -81,4 +81,19 @@
         </where>
         /*查雇员是不是离职，就查firedate*/
     </select>
+    <select id="queryBaseSalay" parameterType="Employee" resultMap="BigDecimal">
+        SELECT sal from Employee
+        <where>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
+                <if test="sal!=null">sal=#{sal},</if>
+                <if test="hiredate!=null">hiredate=#{hiredate},</if>
+                <if test="firedate!=null">firedate=#{firedate},</if>
+                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
+                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
+                <if test="empName!=null">empName=#{empName},</if>
+            </trim>
+        </where>
+    </select>
 </mapper>

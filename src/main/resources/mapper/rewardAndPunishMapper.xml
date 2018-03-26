@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.RewardAndPunishDao">
+    <resultMap id="rpMap" type="RewardPunish">
+        <id column="id" property="id"></id>
+        <result column="EMP_ID" property="empId"></result>
+        <result column="RP_TYPE" property="rpType"></result>
+        <result column="RP_CONTENT" property="rpContent"></result>
+        <result column="RP_TIME" property="rpTime"></result>
+        <result column="money" property="money"></result>
+        <result column="SALAY_ID" property="salayId"></result>
+        <association property="employee" column="{id=EMP_ID}" select="com.archon.dao.EmployeeDao.queryEmp"></association>
+    </resultMap>
+    <insert id="addRP" parameterType="RewardPunish">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+            SELECT SEQARCHON.nextval from dual
+        </selectKey>
+        insert INTO ARCHON.REWARD_PUNISH
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="id!=null">id,</if>
+            <if test="empId!=null">EMP_ID,</if>
+            <if test="rpType!=null">RP_TYPE,</if>
+            <if test="rpContent!=null">RP_CONTENT,</if>
+            <if test="rpTime!=null">RP_TIME,</if>
+            <if test="money!=null">money,</if>
+            <if test="salayId!=null">SALAY_ID,</if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null">#{id},</if>
+            <if test="empId!=null">#{empId},</if>
+            <if test="rpType!=null">#{rpType},</if>
+            <if test="rpContent!=null">#{rpContent},</if>
+            <if test="rpTime!=null">#{rpTime},</if>
+            <if test="money!=null">#{money},</if>
+            <if test="salayId!=null">#{salayId},</if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="RewardPunish">
+        UPDATE REWARD_PUNISH
+        <set>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="empId!=null">emp_Id=#{empId},</if>
+                <if test="rpType!=null">RP_TYPE=#{rpType},</if>
+                <if test="rpContent!=null">RP_CONTENT=#{rpContent},</if>
+                <if test="rpTime!=null">RP_TIME=#{rpTime},</if>
+                <if test="money!=null">money=#{money},</if>
+                <if test="salayId!=null">salayId=#{salayId},</if>
+            </trim>
+        </set>
+        <where>
+            <choose>
+                <when test="id!=null">
+                    id=#{id}
+                </when>
+                <otherwise>
+                    1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+    <select id="queryRewardPunish" parameterType="RewardPunish" resultMap="rpMap">
+        SELECT * from REWARD_PUNISH
+        <where>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="id!=null">id=#{id},</if>
+                <if test="empId!=null">emp_Id=#{empId},</if>
+                <if test="rpType!=null">RP_TYPE=#{rpType},</if>
+                <if test="rpContent!=null">RP_CONTENT=#{rpContent},</if>
+                <if test="rpTime!=null">RP_TIME=#{rpTime},</if>
+                <if test="money!=null">money=#{money},</if>
+                <if test="salayId!=null">salayId=#{salayId},</if>
+            </trim>
+        </where>
+    </select>
+    /*查雇员是不是离职，就查firedate*/
+</mapper>

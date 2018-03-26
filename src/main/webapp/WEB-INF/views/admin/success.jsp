@@ -24,10 +24,17 @@
                 url:"notice/adminGetNoticeNumInterView.view",
                 type:"post",
                 success:function (data) {
-                    $("#nociceNumberRecruit").html(data);
+                    $("#nociceNumberInterview").html(data);
                     $("#allNociceNumber").html("新");
                 }
-            });
+            });/*$.ajax({
+                url:"notice/nociceNumberSalay",
+                type:"post",
+                success:function (data) {
+                    $("#nociceNumberSalay").html(data);
+                    $("#allNociceNumber").html("新");
+                }
+            });工资提取成功后，不提升数目*/
         });
     </script>
     <title>管理员首页</title>
@@ -67,7 +74,13 @@
                             <a href="">奖惩<span class="submenu-icon"></span></a>
                         <li><a href="/rewardAndPunish/adminNewRewardAndPunish.entrance">新建奖惩</a></li>
                         <li><a href="/deptAndJob/showJob.view">奖罚管理 <span class="submenu-icon"></span></a></li>
-                        <li><a href="">工资管理</a></li>
+                        <li><i class="icon-cogs"></i>&nbsp;&nbsp;工资
+                            <span class="submenu-icon"><span id="nociceNumberSalay"></span></span>
+                            <ul>
+                                <li><li><a href="/salay/adminPaySalay.entrance">发工资</a></li>
+                                <li><li><a href="/notice/adminViewNoticeNotRead.salay">工资管理</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li><i class="icon-cogs"></i>&nbsp;&nbsp;公司

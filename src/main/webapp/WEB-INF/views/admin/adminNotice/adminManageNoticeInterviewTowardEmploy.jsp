@@ -8,8 +8,7 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
     <script src="/scripts/jquery-3.3.1.min.js"></script>
-    <script src="/scripts/ajax.js"></script>
-    <title>显示信息</title>
+    <title>面试是否录用</title>
     <script>
         function del(trIndex,noticeId) {
             $.ajax({
@@ -31,7 +30,7 @@
             var sal=prompt("请输入工资","2000.00");
             var deptAndJobId = prompt("请输入公司部门id","0");
             $.ajax({
-                url:"notice/adminSendInterview.do",
+                url:"emp/changeVisitorToEmployeeByInterviewNotice.do",
                 data:{"noticeId":noticeId,"noticeContent":content,"noticeTargetId":targetId,"sal":sal,"deptAndJobId":deptAndJobId},
                 success:function (info) {
                     alert(info);

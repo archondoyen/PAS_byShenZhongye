@@ -29,7 +29,7 @@ public class ResumeController {
     @Autowired
     private RecruitmentService recruitmentService;
     @RequestMapping(value = "visitorNewResume.entrance/{recId}/{createrId}")
-    public String visitorNewResumeForRecruitmentEntrance(Model model, @PathVariable(value = "recId") String recId, @PathVariable(value = "createrId") String createrId){
+    public String visitorNewResumeForRecruitmentEntrance(HttpSession session,Model model, @PathVariable(value = "recId") String recId, @PathVariable(value = "createrId") String createrId){
         int recIdInt = Integer.parseInt(recId);
         int createrIdInt = Integer.parseInt(createrId);
         model.addAttribute("recId",recIdInt);
@@ -38,6 +38,8 @@ public class ResumeController {
         recruitment.setId(recIdInt);
         List<Recruitment> recruitments = recruitmentService.queryRec(recruitment);
         model.addAttribute("recruitment",recruitments.get(0));
+        Visitor  visitor = (Visitor) session.getAttribute("visitor");
+        model.addAttribute("visitor",visitor);
         return "visitor/visitorResume/visitorNewResume";
     }
     @RequestMapping(value = "visitorNewResume.do")

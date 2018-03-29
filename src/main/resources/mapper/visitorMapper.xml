@@ -17,6 +17,8 @@
         <result column="V_Identity_Card" property="vIdentityCard"></result>
         <result column="isNormal" property="isNormal"></result>
         <collection property="skillList" column="{visitorId=ID}" select="com.archon.dao.SkillDao.querySkill"></collection>
+        <collection property="eduExps" column="{visitorId=ID}" select="com.archon.dao.EduExpDao.queryEdu"></collection>
+        <collection property="workExps" column="{visitorId=ID}" select="com.archon.dao.WorkExpDao.queryworkExp"></collection>
     </resultMap>
     <insert id="addVisitor" parameterType="Visitor">
     <selectKey order="BEFORE" resultType="java.lang.Integer" keyProperty="id">
@@ -57,7 +59,7 @@
                 <if test="vGender!=null">V_Gender=#{vGender},</if>
                 <if test="vAge!=null">V_Age=#{vAge},</if>
                 <if test="vEmail!=null">V_Email=#{vEmail},</if>
-                <if test="vPhone!=null">V_Phone#{vPhone},</if>
+                <if test="vPhone!=null">V_Phone=#{vPhone},</if>
                 <if test="vCreateTime!=null">V_Create_Time=#{vCreateTime},</if>
                 <if test="vPhoto!=null">V_Photo=#{vPhoto},</if>
                 <if test="vIdentityCard!=null">V_Identity_Card=#{vIdentityCard}</if>

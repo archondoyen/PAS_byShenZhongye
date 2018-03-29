@@ -84,7 +84,7 @@
                 </tr>
             </table><br/>
             <input type="number" name="recruitmentId" value="${Recruit.id}" hidden="hidden">
-            <a class="btn btn-success" value="投递简历" href="/resume/visitorNewResume.entrance/${Recruit.id}/${Recruit.createrId}"></a>
+            <a class="btn btn-success" href="/resume/visitorNewResume.entrance/${Recruit.id}/${Recruit.createrId}">投递简历</a>
         </div>
     </div>
 </div>

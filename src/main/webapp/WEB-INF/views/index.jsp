@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Tab Form Widget Flat Responsive Widget Template :: w3layouts</title>
+    <title>ERP sys by Shen</title>
     <!-- for-mobile-apps -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="content" id="Main-Content">
-    <h1 class="w3_agileits-head"><span>E.</span>R.<span>P.</span>SYS<span>BY</span>SZY</h1>
+    <h1 class="w3_agileits-head"><span>E.</span>R.<span>P.</span>Sys<span>By</span>Szy</h1>
     <div class="wrapper">
         <div id="accordion-wrapper">
             <div class="slide">

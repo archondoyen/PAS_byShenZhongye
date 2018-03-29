@@ -45,14 +45,10 @@
             <a class="navbar-text navbar-left" href="/notice/visitorViewNoticeNotRead.view">消息
                 <span id="nociceNumber" style="color: red"></span>
             </a>
-            <a class="navbar-text navbar-left">完善信息
-                <ul>
-                    <li><a class="navbar-text navbar-left" href="/visitor/visitorAddPesonalMsg.entrance">基本信息</a></li>
-                    <li><a class="navbar-text navbar-left" href="/recruit/showRec">技能&证书</a></li>
-                    <li><a class="navbar-text navbar-left" href="/recruit/showRec">工作经历</a></li>
-                    <li><a class="navbar-text navbar-left" href="/recruit/showRec">教育经历</a></li>
-                </ul>
-            </a>
+            <a class="navbar-text navbar-left" href="/visitor/visitorAddPesonalMsg.entrance">基本信息</a>
+            <a class="navbar-text navbar-left" href="/skill/visiotrAddSkill.entrance">技能&证书</a>
+            <a class="navbar-text navbar-left" href="/exp/visitorAddWorkExp.entrance">工作经历</a>
+            <a class="navbar-text navbar-left" href="/exp/visitorAddEduExp.entrance">教育经历</a>
             <a class="navbar-text navbar-left" href="/recruit/showRec">找工作</a>
             <a class="navbar-text navbar-left" href="">写简历</a>
             <a class="navbar-text navbar-left" href="">简历管理</a>

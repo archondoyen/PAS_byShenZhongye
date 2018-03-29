@@ -13,7 +13,7 @@
         <result column="RECRUITMENT_MODIFIED_TIME" property="recruitmentModifiedTime"></result>
         <result column="CREATER_ID" property="createrId"></result>
         <association property="deptAndJob" column="{id=JOB_AND_DEPT_ID}" select="com.archon.dao.DeptAndJobDao.queryDeptAndJob"></association>
-        <collection property="resumeList" column="{id=RECRUITMENT_ID}" ofType="Resume" select="com.archon.dao.ResumeDao.queryResume"></collection>
+        <collection property="resumeList" column="{recruitmentId=ID}" select="com.archon.dao.ResumeDao.queryRec"></collection>
     </resultMap>
     <insert id="addRec" parameterType="Recruitment">
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >

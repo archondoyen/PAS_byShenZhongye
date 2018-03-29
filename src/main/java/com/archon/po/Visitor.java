@@ -20,6 +20,15 @@ public class Visitor implements Serializable {
 	private Integer isNormal;
 	private List<Skill> skillList;
 	private List<WorkExp> workExps;
+	private List<EducationExp> eduExps;
+
+	public List<EducationExp> getEduExps() {
+		return eduExps;
+	}
+
+	public void setEduExps(List<EducationExp> eduExps) {
+		this.eduExps = eduExps;
+	}
 
 	public List<WorkExp> getWorkExps() {
 		return workExps;
@@ -154,6 +163,7 @@ public class Visitor implements Serializable {
 				", isNormal=" + isNormal +
 				", skillList=" + skillList +
 				", workExps=" + workExps +
+				", eduExps=" + eduExps +
 				'}';
 	}
 }

@@ -9,51 +9,6 @@
     <script src="/scripts/bootstrap.min.js"></script>
     <script src="/scripts/jquery-3.3.1.min.js"></script>
     <title>找工作，上海同</title>
-    <script>
-        var element;
-        var textInfo/*;alert显示的字符串*/
-        var mydate;/*ajax的返回值,布尔*/
-        function del(paramsIndex,ele) {
-            element=ele;
-            textInfo="删除部门";
-            var params = {oper:"delete",deptId:paramsIndex.toString()};
-            var ajaxReturn = ajax("get","Dept/deleteDept.do",params,true,ajaxDoDelete());
-            console.log(ajaxReturn);
-            console.log(eval(ajaxReturn));
-            console.log(mydate);
-        }
-        function ajaxDoDelete() {
-            myShow();
-        }
-        function modify(oper) {
-
-        }
-
-        function myShow() {
-            if(mydate){
-                var  tr1=element.parentNode.parentNode;
-                var  tab=tr1.parentNode;
-                tab.removeChild(tr1);
-                var  ale= document.getElementById("alert");
-                ale.className="alert alert-success";
-                ale.innerHTML="成功"+textInfo;
-                setTimeout(function () {
-                    ale.className="";
-                    ale.innerHTML="";
-                },2000);
-            }else{
-                var  ale= document.getElementById("alert");
-                ale.className="alert alert-danger";
-                ale.innerHTML=textInfo+"失败";
-                setTimeout(function () {
-                    ale.className="";
-                    ale.innerHTML="";
-                },2000);
-                textInfo = null;
-                mydate=false;
-            }
-        }
-    </script>
 </head>
 <body>
 <div id="alert"></div>
@@ -75,8 +30,8 @@
                         <td><c:out value="${rec.deptAndJob.job.JName}"></c:out></td>
                         <td><c:out value="${rec.deptAndJob.job.sal}"></c:out></td>
                         <td>
-                            <button class="btn-success btn" href="">投递</button>
-                            <button class="btn-success btn" href="/recruit/showRec/${rec.id}">详情</button>
+                            <a class="btn-success btn" href="">投递</a>
+                            <a class="btn-success btn" href="/recruit/showRec/${rec.id}">详情</a>
                         </td>
                     </tr>
                 </c:forEach>

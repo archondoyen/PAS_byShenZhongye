@@ -42,21 +42,17 @@
                 </tr>
                 <tr>
                     <td>姓名</td>
-                    <td><input type="text" name="vName" value="${sessionScope.visitor.vName}" readonly="readonly"></td>
+                    <td><input type="text" name="vName" value="${sessionScope.visitor.VName}" readonly="readonly"></td>
                     <td>年龄</td>
-                    <td><input type="number" value="${sessionScope.visitor.vAge}" readonly="readonly"></td>
+                    <td><input type="number" value="${sessionScope.visitor.VAge}" readonly="readonly"></td>
                     <td>性别</td>
-<%--                    <td><select name="empl_sex">
-                        <option value="男">男</option>
-                        <option value="女">女</option>
-                    </select></td>--%>
-                    <td><input type="text" name="vName" value="${sessionScope.visitor.vAge}" readonly="readonly"></td>
+                    <td><input type="text" name="vName" value="${sessionScope.visitor.VGender}" readonly="readonly"></td>
                 </tr>
                 <tr>
                     <td>邮箱</td>
-                    <td><input type="text" name="vEmail" value="${sessionScope.visitor.vEmail}" readonly="readonly"></td>
+                    <td><input type="text" name="vEmail" value="${sessionScope.visitor.VEmail}" readonly="readonly"></td>
                     <td>电话</td>
-                    <td><input type="text" name="vPhone" value="${sessionScope.visitor.vPhone}" readonly="readonly"></td>
+                    <td><input type="text" name="vPhone" value="${sessionScope.visitor.VPhone}" readonly="readonly"></td>
                 </tr>
                 <tr>
                     <td>工作信息</td>
@@ -69,14 +65,23 @@
                     <td>招聘公司名称</td>
                     <td><input type="text" name="deptName" value="${recruitment.deptAndJob.company.CName}" readonly="readonly"></td>
                 </tr>
-<%--                <tr><td>教育工作经历</td></tr>
-                <c:forEach items="${sessionScope.workExps}" var="works">
+                <tr><td>工作经历</td></tr>
+                <c:forEach items="${visitor.workExps}" var="works">
                     <tr>
                         <td><c:out value="开始时间${works.startDate}"></c:out></td>
                         <td><c:out value="结束时间${works.endDate}"></c:out></td>
                         <td><c:out value="奖励${works.positionRewarding}"></c:out></td>
                     </tr>
-                </c:forEach>--%>
+                </c:forEach>
+                <tr><td>教育经历</td></tr>
+                <c:forEach items="${visitor.eduExps}" var="edu">
+                    <tr>
+                        <td><c:out value="开始时间${edu.startdate}"></c:out></td>
+                        <td><c:out value="结束时间${edu.enddate}"></c:out></td>
+                        <td><c:out value="学校${edu.school}"></c:out></td>
+                        <td><c:out value="奖励${edu.positionRewarding}"></c:out></td>
+                    </tr>
+                </c:forEach>
                 <tr>
                     <td>个人详情</td>
                 </tr>
@@ -95,10 +100,10 @@
                 </tr><tr>
                 <td>技能</td>
                 </tr>
-                <c:set value="${sessionScope.visitor.skillList}" var="skillList"></c:set>
+                <c:set value="${visitor.skillList}" var="skillList"></c:set>
                 <c:forEach items="${skillList}" var="skill">
                     <tr>
-                    <td><c:out value="技能：${skill.sName}"></c:out></td>
+                    <td><c:out value="技能：${skill.SName}"></c:out></td>
                     <td><c:out value="证书：${skill.certificate}"></c:out></td>
                 </tr></c:forEach>
                 <tr>

@@ -19,7 +19,7 @@
             性别：<input type="text" value="${visitor.VGender}" name="vGender"><br/>
             年龄：<input type="text" value="${visitor.VAge}" name="vAge"><br/>
             电话：<input type="tel" value="${visitor.VPhone}" name="vPhone"><br/>
-            <button type="submit" value="提交"></button><br/>
+            <button type="submit">提交</button><br/>
         </form>
     </div>
 </div>

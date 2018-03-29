@@ -81,6 +81,7 @@ public class VisitorController {
         }
         model.addAttribute("visitor",visitor1);
         session.setAttribute("visitor",visitor1);
+        System.out.println(visitor1);
         /*判断是否是员工，访客id页加进去*/
         Employee employee = new Employee();
         employee.setVisitorId(visitor1.getId());

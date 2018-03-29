@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.EduExpDao">
+    <resultMap id="eduMap" type="EducationExp">
+        <id column="ID" property="id"></id>
+        <result column="VISITOR_ID" property="visitorId"></result>
+        <result column="STARTDATE" property="startdate"></result>
+        <result column="ENDDATE" property="enddate"></result>
+        <result column="SCHOOL" property="school"></result>
+        <result column="POSITION_REWARDING" property="positionRewarding"></result>
+    </resultMap>
+    <insert id="addEdu" parameterType="EducationExp">
+        <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
+            SELECT SEQARCHON.nextval FROM dual
+        </selectKey>
+        insert into EDUCATION_EXP
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">id,</if>
+            <if test="visitorId!=null">VISITOR_ID,</if>
+            <if test="startdate!=null">STARTDATE,</if>
+            <if test="enddate!=null">ENDDATE,</if>
+            <if test="school!=null">SCHOOL,</if>
+            <if test="positionRewarding!=null">POSITION_REWARDING,</if>
+        </trim>
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">#{id},</if>
+            <if test="visitorId!=null">#{visitorId},</if>
+            <if test="startdate!=null">#{startdate},</if>
+            <if test="enddate!=null">#{enddate},</if>
+            <if test="school!=null">#{school},</if>
+            <if test="positionRewarding!=null">#{positionRewarding},</if>
+        </trim>
+    </insert>
+    <update id="updateEdu" parameterType="EducationExp">
+        UPDATE EDUCATION_EXP
+        <set>
+            <trim suffix="" suffixOverrides=",">
+                <if test="visitorId!=null">VISITOR_ID=#{visitorId},</if>
+                <if test="startdate!=null">STARTDATE=#{startdate},</if>
+                <if test="enddate!=null">ENDDATE=#{enddate},</if>
+                <if test="school!=null">SCHOOL=#{school},</if>
+                <if test="positionRewarding!=null">POSITION_REWARDING=#{positionRewarding},</if>
+            </trim>
+        </set>
+        where id=#{id}
+    </update>
+    <select id="queryEdu" parameterType="EducationExp" resultMap="eduMap">
+        SELECT * FROM EDUCATION_EXP
+        <where>
+            <trim suffix=" " suffixOverrides="and">
+                <if test="visitorId!=null">VISITOR_ID=#{visitorId} and</if>
+                <if test="startdate!=null">STARTDATE=#{startdate} and</if>
+                <if test="enddate!=null">ENDDATE=#{enddate} and</if>
+                <if test="school!=null">SCHOOL=#{school} and</if>
+                <if test="positionRewarding!=null">POSITION_REWARDING=#{positionRewarding}</if>
+            </trim>
+        </where>
+    </select>
+    <delete id="deleteEdu" parameterType="EducationExp">
+        DELETE FROM EDUCATION_EXP where ID=#{id}
+    </delete>
+</mapper>

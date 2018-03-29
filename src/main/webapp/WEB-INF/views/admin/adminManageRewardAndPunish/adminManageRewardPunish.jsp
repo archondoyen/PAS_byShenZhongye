@@ -49,8 +49,8 @@
                             <td><c:out value="${rewardAndPunish.money}"></c:out></td>
                             <td><c:out value="${rewardAndPunish.rpTime}"></c:out></td>
                             <td>
-                                <button value="删除" onclick="del(this,${rewardAndPunish.id})"></button>
-                                <button value="修改" onclick="change(this,${rewardAndPunish.id})"></button>
+                                <button value="删除" onclick="del(this,${rewardAndPunish.id})">删除</button>
+                                <button value="修改" onclick="change(this,${rewardAndPunish.id})">修改</button>
                             </td>
                         </tr>
                     </c:forEach>

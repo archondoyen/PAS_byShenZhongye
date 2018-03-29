@@ -15,7 +15,7 @@
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
             SELECT SEQARCHON.nextval from dual
         </selectKey>
-        insert INTO ARCHON.Attendance
+        insert INTO ARCHON.ATTENDANCE
         <trim prefix="(" suffixOverrides="," suffix=")">
             <if test="id!=null">id,</if>
             <if test="empId!=null">emp_Id,</if>
@@ -31,7 +31,7 @@
             <if test="statue!=null">#{statue},</if>
         </trim>
     </insert>
-    <update id="updateAttendance" parameterType="Train">
+    <update id="updateAttendance" parameterType="Attendance">
         UPDATE Attendance
         <set>
             <trim suffix=" " suffixOverrides=",">
@@ -53,15 +53,15 @@
             </choose>
         </where>
     </update>
-    <select id="queryAttendance" parameterType="Train" resultMap="trainMap">
+    <select id="queryAttendance" parameterType="Attendance" resultMap="attendMap">
         SELECT * from Attendance
         <where>
-            <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="empId!=null">emp_Id=#{empId},</if>
-                <if test="startTime!=null">startTime=#{startTime},</if>
-                <if test="endTime!=null">endTime=#{endTime},</if>
-                <if test="statue!=null">statue=#{statue},</if>
+            <trim suffix=" " suffixOverrides="and">
+                <if test="id!=null">id=#{id} and</if>
+                <if test="empId!=null">emp_Id=#{empId} and</if>
+                <if test="startTime!=null">startTime=#{startTime} and</if>
+                <if test="endTime!=null">endTime=#{endTime} and</if>
+                <if test="statue!=null">statue=#{statue} and</if>
             </trim>
         </where>
     </select>

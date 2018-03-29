@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";%>
 <html>
 <head>
     <base href="<%= basePath%>">
+    <meta charset="utf-8">
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="/scripts/bootstrap.min.js"></script>
@@ -27,11 +28,10 @@
     </script>
 </head>
 <body>
-<div class="alert">${info}</div>
 <div class="container">
     <div class="row">
-        <button onclick="signIn()" value="上班签到" class="btn btn-success"></button>
-        <button onclick="signOut()" value="下班打卡" class="btn btn-link"></button>
+        <button onclick="signIn()" class="btn btn-success">上班签到</button>
+        <button onclick="signOut()" class="btn btn-success" style="color:royalblue">下班打卡</button>
     </div>
 </div>
 <div class="container">
@@ -46,8 +46,22 @@
                 <c:forEach items="${attendances}" var="attend">
                     <tr>
                         <td><c:out value="${attend.employee.empName}"></c:out></td>
-                        <td><c:out value="${attend.starttime}"></c:out></td>
-                        <td><c:out value="${attend.endtime}"></c:out></td>
+                        <c:choose>
+                            <c:when test="${attend.startTime==null}">
+                                <td style="color: red"><c:out value="上班未打卡"></c:out></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td><c:out value="${attend.startTime}"></c:out></td>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${attend.endTime==null}">
+                                <td style="color: red"><c:out value="下班未打卡"></c:out></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td><c:out value="${attend.endTime}"></c:out></td>
+                            </c:otherwise>
+                        </c:choose>
                     </tr>
                 </c:forEach>
             </table>

@@ -75,8 +75,8 @@
                         <td><c:out value="${rec.deptAndJob.job.JName}"></c:out></td>
                         <td><c:out value="${rec.deptAndJob.job.sal}"></c:out></td>
                         <td>
-                            <a class="btn-success btn" href="">投递</a>
-                            <a class="btn-success btn" href="/recruit/showRec/${rec.id}">详情</a>
+                            <button class="btn-success btn" href="">投递</button>
+                            <button class="btn-success btn" href="/recruit/showRec/${rec.id}">详情</button>
                         </td>
                     </tr>
                 </c:forEach>

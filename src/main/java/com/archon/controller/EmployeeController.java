@@ -34,6 +34,7 @@ public class EmployeeController {
         /*修改消息类型为入职消息*/
         int noticeId = Integer.parseInt(noticeIdStr);
         Notice notice = new Notice();
+        notice.setId(noticeId);
         notice.setNoticeType(Notice.NEW_EMPLOYEE_NOTICE);
         boolean b = noticeService.updateNotice(notice);
         if(b){

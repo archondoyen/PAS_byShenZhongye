@@ -19,18 +19,17 @@
     insert into DEPT_AND_JOB(ID, DEPT_ID, JOB_ID, COMPANY_ID) VALUES (#{id},#{deptId},#{jobId},#{companyId})
     </insert>
     <update id="updateDeptAndJob" parameterType="DeptAndJob">
-        UPDATE DEPT_AND_JOB SET DEPT_ID=#{id},JOB_ID=#{jobId},COMPANY_ID=#{companyId} where id={$id}
+        UPDATE DEPT_AND_JOB SET DEPT_ID=#{deptId},JOB_ID=#{jobId},COMPANY_ID=#{companyId} where id=#{id}
     </update>
     <select id="queryDeptAndJob" parameterType="DeptAndJob" resultMap="deptAndJobMap">
       SELECT * FROM DEPT_AND_JOB
         <where>
-            <trim  suffix=" " suffixOverrides=",">
-            <if test="id!=null">id=#{id},</if>
-            <if test="deptId!=null">Dept_Id=#{deptId},</if>
-            <if test="jobId!=null">Job_ID=#{jobId},</if>
-            <if test="companyId!=null">Company_ID=#{companyId},</if>
-        </trim>
+            <trim prefix="" prefixOverrides="and">
+                <if test="id!=null">id=#{id}</if>
+                <if test="deptId!=null">and Dept_Id=#{deptId}</if>
+                <if test="jobId!=null">and Job_ID=#{jobId}</if>
+                <if test="companyId!=null">and Company_ID=#{companyId}</if>
+            </trim>
         </where>
-
     </select>
 </mapper>

@@ -69,7 +69,7 @@
                         </td>
                         <td>
                             <input type="number" id="rewardAndPunishId" placeholder="奖金/罚金" onchange="selectRewardAndPunishDetail()">
-                        </td<td>
+                        </td><td>
                             <input type="number" id="rpdetail" placeholder="奖罚明细">
                         </td><td>
                         <input type="number" name="ratio" readonly="readonly" placeholder="五险一金比例:${ratio}">

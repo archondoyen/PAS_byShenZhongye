@@ -16,9 +16,9 @@
     <script>
         $(document).ready(function () {
             $.ajax({
-                url:"notice/getNoticeNum.view",
+                url:"notice/visitorGetNoticeNum.view",
                 type:"post",
-                success:function xx(data) {
+                success:function (data) {
                     $("#nociceNumber").html(data);
                 }
             });
@@ -27,6 +27,7 @@
     <title>访客首页</title>
 </head>
 <body>
+<p>${info}</p>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -34,20 +35,28 @@
         </div>
         <div>
             <c:choose>
-                <c:when test="${visitor!=null}">
-                    <a class="navbar-text navbar-left" href=""><c:out value="${visitor.VName}"></c:out></a>
+                <c:when test="${sessionScope.visitor!=null}">
+                    <a class="navbar-text navbar-left"><c:out value="欢迎${sessionScope.visitor.VName}"></c:out></a>
                 </c:when>
                 <c:otherwise>
                     <a class="navbar-text navbar-left" href="/visitor/visitorTop.entrance">请登录</a>
                 </c:otherwise>
             </c:choose>
-            <a class="navbar-text navbar-left" href="/notice/visitorViewNoticeNotRead.view">消息</a>
-            <span id="nociceNumber"></span>
+            <a class="navbar-text navbar-left" href="/notice/visitorViewNoticeNotRead.view">消息
+                <span id="nociceNumber" style="color: red"></span>
+            </a>
+            <a class="navbar-text navbar-left">完善信息
+                <ul>
+                    <li><a class="navbar-text navbar-left" href="/visitor/visitorAddPesonalMsg.entrance">基本信息</a></li>
+                    <li><a class="navbar-text navbar-left" href="/recruit/showRec">技能&证书</a></li>
+                    <li><a class="navbar-text navbar-left" href="/recruit/showRec">工作经历</a></li>
+                    <li><a class="navbar-text navbar-left" href="/recruit/showRec">教育经历</a></li>
+                </ul>
+            </a>
             <a class="navbar-text navbar-left" href="/recruit/showRec">找工作</a>
-            <li></li>
             <a class="navbar-text navbar-left" href="">写简历</a>
             <a class="navbar-text navbar-left" href="">简历管理</a>
-            <a class="navbar-text navbar-right" href="">退出</a>
+            <a class="navbar-text navbar-right" href="/logOut.do">退出</a>
         </div>
     </div>
 </nav>

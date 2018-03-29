@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -24,11 +26,14 @@ public class RewardAndPunishController {
     private RewardAndPunishService rewardAndPunishService;
     @RequestMapping(value = "adminNewRewardAndPunish.entrance")
     public String adminNewRewardAndPunishEntrance(){
-        return "admin/adminManagerRewardAndPunish/adminNewRewardPunish";
+        return "admin/adminManageRewardAndPunish/adminNewRewardPunish";
     }
     @RequestMapping(value = "adminNewRewardAndPunish.do")
-    public String adminNewRewardAndPunishDo(Model model, @ModelAttribute RewardPunish rewardPunish, HttpSession session){
+    public String adminNewRewardAndPunishDo(Model model, @ModelAttribute RewardPunish rewardPunish, HttpSession session,
+                                            @RequestParam(value = "money")String moneyStr){
         String info = "";
+        BigDecimal money = new BigDecimal(Double.parseDouble(moneyStr));
+        rewardPunish.setMoney(money);
         rewardPunish.setRpTime(TimeUtil.getTimeStamp());
         boolean b = rewardAndPunishService.addRP(rewardPunish);
         if(b){
@@ -43,6 +48,7 @@ public class RewardAndPunishController {
         notice.setCreateTime(TimeUtil.getTimeStamp());
         notice.setNoticeType(Notice.REWARD_PUNISH_NOTICE);
         notice.setIsRead(Notice.NOTICE_NOT_READ);
+        notice.setNoticeContent(money.toString());
         boolean b1 = noticeService.addNotice(notice);
         if(b1){
             info+=" 消息已发送给员工。";

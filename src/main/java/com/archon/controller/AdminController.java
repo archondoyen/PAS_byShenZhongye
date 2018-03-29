@@ -48,39 +48,19 @@ public class AdminController {
         if (admin1 == null) {
             String info = "用户名或密码不存在！";
             model.addAttribute("info",info);
-            return "admin/adminLogin";
+            return "index";
         }
         session.setAttribute("admin",admin1);
         model.addAttribute("admin",admin1);
         return "admin/success";
     }
     @RequestMapping(value = "adminCompany.view")
-    public String myCompany(HttpSession session, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
-        Admin admin = (Admin) session.getAttribute("Admin");
-        Integer companyId = admin.getCompanyId();
-        String info = null;
-        if (companyId == null) {
-            info = "公司信息空";
-            request.setAttribute("info",info);
-            request.getRequestDispatcher("admin/showCompany/adminShowCompany").forward(request,response);
-/*
-            request.getRequestDispatcher("WEB-INF/views/admin/showCompany/adminShowCompany.jsp").forward(request,response);
-*/
-            return "admin/success";
-            /*return "redirect:admin/showCompany/adminShowCompany";*/
-        }
-        Company company = new Company();
-        company.setId(companyId);
-        Company company1 = companyService.queryCompany(company);
-        if (company1 == null) {
-            info = "公司信息空";
-            request.setAttribute("info",info);
-            request.getRequestDispatcher("WEB-INF/views/admin/success.jsp").forward(request,response);
-/*            return "redirect:admin/success";*/
-            return "admin/success";
-        }
-        request.setAttribute("company",company1);
-        request.getRequestDispatcher("WEB-INF/views/admin/showCompany/adminShowCompany.jsp").forward(request,response);
+    public String myCompany(HttpSession session, Model model){
+        Admin admin = (Admin) session.getAttribute("admin");
+        Company company=new Company();
+        company.setId(admin.getCompanyId());
+        company = companyService.queryCompany(company);
+        model.addAttribute("company",company);
         return "admin/showCompany/adminShowCompany";
     }
     @RequestMapping(value = "adminAddJob.do",produces = "application/json;charset=UTF-8")

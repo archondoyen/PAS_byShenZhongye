@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -20,8 +21,32 @@ import java.util.List;
 public class NoticeController {
     @Autowired
     private NoticeService noticeService;
+    @RequestMapping(value = "empGetNoticeNum.view")
+    public @ResponseBody String empGetNoticeNum(HttpSession session){
+        Employee employee = (Employee) session.getAttribute("employee");
+        Notice notice = new Notice();
+        notice.setTargetId(employee.getId());
+        notice.setNoticeType(Notice.REWARD_PUNISH_NOTICE);
+        notice.setIsRead(Notice.NOTICE_NOT_READ);
+        Integer rpSize = noticeService.queryNotice(notice).size();
+        Notice notice1 = new Notice();
+        notice1.setTargetId(employee.getId());
+        notice1.setNoticeType(Notice.SAL_NOTICE);
+        notice.setIsRead(Notice.NOTICE_NOT_READ);
+        Integer salSize = noticeService.queryNotice(notice1).size();
+        Integer result = rpSize+salSize;
+        return result.toString();
+    }@RequestMapping(value = "visitorGetNoticeNum.view")
+    public @ResponseBody String visitorGetNoticeNumGetNoticeNum(HttpSession session){
+        Visitor visitor = (Visitor) session.getAttribute("visitor");
+        Notice notice = new Notice();
+        notice.setTargetId(visitor.getId());
+        notice.setIsRead(Notice.NOTICE_NOT_READ);
+        Integer rpSize = noticeService.queryNotice(notice).size();
+        return rpSize.toString();
+    }
     @RequestMapping(value = "adminGetNoticeNumRecruit.view")
-    public Integer adminGetRecruitNum(HttpSession session){
+    public @ResponseBody Integer adminGetRecruitNum(HttpSession session){
         Admin admin = (Admin) session.getAttribute("admin");
         Notice notice = new Notice();
         notice.setTargetId(admin.getId());
@@ -36,6 +61,16 @@ public class NoticeController {
         notice.setNoticeType(Notice.INTERVIEW_NOTICE);
         notice.setIsRead(Notice.NOTICE_NOT_READ);
         return noticeService.queryNotice(notice).size();
+    }
+    @RequestMapping(value = "empViewNoticeNotRead.view")
+    public String empViewNoticeNotRead(HttpSession session,Model model){
+        Employee employee = (Employee) session.getAttribute("employee");
+        Notice notice = new Notice();
+        notice.setTargetId(employee.getId());
+        notice.setIsRead(Notice.NOTICE_NOT_READ);
+        List<Notice> notices = noticeService.queryNotice(notice);
+        model.addAttribute("noticeList",notices);
+        return "employee/employeeNotice/employeeManageNotice";
     }
     @RequestMapping(value = "visitorViewNoticeNotRead.view")
     public String visitorShowNotice(HttpSession session,Model model){
@@ -125,7 +160,7 @@ public class NoticeController {
         return info;
     }
     @RequestMapping(value = "adminSendInterview.oper")
-    public String adminSendInterview( @RequestParam(value = "noticeContent",required = false) String noticeContent,
+    public @ResponseBody String adminSendInterview( @RequestParam(value = "noticeContent",required = false) String noticeContent,
                                      @RequestParam(value = "noticeTargetId",required = false)String targetIdStr){
         Notice notice = new Notice();
         /*已经是INTERVIEW_NOTICE，但是重新设置一下，防止误操作*/

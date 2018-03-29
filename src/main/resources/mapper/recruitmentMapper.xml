@@ -19,38 +19,39 @@
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
             SELECT SEQARCHON.nextval from dual
         </selectKey>
-        insert into RECRUITMENT(ID, JOB_AND_DEPT_ID, WORK_TYPE, WORK_LOCATION, WORKER_NUMBER, RECRUITMENT_CREATE_TIME,CREATER_ID) VALUES
-        (#{id},#{jobAndDeptId},#{workType},#{workLocation},#{workerNumber},#{recruitmentCreateTime},#{createrId})
-        <!--<trim prefix="(" suffix=")" suffixOverrides=",">
+        insert into RECRUITMENT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null">id,</if>
-            <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID,</if>
-            <if test="WORK_TYPE!=null">WORK_TYPE,</if>
-            <if test="WORK_LOCATION!=null">WORK_LOCATION,</if>
-            <if test="WORKER_NUMBER!=null">WORKER_NUMBER,</if>
-            <if test="RECRUITMENT_CREATE_TIME!=null">RECRUITMENT_CREATE_TIME,</if>
-            <if test="RECRUITMENT_MODIFIED_TIME!=null">RECRUITMENT_MODIFIED_TIME,</if>
+            <if test="jobAndDeptId!=null">JOB_AND_DEPT_ID,</if>
+            <if test="workType!=null">WORK_TYPE,</if>
+            <if test="workLocation!=null">WORK_LOCATION,</if>
+            <if test="workerNumber!=null">WORKER_NUMBER,</if>
+            <if test="recruitmentCreateTime!=null">RECRUITMENT_CREATE_TIME,</if>
+            <if test="recruitmentModifiedTime!=null">RECRUITMENT_MODIFIED_TIME,</if>
+            <if test="createrId!=null">CREATER_ID,</if>
         </trim>
-        <trim prefix=" values (" suffix=")" sufixOverrides=",">
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
             <if test="id!=null">#{id},</if>
-            <if test="JOB_AND_DEPT_ID!=null">#{jobAndDeptId},</if>
-            <if test="WORK_TYPE!=null">#{workType},</if>
-            <if test="WORK_LOCATION!=null">#{workLocation},</if>
-            <if test="WORKER_NUMBER!=null">#{workerNumber},</if>
-            <if test="RECRUITMENT_CREATE_TIME!=null">#{recruitmentCreateTime},</if>
-            <if test="RECRUITMENT_MODIFIED_TIME!=null">#{recruitmentModifiedTime},</if>
-        </trim>-->
+            <if test="jobAndDeptId!=null">#{jobAndDeptId},</if>
+            <if test="workType!=null">#{workType},</if>
+            <if test="workLocation!=null">#{workLocation},</if>
+            <if test="workerNumber!=null">#{workerNumber},</if>
+            <if test="recruitmentCreateTime!=null">#{recruitmentCreateTime},</if>
+            <if test="recruitmentModifiedTime!=null">#{recruitmentModifiedTime},</if>
+            <if test="createrId!=null">#{createrId},</if>
+        </trim>
     </insert>
     <update id="updateRec" parameterType="Recruitment">
         UPDATE RECRUITMENT
         <set>
             <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID=#{jobAndDeptId},</if>
-                <if test="WORK_TYPE!=null">WORK_TYPE=#{workType},</if>
-                <if test="WORK_LOCATION!=null">WORK_LOCATION=#{workLocation},</if>
-                <if test="WORKER_NUMBER!=null">WORKER_NUMBER=#{workerNumber},</if>
-                <if test="RECRUITMENT_CREATE_TIME!=null">RECRUITMENT_CREATE_TIME=#{recruitmentCreateTime},</if>
-                <if test="RECRUITMENT_MODIFIED_TIME!=null">RECRUITMENT_MODIFIED_TIME=#{recruitmentModifiedTime},</if>
+                <if test="jobAndDeptId!=null">JOB_AND_DEPT_ID=#{jobAndDeptId},</if>
+                <if test="workType!=null">WORK_TYPE=#{workType},</if>
+                <if test="workLocation!=null">WORK_LOCATION=#{workLocation},</if>
+                <if test="workerNumber!=null">WORKER_NUMBER=#{workerNumber},</if>
+                <if test="recruitmentCreateTime!=null">RECRUITMENT_CREATE_TIME=#{recruitmentCreateTime},</if>
+                <if test="recruitmentModifiedTime!=null">RECRUITMENT_MODIFIED_TIME=#{recruitmentModifiedTime},</if>
+                <if test="createrId!=null">CREATER_ID=#{createrId},</if>
             </trim>
         </set>
         <where>
@@ -60,14 +61,15 @@
     <select id="queryRec" parameterType="Recruitment" resultMap="recMap">
         SELECT * from RECRUITMENT
         <where>
-            <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="JOB_AND_DEPT_ID!=null">JOB_AND_DEPT_ID=#{jobAndDeptId},</if>
-                <if test="WORK_TYPE!=null">WORK_TYPE=#{workType},</if>
-                <if test="WORK_LOCATION!=null">WORK_LOCATION=#{workLocation},</if>
-                <if test="WORKER_NUMBER!=null">WORKER_NUMBER=#{workerNumber},</if>
-                <if test="RECRUITMENT_CREATE_TIME!=null">RECRUITMENT_CREATE_TIME=#{recruitmentCreateTime},</if>
-                <if test="RECRUITMENT_MODIFIED_TIME!=null">RECRUITMENT_MODIFIED_TIME=#{recruitmentModifiedTime},</if>
+            <trim suffix=" " suffixOverrides="and">
+                <if test="id!=null">id=#{id} and</if>
+                <if test="jobAndDeptId!=null">JOB_AND_DEPT_ID=#{jobAndDeptId} and</if>
+                <if test="workType!=null">WORK_TYPE=#{workType} and</if>
+                <if test="workLocation!=null">WORK_LOCATION=#{workLocation} and</if>
+                <if test="workerNumber!=null">WORKER_NUMBER=#{workerNumber} and</if>
+                <if test="recruitmentCreateTime!=null">RECRUITMENT_CREATE_TIME=#{recruitmentCreateTime} and</if>
+                <if test="recruitmentModifiedTime!=null">RECRUITMENT_MODIFIED_TIME=#{recruitmentModifiedTime} and</if>
+                <if test="createrId!=null">CREATER_ID=#{createrId}</if>
             </trim>
         </where>
     </select>

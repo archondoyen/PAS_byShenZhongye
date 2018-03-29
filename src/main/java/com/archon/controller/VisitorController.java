@@ -1,6 +1,7 @@
 package com.archon.controller;
 
 import com.archon.po.Employee;
+import com.archon.po.Recruitment;
 import com.archon.po.Visitor;
 import com.archon.service.EmployeeService;
 import com.archon.service.VisitorService;
@@ -11,6 +12,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -36,29 +38,17 @@ public class VisitorController {
         return "visitor/visitorRegister";
     }
     @RequestMapping(value = "visitorReg.do")
-    public String visitorReg(@RequestParam(value = "vPhoto",required = false) MultipartFile photo, @ModelAttribute Visitor visitor, HttpSession session, Model model){
-        if (photo == null) {
-            visitor.setVPhoto(null);
-        }else{
-            String vPhoto = saveImage(photo);
-            System.out.println(vPhoto);
-            visitor.setVPhoto(vPhoto);
-        }
+    public String visitorReg(@ModelAttribute Visitor visitor, HttpSession session, Model model){
         Object b = visitorService.visitorRegister(visitor);
-        String info = null;
-        if(b instanceof String){
-            info = (String)b;
-            model.addAttribute("info",info);
-            return "visitor/visitorTop";
-        }
-        if((Boolean) b){
-            model.addAttribute("visitor",visitor);
+        if(b instanceof Visitor){
+            visitor = (Visitor)b;
             session.setAttribute("visitor",visitor);
+            model.addAttribute("visitor",visitor);
             return "visitor/success";
+        }else{
+            model.addAttribute("info","Register Failed!");
+            return "index";
         }
-        info = "用户注册失败！";
-        model.addAttribute("info",info);
-        return "visitor/visitorTop";
     }
     /*保存用户图片*/
     private  String saveImage(MultipartFile file)  {
@@ -87,7 +77,7 @@ public class VisitorController {
         if (visitor1 == null) {
             info = "wrong name or password!";
             model.addAttribute("info",info);
-            return "visitor/visitorLogin";
+            return "index";
         }
         model.addAttribute("visitor",visitor1);
         session.setAttribute("visitor",visitor1);
@@ -104,6 +94,34 @@ public class VisitorController {
         /*不是员工，跳转到visitor成功页*/
         return "visitor/success";
     }
-
-
+    @RequestMapping(value = "visitorAddPesonalMsg.entrance")
+    public String visitorAddMsgEntrance(HttpSession session,Model model){
+        Visitor visitor = (Visitor) session.getAttribute("visitor");
+        model.addAttribute("visitor",visitor);
+        return "visitor/visitorPersonalMsg/visitorAddPersonalMsg";
+    }
+    @RequestMapping(value = "visitorAddPersonalMsg.do")
+    public String visitorAddMsgEntrance(HttpSession session,Model model,@ModelAttribute Visitor visitor){
+        Visitor visitor0 = (Visitor) session.getAttribute("visitor");
+        visitor.setId(visitor0.getId());
+        boolean b = visitorService.updateVisitorPersonMsg(visitor);
+        if(b){
+            model.addAttribute("info","update OK!");
+        }else{
+            model.addAttribute("info","update Failed!");
+        }
+        return "visitor/success";
+    }
+    @RequestMapping(value ="checkName.oper")
+    public @ResponseBody String checkName(
+            @RequestParam(value = "visitorName",required = false)String visitorNameUncheck){
+        Visitor visitor0 = new Visitor();
+        visitor0.setVName(visitorNameUncheck);
+        Visitor visitor = visitorService.queryVisitor(visitor0);
+        if (visitor == null) {
+            return null;
+        }else{
+            return "name is already existed!";
+        }
+    }
 }

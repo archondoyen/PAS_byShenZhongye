@@ -24,13 +24,13 @@
     <select id="queryJob" parameterType="Job" resultMap="jobMap">
       SELECT * FROM JOB
       <where>
-          <trim suffix=" " suffixOverrides=",">
-              <if test="id!=null">id=#{id},</if>
-              <if test="jName!=null">J_NAME=#{jName},</if>
-              <if test="jInfo!=null">J_Info=#{jInfo},</if>
-              <if test="jTypeId!=null">JTYPE_ID=#{jTypeId},</if>
-              <if test="sal!=null">SAL=#{sal},</if>
-              <if test="companyId!=null">COMPANY_ID=#{companyId},</if>
+          <trim suffix=" " suffixOverrides="and">
+              <if test="id!=null">id=#{id} and</if>
+              <if test="jName!=null">J_NAME=#{jName} and</if>
+              <if test="jInfo!=null">J_Info=#{jInfo} and</if>
+              <if test="jTypeId!=null">JTYPE_ID=#{jTypeId}, and</if>
+              <if test="sal!=null">SAL=#{sal} and</if>
+              <if test="companyId!=null">COMPANY_ID=#{companyId}</if>
           </trim>
       </where>
     </select>

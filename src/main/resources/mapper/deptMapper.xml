@@ -21,11 +21,11 @@
     <select id="queryDept" parameterType="Department" resultMap="deptMap">
       SELECT * FROM DEPARTMENT
       <where>
-          <trim suffix=" " suffixOverrides=",">
-              <if test="id!=null">Id = #{id},</if>
-              <if test="companyId!=null">Company_Id = #{companyId},</if>
-              <if test="deptName!=null">dept_Name = #{deptName},</if>
-              <if test="deptInfo!=null">dept_Info = #{deptInfo},</if>
+          <trim suffix=" " suffixOverrides="and">
+              <if test="id!=null">id = #{id} and</if>
+              <if test="companyId!=null">Company_Id = #{companyId} and</if>
+              <if test="deptName!=null">dept_Name = #{deptName} and</if>
+              <if test="deptInfo!=null">dept_Info = #{deptInfo}</if>
           </trim>
       </where>
     </select>

@@ -1,18 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";%>
 <html>
 <head>
-    <base href="<%= basePath%>">
-    <link href="/styles/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/scripts/bootstrap.min.js"></script>
-    <script src="/scripts/jquery-3.3.1.min.js"></script>
-    <link href="/styles/font-awesome.css" rel="stylesheet">
-    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="/scripts/google-maps.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP系统-管理员首页</title>
+    <link rel="stylesheet" type="text/css" href="/styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/default.css">
+    <!-- Styles -->
+    <link href="/styles/style.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,500,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href="http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
     <script>
         $(document).ready(function(){
-            $(".vertical-nav").verticalnav({speed: 400,align: "left"});
             $.ajax({
                 url:"notice/adminGetNoticeNumRecruit.view",
                 type:"post",
@@ -31,94 +34,141 @@
                 url:"notice/nociceNumberSalay",
                 type:"post",
                 success:function (data) {
-                    $("#nociceNumberSalay").html(data);
+                    $("#nociceNumbSalay").html(data);
                     $("#allNociceNumber").html("新");
                 }
-            });工资提取成功后，不提升数目*/
+            });工资提取成功后，不提示数目*/
         });
     </script>
-    <title>管理员首页</title>
 </head>
 <body>
-<div class="left-container">
-    <div style="text-align:center;clear:both;">
-        <script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
-<%--        <script src="/follow.js" type="text/javascript"></script>--%>
-    </div>
-    <div class="kePublic">
-        <!--效果html开始-->
-        <div class="content">
-            <ul class="vertical-nav dark red">
-                <li class="active"><a href="http://www.iotek.com.cn/">首页，by忠业</a></li>
-                <li class="active"><a href="http://www.iotek.com.cn/">全部链接都可以点击哦</a></li>
-                <li><i class="icon-cogs"></i>&nbsp;&nbsp;招聘
-                    <span class="submenu-icon"></span>
-                    <ul>
-                        <li><a href="/recruit/adminRecruit.entrance">新招聘</a></li>
-                        <li><a href="">招聘管理</a></li>
-                    </ul>
+<div id="container" style="width:280px;">
+    <button class="toggle-nav" id="bars" style="z-index: 10"><i class="fa fa-bars"></i></button>
+    <div id="canvas">
+        <div id="nav">
+            <h2 id="title"><i class="fa fa-sitemap"></i>欢迎 ${admin.AName}！</h2>
+            <ul id="toggle">
+                <li>
+                    <div class="active border">
+                        <span class="menu-icons fa fa-home"></span><a href="#">首页</a>
+                    </div>
                 </li>
-                <li><i class="icon-cogs"></i>&nbsp;&nbsp;消息
-                    <span class="submenu-icon"></span>
-                    <span id="allNociceNumber"></span>
+                <li>
+                    <div>
+                        <span class="menu-icons  fa fa-user"></span><a href="/recruit/adminRecruit.entrance">招聘</a>
+                        <span class="the-btn fa fa-plus"></span>
+                    </div>
                     <ul>
-                        <li><a href="/notice/adminViewNoticeNotRead.Recruitment">招聘面试</a><span id="nociceNumberRecruit"></span></li>
-                        <li><a href="/notice/adminViewNoticeNotRead.interview">面试入职</a><span id="nociceNumberInterview"></span></li>
-                        <li><a href="">消息管理</a></li>
-                    </ul>
-                </li><li><i class="icon-cogs"></i>&nbsp;&nbsp;员工管理
-                    <span class="submenu-icon"></span>
-                    <ul>
-                        <li><a href="">考勤管理</a></li>
                         <li>
-                            <a href="">奖惩<span class="submenu-icon"></span></a>
-                        <li><a href="/rewardAndPunish/adminNewRewardAndPunish.entrance">新建奖惩</a></li>
-                        <li><a href="/deptAndJob/showJob.view">奖罚管理 <span class="submenu-icon"></span></a></li>
-                        <li><i class="icon-cogs"></i>&nbsp;&nbsp;工资
-                            <span class="submenu-icon"><span id="nociceNumberSalay"></span></span>
-                            <ul>
-                                <li><li><a href="/salay/adminPaySalay.entrance">发工资</a></li>
-                                <li><li><a href="/notice/adminViewNoticeNotRead.salay">工资管理</a></li>
-                            </ul>
+                            <a href="/recruit/adminRecruit.entrance">新招聘</a>
+                        </li>
+                        <li>
+                            <a href="#">招聘管理</a>
                         </li>
                     </ul>
                 </li>
-                <li><i class="icon-cogs"></i>&nbsp;&nbsp;公司
-                    <span class="submenu-icon"></span>
+
+                <li>
+                    <div>
+                        <span class="menu-icons  fa fa-briefcase"></span>
+                        <a href="#">消息</a><span class="the-btn fa fa-plus"></span>
+                    </div>
                     <ul>
-                        <li><a href="/admin/adminCompany.view">公司信息</a></li>
                         <li>
-                            <a href="">部门<span class="submenu-icon"></span></a>
-                                <li><a href="/Dept/adminNewDept.entrance">新部门</a></li>
-                                <li><a href="/Dept/adminDept.view">部门管理 <span class="submenu-icon"></span></a></li>
+                            <a href="/notice/adminViewNoticeNotRead.Recruitment">招聘面试</a><span id="nociceNumberRecruit"></span>
+                        </li>
                         <li>
-                            <a href="">职位<span class="submenu-icon"></span></a>
-                                <li><a href="/job/adminAddJob.Entrance">新职位</a></li>
-                                <li><a href="/deptAndJob/showJob.view">职位管理 <span class="submenu-icon"></span></a></li>
+                            <a href="/notice/adminViewNoticeNotRead.interview">面试入职</a><span id="nociceNumberInterview"></span>
+                        </li>
                     </ul>
+                </li>
+
+                <li>
+                    <div>
+                        <span class="menu-icons  fa fa-briefcase"></span>
+                        <a href="#">奖惩</a><span class="the-btn fa fa-plus"></span>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="/rewardAndPunish/adminNewRewardAndPunish.entrance">新建奖惩</a>
+                        </li>
+                        <li>
+                            <a href="/rewardAndPunish/adminShowRewarnAndPunish.view">奖罚管理</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div>
+                        <span class="menu-icons  fa fa-briefcase"></span>
+                        <a href="#">工资</a><span class="the-btn fa fa-plus"></span><span id="nociceNumberSalay"></span>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="/salay/adminPaySalay.entrance">发工资</a>
+                        </li>
+                        <li>
+                            <a href="/notice/adminViewNoticeNotRead.salay">工资管理</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div>
+                        <span class="menu-icons  fa fa-briefcase"></span>
+                        <a href="#">公司</a><span class="the-btn fa fa-plus"></span>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="/admin/adminCompany.view">公司信息</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div>
+                        <span class="menu-icons  fa fa-briefcase"></span>
+                        <a href="#">部门</a><span class="the-btn fa fa-plus"></span>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="/Dept/adminNewDept.entrance">新部门</a>
+                        </li><li>
+                        <a href="/Dept/adminDept.view">部门管理</a>
                     </li>
+                    </ul>
+                </li>
+
+                <li>
+                <div>
+                    <span class="menu-icons  fa fa-briefcase"></span>
+                    <a href="#">职位</a><span class="the-btn fa fa-plus"></span>
+                </div>
+                <ul>
+                    <li>
+                        <a href="/job/adminAddJob.Entrance">新职位</a>
+                    </li><li>
+                    <a href="/deptAndJob/showJob.view">职位管理</a>
+                </li>
                 </ul>
+            </li>
+
+                <li>
+                    <div>
+                        <span class="menu-icons  fa fa-envelope"></span>
+                        <a href="">考勤</a>
+                    </div>
+                </li><li>
+                    <div>
+                        <span class="menu-icons  fa fa-envelope"></span>
+                        <a href="/logOut.do">退出</a>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <!--效果html结束-->
-        <div class="clear"></div>
     </div>
 </div>
-
-<%--<div class="right-container" style="float: left">
-    <h1>欢迎${sessionScope.admin}!</h1>
-    <a href="">新招聘</a>
-    <a href="">管理招聘信息</a>
-    <a href="">安排面试</a>
-    <a href="">新培训</a>
-    <a href="">培训计划管理</a>
-    <a href="">员工管理</a>
-    <a href="">员工考核</a>
-    <a href="/admin/adminCompany.view">公司信息</a>
-    <a href="/Dept/adminNewDept.entrance">新部门</a>
-    <a href="/Dept/adminDept.view">部门管理</a>
-    <a href="/job/adminAddJob.Entrance">新职位</a>
-    <a href="/admin/adminCompany.view">职位管理</a>
-</div>--%>
-
+<script src="/scripts/jquery.min.js"></script>
+<script src="/scripts/custom.js"></script>
 </body>
 </html>

@@ -6,4 +6,6 @@ public interface VisitorService {
     Object visitorRegister(Visitor visitor);
     Visitor visitorLogin(Visitor visitor);
     Visitor queryVisitorByName(String vName);
+    boolean updateVisitorPersonMsg(Visitor visitor);
+    Visitor queryVisitor(Visitor visitor);
 }

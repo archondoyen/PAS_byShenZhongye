@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -33,16 +34,16 @@ public class AttendanceController {
      * 签到,不含迟到打卡，机器触发器打卡，打卡后的迟到、缺勤考核
      */
     @RequestMapping(value = "empSignIn.oper")
-    public String empSignIn(HttpSession session){
+    public @ResponseBody String empSignIn(HttpSession session){
         Employee employee = (Employee) session.getAttribute("employee");
         Attendance attendance = new Attendance();
         attendance.setEmpId(employee.getId());
-        attendance.setStarttime(TimeUtil.getTimeStamp());
+        attendance.setStartTime(TimeUtil.getTimeStamp());
         boolean b = attendanceService.addAttendance(attendance);
         String info = null;
         if(b){
             session.setAttribute("signId",attendance.getId());
-            info = "签到成功，签到时间"+attendance.getStarttime().toString();
+            info = "签到成功，签到时间"+attendance.getStartTime().toString();
         }else {
             info = "签到失败";
         }
@@ -51,24 +52,26 @@ public class AttendanceController {
      * 签退,不含迟到打卡，机器触发器打卡，打卡后的迟到、缺勤考核
      */
     @RequestMapping(value = "empSignOut.oper")
-    public String empSignOut(HttpSession session){
+    public @ResponseBody String empSignOut(HttpSession session){
         boolean result = false;
         String info = null;
         Employee employee = (Employee) session.getAttribute("employee");
         Attendance attendance = new Attendance();
         attendance.setEmpId(employee.getId());
-        attendance.setEndtime(TimeUtil.getTimeStamp());
         Object signId = session.getAttribute("signId");
         if (signId != null) {
-            int attendanceId = Integer.parseInt((String) signId);
+            Integer attendanceId = (Integer) signId;
             attendance.setId(attendanceId);
+            attendance = attendanceService.queryAttendance(attendance).get(0);
+            attendance.setEndTime(TimeUtil.getTimeStamp());
             result = attendanceService.updateAttendance(attendance);
         }
         if (signId==null){
+            attendance.setEndTime(TimeUtil.getTimeStamp());
             result = attendanceService.addAttendance(attendance);
         }
         if(result){
-            info = "签退成功，签退时间"+attendance.getStarttime().toString();
+            info = "签退成功，签退时间"+attendance.getStartTime().toString();
         }else {
             info = "签退失败";
         }

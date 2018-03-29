@@ -44,13 +44,13 @@
         <set>
             <trim suffix=" " suffixOverrides=",">
                 <if test="id!=null">id=#{id},</if>
-                <if test="noticeContent!=null">noticeContent=#{noticeContent},</if>
-                <if test="noticeType!=null">noticeType=#{noticeType},</if>
-                <if test="senderId!=null">senderId=#{senderId},</if>
-                <if test="targetId!=null">targetId=#{targetId},</if>
-                <if test="createTime!=null">createTime=#{createTime},</if>
-                <if test="isRead!=null">isRead=#{isRead},</if>
-                <if test="isDeleted!=null">isDeleted=#{isDeleted},</if>
+                <if test="noticeContent!=null">NOTICE_CONTENT=#{noticeContent},</if>
+                <if test="noticeType!=null">NOTICE_TYPE=#{noticeType},</if>
+                <if test="senderId!=null">SENDER_ID=#{senderId},</if>
+                <if test="targetId!=null">TARGET_ID=#{targetId},</if>
+                <if test="createTime!=null">CREATE_TIME=#{createTime},</if>
+                <if test="isRead!=null">IS_READ=#{isRead},</if>
+                <if test="isDeleted!=null">IS_DELETED=#{isDeleted},</if>
             </trim>
         </set>
         <where>
@@ -67,15 +67,15 @@
     <select id="queryNotice" parameterType="Notice" resultMap="noticeMap">
         SELECT * from NOTICE
         <where>
-            <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="noticeContent!=null">noticeContent=#{noticeContent},</if>
-                <if test="noticeType!=null">noticeType=#{noticeType},</if>
-                <if test="senderId!=null">senderId=#{senderId},</if>
-                <if test="targetId!=null">targetId=#{targetId},</if>
-                <if test="createTime!=null">createTime=#{createTime},</if>
-                <if test="isRead!=null">isRead=#{isRead},</if>
-                <if test="isDeleted!=null">isDeleted=#{isDeleted},</if>
+            <trim suffix="" suffixOverrides="and">
+                <if test="id!=null">id=#{id} and</if>
+                <if test="noticeContent!=null">NOTICE_CONTENT=#{noticeContent} and</if>
+                <if test="noticeType!=null">NOTICE_TYPE=#{noticeType} and</if>
+                <if test="senderId!=null">SENDER_ID=#{senderId} and</if>
+                <if test="targetId!=null">TARGET_ID=#{targetId} and</if>
+                <if test="createTime!=null">CREATE_TIME=#{createTime} and</if>
+                <if test="isRead!=null">IS_READ=#{isRead} and</if>
+                <if test="isDeleted!=null">IS_DELETED=#{isDeleted} and</if>
             </trim>
         </where>
     </select>

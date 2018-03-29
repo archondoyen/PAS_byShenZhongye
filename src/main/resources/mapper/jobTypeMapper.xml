@@ -20,10 +20,10 @@
     <select id="queryJobType" parameterType="JobType" resultMap="jobTypeMap">
       SELECT * FROM JOBTYPE
       <where>
-          <trim suffix=" " suffixOverrides=",">
-              <if test="id!=null">id=#{id},</if>
-              <if test="firstType!=null">first_Type=#{firstType},</if>
-              <if test="secondType!=null">SECOND_TYPE=#{secondType},</if>
+          <trim suffix=" " suffixOverrides="and">
+              <if test="id!=null">id=#{id} and</if>
+              <if test="firstType!=null">first_Type=#{firstType} and</if>
+              <if test="secondType!=null">SECOND_TYPE=#{secondType}</if>
           </trim>
       </where>
     </select>

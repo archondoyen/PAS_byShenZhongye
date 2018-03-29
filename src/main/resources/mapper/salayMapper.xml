@@ -12,9 +12,8 @@
         <result column="GET_SAL_DATE" property="getSalDate"></result>
         <result column="Company_ID" property="companyId"></result>
         <association property="employee" column="{id=EMP_ID}" select="com.archon.dao.EmployeeDao.queryEmp"></association>
-        <association property="companyId" column="{id=Company_Id}" select="com.archon.dao.CompanyDao.queryCompany"></association>
         <association property="base" column="{id=EMP_ID}" select="com.archon.dao.EmployeeDao.queryBaseSalay"></association>
-        <collection property="rewardPunishList" column="{salay_Id=id}" ofType="RewardPunish" select="com.archon.dao.RewardAndPunishDao.queryRewardPunish"></collection>
+        <collection property="rewardPunishList" column="{salayId=id}" ofType="RewardPunish" select="com.archon.dao.RewardAndPunishDao.queryRewardPunish"></collection>
     </resultMap>
     <insert id="addSalay" parameterType="Salay">
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
@@ -67,14 +66,14 @@
     <select id="querySalay" parameterType="Salay" resultMap="salayMap">
         SELECT * from SALAY
         <where>
-            <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="empId!=null">EMP_ID=#{empId},</if>
-                <if test="rewardAndPunish!=null">REWARD_AND_PUNISH=#{rewardAndPunish},</if>
-                <if test="workerPerformance!=null">WORKER_PERFORMANCE=#{workerPerformance},</if>
-                <if test="ratio!=null">RATIO=#{ratio},</if>
-                <if test="getSalDate!=null">GET_SAL_DATE=#{getSalDate},</if>
-                <if test="companyId!=null">Company_Id=#{companyId},</if>
+            <trim suffix=" " suffixOverrides="and">
+                <if test="id!=null">id=#{id} and</if>
+                <if test="empId!=null">EMP_ID=#{empId} and</if>
+                <if test="rewardAndPunish!=null">REWARD_AND_PUNISH=#{rewardAndPunish} and</if>
+                <if test="workerPerformance!=null">WORKER_PERFORMANCE=#{workerPerformance} and</if>
+                <if test="ratio!=null">RATIO=#{ratio} and</if>
+                <if test="getSalDate!=null">GET_SAL_DATE=#{getSalDate} and</if>
+                <if test="companyId!=null">Company_Id=#{companyId}</if>
             </trim>
         </where>
     </select>

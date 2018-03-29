@@ -11,15 +11,31 @@
     <title>公司信息</title>
 </head>
 <body>
-<c:import url="../success.jsp"></c:import>
+<%--模板--%>
 <div class="container">
-    <div class="col-md-12">
-            <c:set value="${requestScope.company}" var="company"></c:set>
-            <h3>我的公司信息</h3><c:out value="${requestScope.info}"></c:out>
-            <c:out value="公司名称：${company.cName}"></c:out></br>
-            <c:out value="公司地址：${company.cAddress}"></c:out></br>
-            <c:out value="公司简介：${company.cInfo}"></c:out></br>
-            <a href="/admin/adminSuccess.do">返回</a>
+    <div class="row">
+        <div class="col-md-3">
+            <c:import url="../success.jsp"></c:import>
+        </div>
+        <div class="col-md-9">
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <c:import url="../success.jsp"></c:import>
+        </div>
+        <div class="col-md-9">
+            <table class="table table-bordered">
+                <c:set value="${company}" var="comp"></c:set>
+                <tr><td><c:out value="公司名称：${comp.CName}"></c:out></td></tr>
+                <tr><td><c:out value="公司名称：${comp.CAddress}"></c:out></td></tr>
+                <tr><td><c:out value="公司名称：${comp.CInfo}"></c:out></td></tr><br/>
+                <a href="/admin/adminSuccess.do">返回</a>
+            </table>
+        </div>
     </div>
 </div>
 </body>

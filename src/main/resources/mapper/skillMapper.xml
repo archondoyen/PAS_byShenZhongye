@@ -8,8 +8,6 @@
         <result column="VISITOR_ID" property="visitorId"></result>
         <result column="S_NAME" property="sName"></result>
         <result column="CERTIFICATE" property="certificate"></result>
-<!--        <result column="ADMIN_CREATE_TIME" property="adminCreateTime"></result>
-        <result column="ADMIN_MODIFIED_TIME" property="adminModifiedTime"></result>-->
     </resultMap>
     <insert id="addSkill" parameterType="Skill">
         <selectKey resultType="java.lang.Integer" order="BEFORE" keyProperty="id">
@@ -22,7 +20,7 @@
             <if test="sName!=null">S_NAME,</if>
             <if test="certificate!=null">CERTIFICATE,</if>
         </trim>
-        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
             <if test="id!=null">#{id},</if>
             <if test="visitorId!=null">#{visitorId},</if>
             <if test="sName!=null">#{sName},</if>
@@ -32,8 +30,7 @@
     <update id="updateSkill" parameterType="Skill">
         UPDATE SKILL
         <set>
-            <trim prefix=" values (" suffix=")" suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
+            <trim suffix="" suffixOverrides=",">
                 <if test="visitorId!=null">VISITOR_ID=#{visitorId},</if>
                 <if test="sName!=null">S_NAME=#{sName},</if>
                 <if test="certificate!=null">CERTIFICATE=#{certificate},</if>
@@ -44,11 +41,11 @@
     <select id="querySkill" parameterType="Skill" resultMap="skillMap">
         SELECT * FROM SKILL
         <where>
-            <trim prefix=" values (" suffix=")" suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="visitorId!=null">VISITOR_ID=#{visitorId},</if>
-                <if test="sName!=null">S_NAME=#{sName},</if>
-                <if test="certificate!=null">CERTIFICATE=#{certificate},</if>
+            <trim suffix=" " suffixOverrides="and">
+                <if test="id!=null">id=#{id} and</if>
+                <if test="visitorId!=null">VISITOR_ID=#{visitorId} and</if>
+                <if test="sName!=null">S_NAME=#{sName} and</if>
+                <if test="certificate!=null">CERTIFICATE=#{certificate} and</if>
             </trim>
         </where>
     </select>

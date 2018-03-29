@@ -13,12 +13,13 @@ public class VisitorServiceImpl implements VisitorService {
     private VisitorDao visitorDao;
     @Override
     public Object visitorRegister(Visitor visitor) {
-        Visitor visitor1 = visitorDao.queryVisitor(visitor);
-        if (visitor1 == null) {
-            boolean b = visitorDao.addVisitor(visitor);
-            return b;
+        boolean b = visitorDao.addVisitor(visitor);
+        if(b){
+            return visitor;
+        }else{
+            return false;
         }
-        return "your visitor is already existed! Please change another Name~";
+
     }
 
     @Override
@@ -30,5 +31,15 @@ public class VisitorServiceImpl implements VisitorService {
     @Override
     public Visitor queryVisitorByName(String vName) {
         return visitorDao.queryVisitorByName(vName);
+    }
+
+    @Override
+    public boolean updateVisitorPersonMsg(Visitor visitor) {
+        return visitorDao.updateVisitor(visitor);
+    }
+
+    @Override
+    public Visitor queryVisitor(Visitor visitor) {
+        return visitorDao.queryVisitor(visitor);
     }
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.archon.dao.ResumeDao">
+    <resultMap id="resMap" type="Resume">
+        <id column="id" property="id"></id>
+        <result column="VISIOR_ID" property="visiorId"></result>
+        <result column="SELF_APPRAISAL" property="selfAppraisal"></result>
+        <result column="INTEREST" property="interest"></result>
+        <result column="RECRUITMENT_ID" property="recruitmentId"></result>
+    </resultMap>
+    <insert id="addResume" parameterType="Resume">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+            SELECT SEQARCHON.nextval from dual
+        </selectKey>
+        insert INTO ARCHON.RESUME
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="id!=null">id,</if>
+            <if test="visiorId!=null">VISIOR_ID,</if>
+            <if test="selfAppraisal!=null">SELF_APPRAISAL,</if>
+            <if test="interest!=null">INTEREST,</if>
+            <if test="recruitmentId!=null">RECRUITMENT_ID,</if>
+        </trim>
+        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null">#{id},</if>
+            <if test="visiorId!=null">#{visiorId},</if>
+            <if test="selfAppraisal!=null">#{selfAppraisal},</if>
+            <if test="interest!=null">#{interest},</if>
+            <if test="recruitmentId!=null">#{recruitmentId},</if>
+        </trim>
+    </insert>
+    <update id="updateResume" parameterType="Resume">
+        UPDATE RESUME
+        <set>
+            <trim suffix=" " suffixOverrides=",">
+                <if test="visiorId!=null">VISIOR_ID=#{visiorId},</if>
+                <if test="selfAppraisal!=null">SELF_APPRAISAL=#{selfAppraisal},</if>
+                <if test="interest!=null">INTEREST=#{interest},</if>
+                <if test="recruitmentId!=null">RECRUITMENT_ID=#{recruitmentId},</if>
+            </trim>
+        </set>
+        <where>
+            <choose>
+                <when test="id!=null">
+                    id=#{id}
+                </when>
+                <otherwise>
+                    1=2
+                </otherwise>
+            </choose>
+        </where>
+    </update>
+    <select id="queryRec" parameterType="Resume" resultMap="resMap">
+        SELECT * from RESUME
+        <where>
+            <trim suffix=" " suffixOverrides="and">
+                <if test="id!=null">id=#{id} and</if>
+                <if test="visiorId!=null">VISIOR_ID=#{visiorId} and</if>
+                <if test="selfAppraisal!=null">SELF_APPRAISAL=#{selfAppraisal} and</if>
+                <if test="interest!=null">INTEREST=#{interest} and</if>
+                <if test="recruitmentId!=null">RECRUITMENT_ID=#{recruitmentId} and</if>
+            </trim>
+        </where>
+    </select>
+    <delete id="deletResume" parameterType="Resume">
+        DELETE FROM RESUME WHERE ID=#{id}
+    </delete>
+</mapper>

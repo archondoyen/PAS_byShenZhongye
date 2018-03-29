@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -44,9 +45,8 @@ public class DeptAndJobController {
         model.addAttribute("deptAndJobs",deptAndJobs);
         return model;
     }*/
-
-    @RequestMapping(value = "showJobAjax.view",produces = "application/json;charset=UTF-8")
-    public @ResponseBody String queryApartment(Model model, HttpSession session) {
+    @RequestMapping(value = "showDeptAjax.view",produces = "application/json;charset=UTF-8")
+    public @ResponseBody String queryApartment(HttpSession session) {
         Admin admin = (Admin) session.getAttribute("admin");
         Integer companyId = admin.getCompanyId();
         DeptAndJob deptAndJob = new DeptAndJob();
@@ -64,4 +64,26 @@ public class DeptAndJobController {
         System.out.println(w.toString()); //输出json格式的字符串
         return w.toString(); //将json格式的字符串返回给前台
     }
+    /*传递dept和company的id进去*/
+    @RequestMapping(value = "showJobNumAjax.view",produces = "application/json;charset=UTF-8")
+    public @ResponseBody String queryJobNum(HttpSession session, @RequestParam(value = "deptIdStr",required = false)String deptIdStr) {
+        Admin admin = (Admin) session.getAttribute("admin");
+        int deptId = Integer.parseInt(deptIdStr);
+        DeptAndJob deptAndJob = new DeptAndJob();
+        deptAndJob.setCompanyId(admin.getCompanyId());
+        deptAndJob.setDeptId(deptId);
+        List<DeptAndJob> deptAndJobs = deptAndJobService.queryDeptAndJob(deptAndJob);
+        ObjectMapper mapper = new ObjectMapper();
+        StringWriter w = new StringWriter();
+        //Convert between List and JSON
+        try {
+            mapper.writeValue(w, deptAndJobs);//开始序列化
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+        }
+        System.out.println(w.toString()); //输出json格式的字符串
+        return w.toString(); //将json格式的字符串返回给前台
+    }
+
 }

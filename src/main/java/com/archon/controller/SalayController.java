@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -106,16 +107,16 @@ public class SalayController {
     }
     @RequestMapping(value = "employeeGetSalay.entrance")
     public String employeeGetSalayEntrance(Model model,HttpSession session){
-        Employee employyee = (Employee) session.getAttribute("employyee");
+        Employee employyee = (Employee) session.getAttribute("employee");
         Salay salay = new Salay();
         salay.setEmpId(employyee.getId());
         List<Salay> salayNotGet = salayService.findSalayNotGet(salay);
         model.addAttribute("salayList",salayNotGet);
         return "employee/employeeManageSalay/employeeGetSalay";
     }
-    @RequestMapping(value = "employyGetSalay.oper")
-    public String employeeGetSalayOper(HttpSession session,@RequestParam(value = "salayIdStr",required = false) String  salayIdStr){
-        Employee employyee = (Employee) session.getAttribute("employyee");
+    @RequestMapping(value = "empGetSalay.oper")
+    public @ResponseBody String employeeGetSalayOper(HttpSession session, @RequestParam(value = "salayIdStr",required = false) String  salayIdStr){
+        Employee employyee = (Employee) session.getAttribute("employee");
         Salay salay = new Salay();
         int salayId = Integer.parseInt(salayIdStr);
         salay.setEmpId(employyee.getId());
@@ -130,9 +131,9 @@ public class SalayController {
         salay.setGetSalDate(TimeUtil.getTimeStamp());
         boolean b = salayService.updateSalay(salay);
         if(b){
-            info+="工资单已经领取 ";
+            info+="工资单已经领取OK";
         }else{
-            info+="工资单领取失败";
+            info+="工资单领取失败Fail";
             /*这里的话，机器就不能开工资了*/
             return info;
         }
@@ -147,7 +148,7 @@ public class SalayController {
         boolean b1 = noticeService.addNotice(notice);
         if(b1){
         }else{
-            info+="财务未正确的收到信息，请联络财务管理员";
+            info+="财务未正确的收到信息，请联络财务管理员MsgNotSend";
         }
         return info;
     }

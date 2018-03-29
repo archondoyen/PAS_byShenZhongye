@@ -26,7 +26,7 @@
             <if test="coach!=null">COACH,</if>
             <if test="trainResult!=null">TRAIN_RESULT,</if>
         </trim>
-        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
             <if test="id!=null">#{id},</if>
             <if test="trainContent!=null">#{trainContent},</if>
             <if test="startTime!=null">#{startTime},</if>
@@ -63,14 +63,14 @@
     <select id="queryTrain" parameterType="Train" resultMap="trainMap">
         SELECT * from Train
         <where>
-            <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="trainContent!=null">TRAIN_CONTENT=#{trainContent},</if>
-                <if test="startTime!=null">START_TIME=#{startTime},</if>
-                <if test="endTime!=null">END_TIME=#{endTime},</if>
-                <if test="trainLocation!=null">TRAIN_LOCATION=#{trainLocation},</if>
-                <if test="coach!=null">COACH=#{coach},</if>
-                <if test="trainResult!=null">TRAIN_RESULT=#{trainResult},</if>
+            <trim suffix=" " suffixOverrides="and">
+                <if test="id!=null">id=#{id} and</if>
+                <if test="trainContent!=null">TRAIN_CONTENT=#{trainContent} and</if>
+                <if test="startTime!=null">START_TIME=#{startTime} and</if>
+                <if test="endTime!=null">END_TIME=#{endTime} and</if>
+                <if test="trainLocation!=null">TRAIN_LOCATION=#{trainLocation} and</if>
+                <if test="coach!=null">COACH=#{coach} and</if>
+                <if test="trainResult!=null">TRAIN_RESULT=#{trainResult}</if>
             </trim>
         </where>
     </select>

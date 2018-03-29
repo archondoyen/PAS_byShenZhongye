@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionController {
     @ExceptionHandler
     public String err500(NullPointerException e){
-        return "redirect:/staticPages/page/500.html";
+        return "redirect:/staticPages/500.html";
     }
 }

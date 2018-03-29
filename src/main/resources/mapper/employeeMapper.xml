@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.archon.dao.EmployeeDao">
     <resultMap id="empMap" type="Employee">
-        <id column="id" property="id"></id>
-        <result column="visitor_Id" property="visitorId"></result>
-        <result column="sal" property="sal"></result>
-        <result column="hiredate" property="hiredate"></result>
-        <result column="firedate" property="firedate"></result>
+        <id column="ID" property="id"></id>
+        <result column="VISITOR_ID" property="visitorId"></result>
+        <result column="SAL" property="sal"></result>
+        <result column="HIREDATE" property="hiredate"></result>
+        <result column="FIREDATE" property="firedate"></result>
         <result column="MODIFIED_TIME" property="modifiedTime"></result>
         <result column="DEPTANDJOB_ID" property="deptAndJobId"></result>
-        <result column="empName" property="empName"></result>
+        <result column="EMPNAME" property="empName"></result>
         <association property="deptAndJob" column="{id=DEPTANDJOB_ID}" select="com.archon.dao.DeptAndJobDao.queryDeptAndJob"></association>
     </resultMap>
     <insert id="addEmp" parameterType="Employee">
@@ -20,14 +20,14 @@
         </selectKey>
         insert INTO ARCHON.Employee
         <trim prefix="(" suffixOverrides="," suffix=")">
-            <if test="id!=null">id,</if>
-            <if test="visitorId!=null">visitor_Id,</if>
-            <if test="sal!=null">sal,</if>
-            <if test="hiredate!=null">hiredate,</if>
-            <if test="firedate!=null">firedate,</if>
+            <if test="id!=null">ID,</if>
+            <if test="visitorId!=null">VISITOR_ID,</if>
+            <if test="sal!=null">SAL,</if>
+            <if test="hiredate!=null">HIREDATE,</if>
+            <if test="firedate!=null">FIREDATE,</if>
             <if test="modifiedTime!=null">MODIFIED_TIME,</if>
             <if test="deptAndJobId!=null">DEPTANDJOB_ID,</if>
-            <if test="empName!=null">empName,</if>
+            <if test="empName!=null">EMPNAME,</if>
         </trim>
         <trim prefix=" values (" suffix=")" suffixOverrides=",">
             <if test="id!=null">#{id},</if>
@@ -44,14 +44,14 @@
         UPDATE Employee
         <set>
             <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
-                <if test="sal!=null">sal=#{sal},</if>
-                <if test="hiredate!=null">hiredate=#{hiredate},</if>
-                <if test="firedate!=null">firedate=#{firedate},</if>
+                <if test="id!=null">ID=#{id},</if>
+                <if test="visitorId!=null">VISITOR_ID=#{visitorId},</if>
+                <if test="sal!=null">SAL=#{sal},</if>
+                <if test="hiredate!=null">HIREDATE=#{hiredate},</if>
+                <if test="firedate!=null">FIREDATE=#{firedate},</if>
                 <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
                 <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
-                <if test="empName!=null">empName=#{empName},</if>
+                <if test="empName!=null">EMPNAME=#{empName},</if>
             </trim>
         </set>
         <where>
@@ -68,32 +68,32 @@
     <select id="queryEmp" parameterType="Employee" resultMap="empMap">
         SELECT * from Employee
         <where>
-            <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
-                <if test="sal!=null">sal=#{sal},</if>
-                <if test="hiredate!=null">hiredate=#{hiredate},</if>
-                <if test="firedate!=null">firedate=#{firedate},</if>
-                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
-                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
-                <if test="empName!=null">empName=#{empName},</if>
+            <trim suffix=" " suffixOverrides="and">
+                <if test="id!=null">ID=#{id} and</if>
+                <if test="visitorId!=null">VISITOR_ID=#{visitorId} and</if>
+                <if test="sal!=null">SAL=#{sal} and</if>
+                <if test="hiredate!=null">HIREDATE=#{hiredate} and</if>
+                <if test="firedate!=null">FIREDATE=#{firedate} and</if>
+                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime} and</if>
+                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId} and</if>
+                <if test="empName!=null">EMPNAME=#{empName} and</if>
             </trim>
         </where>
         /*查雇员是不是离职，就查firedate*/
     </select>
-    <select id="queryBaseSalay" parameterType="Employee" resultMap="BigDecimal">
-        SELECT sal from Employee
+    <select id="queryBaseSalay" parameterType="Employee" resultType="java.math.BigDecimal">
+        SELECT SAL from Employee
         <where>
-            <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="visitorId!=null">visitor_Id=#{visitorId},</if>
-                <if test="sal!=null">sal=#{sal},</if>
-                <if test="hiredate!=null">hiredate=#{hiredate},</if>
-                <if test="firedate!=null">firedate=#{firedate},</if>
-                <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime},</if>
-                <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId},</if>
-                <if test="empName!=null">empName=#{empName},</if>
-            </trim>
+                <trim suffix=" " suffixOverrides="and">
+                    <if test="id!=null">ID=#{id} and</if>
+                    <if test="visitorId!=null">VISITOR_ID=#{visitorId} and</if>
+                    <if test="sal!=null">SAL=#{sal} and</if>
+                    <if test="hiredate!=null">HIREDATE=#{hiredate} and</if>
+                    <if test="firedate!=null">FIREDATE=#{firedate} and</if>
+                    <if test="modifiedTime!=null">MODIFIED_TIME=#{modifiedTime} and</if>
+                    <if test="deptAndJobId!=null">DEPTANDJOB_ID=#{deptAndJobId} and</if>
+                    <if test="empName!=null">EMPNAME=#{empName} and</if>
+                </trim>
         </where>
     </select>
 </mapper>

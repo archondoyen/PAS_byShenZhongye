@@ -7,8 +7,8 @@ public class Attendance implements Serializable {
 
 	private Integer id;
 	private Integer empId;
-	private Timestamp starttime;
-	private Timestamp endtime;
+	private Timestamp startTime;
+	private Timestamp endTime;
 	private Integer statue;
 	private Employee employee;
 	public Attendance() {
@@ -20,8 +20,8 @@ public class Attendance implements Serializable {
 		return "Attendance{" +
 				"id=" + id +
 				", empId=" + empId +
-				", starttime=" + starttime +
-				", endtime=" + endtime +
+				", startTime=" + startTime +
+				", endTime=" + endTime +
 				", statue=" + statue +
 				", employee=" + employee +
 				'}';
@@ -43,20 +43,20 @@ public class Attendance implements Serializable {
 		this.empId = empId;
 	}
 
-	public Timestamp getStarttime() {
-		return starttime;
+	public Timestamp getStartTime() {
+		return startTime;
 	}
 
-	public void setStarttime(Timestamp starttime) {
-		this.starttime = starttime;
+	public void setStartTime(Timestamp startTime) {
+		this.startTime = startTime;
 	}
 
-	public Timestamp getEndtime() {
-		return endtime;
+	public Timestamp getEndTime() {
+		return endTime;
 	}
 
-	public void setEndtime(Timestamp endtime) {
-		this.endtime = endtime;
+	public void setEndTime(Timestamp endTime) {
+		this.endTime = endTime;
 	}
 
 	public Integer getStatue() {

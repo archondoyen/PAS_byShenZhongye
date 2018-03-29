@@ -4,12 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.archon.dao.RewardAndPunishDao">
     <resultMap id="rpMap" type="RewardPunish">
-        <id column="id" property="id"></id>
+        <id column="ID" property="id"></id>
         <result column="EMP_ID" property="empId"></result>
         <result column="RP_TYPE" property="rpType"></result>
         <result column="RP_CONTENT" property="rpContent"></result>
         <result column="RP_TIME" property="rpTime"></result>
-        <result column="money" property="money"></result>
+        <result column="MONEY" property="money"></result>
         <result column="SALAY_ID" property="salayId"></result>
         <association property="employee" column="{id=EMP_ID}" select="com.archon.dao.EmployeeDao.queryEmp"></association>
     </resultMap>
@@ -19,15 +19,15 @@
         </selectKey>
         insert INTO ARCHON.REWARD_PUNISH
         <trim prefix="(" suffixOverrides="," suffix=")">
-            <if test="id!=null">id,</if>
+            <if test="id!=null">ID,</if>
             <if test="empId!=null">EMP_ID,</if>
             <if test="rpType!=null">RP_TYPE,</if>
             <if test="rpContent!=null">RP_CONTENT,</if>
             <if test="rpTime!=null">RP_TIME,</if>
-            <if test="money!=null">money,</if>
+            <if test="money!=null">MONEY,</if>
             <if test="salayId!=null">SALAY_ID,</if>
         </trim>
-        <trim prefix=" values (" suffix=")" suffixOverrides=",">
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
             <if test="id!=null">#{id},</if>
             <if test="empId!=null">#{empId},</if>
             <if test="rpType!=null">#{rpType},</if>
@@ -41,13 +41,13 @@
         UPDATE REWARD_PUNISH
         <set>
             <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="empId!=null">emp_Id=#{empId},</if>
+                <if test="id!=null">ID=#{id},</if>
+                <if test="empId!=null">EMP_ID=#{empId},</if>
                 <if test="rpType!=null">RP_TYPE=#{rpType},</if>
                 <if test="rpContent!=null">RP_CONTENT=#{rpContent},</if>
                 <if test="rpTime!=null">RP_TIME=#{rpTime},</if>
-                <if test="money!=null">money=#{money},</if>
-                <if test="salayId!=null">salayId=#{salayId},</if>
+                <if test="money!=null">MONEY=#{money},</if>
+                <if test="salayId!=null">SALAY_ID=#{salayId},</if>
             </trim>
         </set>
         <where>
@@ -64,16 +64,15 @@
     <select id="queryRewardPunish" parameterType="RewardPunish" resultMap="rpMap">
         SELECT * from REWARD_PUNISH
         <where>
-            <trim suffix=" " suffixOverrides=",">
-                <if test="id!=null">id=#{id},</if>
-                <if test="empId!=null">emp_Id=#{empId},</if>
-                <if test="rpType!=null">RP_TYPE=#{rpType},</if>
-                <if test="rpContent!=null">RP_CONTENT=#{rpContent},</if>
-                <if test="rpTime!=null">RP_TIME=#{rpTime},</if>
-                <if test="money!=null">money=#{money},</if>
-                <if test="salayId!=null">salayId=#{salayId},</if>
+            <trim suffix="" suffixOverrides="and">
+                <if test="id!=null">ID=#{id} and</if>
+                <if test="empId!=null">EMP_ID=#{empId} and</if>
+                <if test="rpType!=null">RP_TYPE=#{rpType} and</if>
+                <if test="rpContent!=null">RP_CONTENT=#{rpContent} and</if>
+                <if test="rpTime!=null">RP_TIME=#{rpTime} and</if>
+                <if test="money!=null">MONEY=#{money} and</if>
+                <if test="salayId!=null">SALAY_ID=#{salayId}</if>
             </trim>
         </where>
     </select>
-    /*查雇员是不是离职，就查firedate*/
 </mapper>

@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";%>
 <html>
 <head>
+    <meta charset="utf-8">
     <base href="<%= basePath%>">
     <link href="/styles/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -16,7 +17,7 @@
         }
         function getSal(trIndex,salId) {
             $.ajax({
-                url:"salay/employyGetSalay.oper",
+                url:"salay/empGetSalay.oper",
                 data:{"salayIdStr":salId},
                 success:function (data) {
                     alert(data);
@@ -48,8 +49,8 @@
                             <td><c:out value="${salay.rewardAndPunish}"></c:out></td>
                             <td><c:out value="${salay.getSalDate}"></c:out></td>
                             <td>
-                                <button value="我知道了" onclick="iKnow(this,${salay.id})"></button>
-                                <button value="领工资" onclick="getSal(this,${salay.id})"></button>
+                                <button type="button" onclick="iKnow(this,${salay.id})">我知道了</button>
+                                <button type="button" onclick="getSal(this,${salay.id})">领工资</button>
                             </td>
                         </tr>
                     </c:forEach>

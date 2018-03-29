@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.archon.dao.VisitorDao">
     <resultMap id="visitorMap" type="Visitor">
-        <id column="id" property="id"></id>
+        <id column="ID" property="id"></id>
         <result column="V_NAME" property="vName"></result>
         <result column="V_PASSWORD" property="vPassword"></result>
         <result column="V_Gender" property="vGender"></result>
@@ -16,7 +16,7 @@
         <result column="V_Photo" property="vPhoto"></result>
         <result column="V_Identity_Card" property="vIdentityCard"></result>
         <result column="isNormal" property="isNormal"></result>
-        <collection property="skillList" column="{id=VISITOR_ID}" ofType="Skill" select="com.archon.dao.SkillDao.querySkill"></collection>
+        <collection property="skillList" column="{visitorId=ID}" select="com.archon.dao.SkillDao.querySkill"></collection>
     </resultMap>
     <insert id="addVisitor" parameterType="Visitor">
     <selectKey order="BEFORE" resultType="java.lang.Integer" keyProperty="id">
@@ -25,14 +25,14 @@
         insert into VISITOR
     <trim prefix="(" suffix=")" suffixOverrides=",">
         <if test="id!=null">ID,</if>
-        <if test="vName!=null">v_Name,</if>
-        <if test="vPassword!=null">v_Password,</if>
-        <if test="vGender!=null">v_Gender,</if>
-        <if test="vAge!=null">v_Age,</if>
-        <if test="vEmail!=null">v_Email,</if>
-        <if test="vPhone!=null">v_Phone,</if>
-        <if test="vCreateTime!=null">v_Create_Time,</if>
-        <if test="vPhoto!=null">v_Photo,</if>
+        <if test="vName!=null">V_Name,</if>
+        <if test="vPassword!=null">V_Password,</if>
+        <if test="vGender!=null">V_Gender,</if>
+        <if test="vAge!=null">V_Age,</if>
+        <if test="vEmail!=null">V_Email,</if>
+        <if test="vPhone!=null">V_Phone,</if>
+        <if test="vCreateTime!=null">V_Create_Time,</if>
+        <if test="vPhoto!=null">V_Photo,</if>
         <if test="vIdentityCard!=null">V_IDENTITY_CARD</if>
     </trim>
     <trim prefix=" values (" suffix=")" suffixOverrides=",">
@@ -52,15 +52,15 @@
         UPDATE VISITOR
         <trim suffixOverrides="," suffix=" ">
             <set>
-                <if test="vName!=null">v_Name=#{vName},</if>
-                <if test="vPassword!=null">v_Password=#{vPassword},</if>
-                <if test="vGender!=null">v_Gender=#{vGender},</if>
-                <if test="vAge!=null">v_Age=#{vAge},</if>
-                <if test="vEmail!=null">v_Email=#{vEmail},</if>
-                <if test="vPhone!=null">v_Phone#{vPhone},</if>
-                <if test="vCreateTime!=null">v_Create_Time=#{vCreateTime},</if>
-                <if test="vPhoto!=null">v_Photo=#{vPhoto},</if>
-                <if test="vIdentityCard!=null">v_Identity_Card=#{vIdentityCard}</if>
+                <if test="vName!=null">V_Name=#{vName},</if>
+                <if test="vPassword!=null">V_Password=#{vPassword},</if>
+                <if test="vGender!=null">V_Gender=#{vGender},</if>
+                <if test="vAge!=null">V_Age=#{vAge},</if>
+                <if test="vEmail!=null">V_Email=#{vEmail},</if>
+                <if test="vPhone!=null">V_Phone#{vPhone},</if>
+                <if test="vCreateTime!=null">V_Create_Time=#{vCreateTime},</if>
+                <if test="vPhoto!=null">V_Photo=#{vPhoto},</if>
+                <if test="vIdentityCard!=null">V_Identity_Card=#{vIdentityCard}</if>
             </set>
         </trim>
         <where>
@@ -75,6 +75,20 @@
         </where>
     </update>
     <select id="queryVisitor" parameterType="Visitor" resultMap="visitorMap">
-        SELECT * from VISITOR where V_NAME = #{vName} and V_PASSWORD=#{vPassword}
+        SELECT * from VISITOR
+        <where>
+            <trim suffix=" " suffixOverrides="and">
+                <if test="id!=null">ID=#{id} and</if>
+                <if test="vName!=null">V_NAME=#{vName} and</if>
+                <if test="vPassword!=null">V_PASSWORD=#{vPassword} and</if>
+                <if test="vGender!=null">V_GENDER=#{vGender} and</if>
+                <if test="vAge!=null">V_AGE=#{vAge} and</if>
+                <if test="vEmail!=null">V_EMAIL=#{vEmail} and</if>
+                <if test="vPhone!=null">V_PHONE#{vPhone} and</if>
+                <if test="vCreateTime!=null">V_CREATE_TIME=#{vCreateTime} and</if>
+                <if test="vPhoto!=null">V_MODIFIED_TIME=#{vPhoto} and</if>
+                <if test="vIdentityCard!=null">V_IDENTITY_CARD=#{vIdentityCard}</if>
+            </trim>
+        </where>
     </select>
 </mapper>
